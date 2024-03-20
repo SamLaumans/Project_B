@@ -12,10 +12,10 @@ public class Rondleidingen
     {
         
     }
-    
+
     public void LoadJson()
     {
-        using (StreamReader r = new StreamReader("file.json"))
+        using (StreamReader r = new StreamReader("Rondleidingen.json"))
         {
             string json = r.ReadToEnd();
             List<Rondleidingen> items = JsonConvert.DeserializeObject<List<Rondleidingen>>(json);
