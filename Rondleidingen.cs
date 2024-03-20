@@ -10,7 +10,7 @@ public class Rondleidingen
 
     public void CheckIn()
     {
-        
+        Console.WriteLine("U heeft succesvol gereserveerd.");
     }
 
     public void LoadJson()
