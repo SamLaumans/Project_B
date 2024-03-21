@@ -55,19 +55,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pugge\\.nuget\\packages\\": {}
+    "C:\\Users\\samla\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Semester 2\\Project B\\Project_B\\Project_B.csproj",
+      "projectUniqueName": "C:\\Users\\samla\\OneDrive\\Bureaublad\\HR-1048748\\project-b\\Project_B\\Project_B.csproj",
       "projectName": "Project_B",
-      "projectPath": "C:\\Semester 2\\Project B\\Project_B\\Project_B.csproj",
-      "packagesPath": "C:\\Users\\pugge\\.nuget\\packages\\",
-      "outputPath": "C:\\Semester 2\\Project B\\Project_B\\obj\\",
+      "projectPath": "C:\\Users\\samla\\OneDrive\\Bureaublad\\HR-1048748\\project-b\\Project_B\\Project_B.csproj",
+      "packagesPath": "C:\\Users\\samla\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\samla\\OneDrive\\Bureaublad\\HR-1048748\\project-b\\Project_B\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pugge\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\samla\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -85,6 +85,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -107,12 +112,30 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.17, 7.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[7.0.17, 7.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.17, 7.0.17]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[7.0.17, 7.0.17]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.405\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
