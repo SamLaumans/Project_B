@@ -27,3 +27,6 @@ C:\Users\samla\OneDrive\Bureaublad\HR-1048748\project-b\Project_B\obj\Debug\net7
 C:\Users\samla\OneDrive\Bureaublad\HR-1048748\project-b\Project_B\obj\Debug\net7.0\Project_B.pdb
 C:\Users\samla\OneDrive\Bureaublad\HR-1048748\project-b\Project_B\obj\Debug\net7.0\Project_B.genruntimeconfig.cache
 C:\Users\samla\OneDrive\Bureaublad\HR-1048748\project-b\Project_B\obj\Debug\net7.0\ref\Project_B.dll
+C:\Users\samla\OneDrive\Bureaublad\HR-1048748\project-b\Project_B\obj\Debug\net7.0\Project_B.csproj.AssemblyReference.cache
+C:\Users\samla\OneDrive\Bureaublad\HR-1048748\project-b\Project_B\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\samla\OneDrive\Bureaublad\HR-1048748\project-b\Project_B\obj\Debug\net7.0\Project_B.csproj.Up2Date

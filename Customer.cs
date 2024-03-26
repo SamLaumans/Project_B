@@ -1,4 +1,9 @@
 public class Customer
 {
-    public int CustomerCode;
+    public string CustomerCode;
+
+    public Customer(string customercode)
+    {
+        CustomerCode = customercode;
+    }
 }

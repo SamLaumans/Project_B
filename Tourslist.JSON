@@ -1,102 +1,82 @@
-{
-    "tours": [
-        {
-            "ID": 1,
-            "Name": "Historical Walking Tour",
-            "started": true,
-            "spots": 10,
-            "time": "2024-03-18T10:00:00",
-            "customers": [
-                101,
-                102,
-                103
-            ]
-        },
-        {
-            "ID": 2,
-            "Name": "Nature Hiking Expedition",
-            "started": false,
-            "spots": 8,
-            "time": "2024-03-19T09:30:00",
-            "customers": []
-        },
-        {
-            "ID": 3,
-            "Name": "City Night Tour",
-            "started": true,
-            "spots": 5,
-            "time": "2024-03-20T19:00:00",
-            "customers": [
-                104
-            ]
-        },
-        {
-            "ID": 4,
-            "Name": "Culinary Adventure",
-            "started": false,
-            "spots": 12,
-            "time": "2024-03-21T17:00:00",
-            "customers": []
-        },
-        {
-            "ID": 5,
-            "Name": "Art Gallery Tour",
-            "started": true,
-            "spots": 3,
-            "time": "2024-03-22T14:00:00",
-            "customers": [
-                105,
-                106
-            ]
-        },
-        {
-            "ID": 6,
-            "Name": "River Cruise",
-            "started": false,
-            "spots": 14,
-            "time": "2024-03-23T11:00:00",
-            "customers": []
-        },
-        {
-            "ID": 7,
-            "Name": "Architectural Landmarks Tour",
-            "started": true,
-            "spots": 6,
-            "time": "2024-03-24T13:30:00",
-            "customers": [
-                107,
-                108
-            ]
-        },
-        {
-            "ID": 8,
-            "Name": "Wine Tasting Journey",
-            "started": false,
-            "spots": 10,
-            "time": "2024-03-25T16:00:00",
-            "customers": []
-        },
-        {
-            "ID": 9,
-            "Name": "Adventure Sports Experience",
-            "started": true,
-            "spots": 2,
-            "time": "2024-03-26T08:00:00",
-            "customers": [
-                109,
-                110,
-                111
-            ]
-        },
-        {
-            "ID": 10,
-            "Name": "Photography Expedition",
-            "started": false,
-            "spots": 7,
-            "time": "2024-03-27T15:00:00",
-            "customers": [
-                112
-            ]
-        }
-    ]
-}
+[
+    {
+        "ID": 1,
+        "Name": "Historical Walking Tour",
+        "Started": true,
+        "Spots": 10,
+        "Time": "2024-03-18T10:00:00",
+        "Customer_Codes": []
+    },
+    {
+        "ID": 2,
+        "Name": "Nature Hiking Expedition",
+        "Started": false,
+        "Spots": 8,
+        "Time": "2024-03-19T09:30:00",
+        "Customer_Codes": []
+    },
+    {
+        "ID": 3,
+        "Name": "City Night Tour",
+        "Started": true,
+        "Spots": 5,
+        "Time": "2024-03-20T19:00:00",
+        "Customer_Codes": []
+    },
+    {
+        "ID": 4,
+        "Name": "Culinary Adventure",
+        "Started": false,
+        "Spots": 12,
+        "Time": "2024-03-21T17:00:00",
+        "Customer_Codes": []
+    },
+    {
+        "ID": 5,
+        "Name": "Art Gallery Tour",
+        "Started": true,
+        "Spots": 3,
+        "Time": "2024-03-22T14:00:00",
+        "Customer_Codes": []
+    },
+    {
+        "ID": 6,
+        "Name": "River Cruise",
+        "Started": false,
+        "Spots": 14,
+        "Time": "2024-03-23T11:00:00",
+        "Customer_Codes": []
+    },
+    {
+        "ID": 7,
+        "Name": "Architectural Landmarks Tour",
+        "Started": true,
+        "Spots": 6,
+        "Time": "2024-03-24T13:30:00",
+        "Customer_Codes": []
+    },
+    {
+        "ID": 8,
+        "Name": "Wine Tasting Journey",
+        "Started": false,
+        "Spots": 10,
+        "Time": "2024-03-25T16:00:00",
+        "Customer_Codes": []
+    },
+    {
+        "ID": 9,
+        "Name": "Adventure Sports Experience",
+        "Started": true,
+        "Spots": 2,
+        "Time": "2024-03-26T08:00:00",
+        "Customer_Codes": []
+    },
+    {
+        "ID": 10,
+        "Name": "Photography Expedition",
+        "Started": false,
+        "Spots": 7,
+        "Time": "2024-03-27T15:00:00",
+        "Customer_Codes": []
+    }
+]
