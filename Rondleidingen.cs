@@ -32,24 +32,5 @@ public class Rondleidingen
             List<Rondleidingen> items = JsonConvert.DeserializeObject<List<Rondleidingen>>(json);
         }
     }
-
-    string filename = "Rondleidingen.JSON";
-    public void ShowAvailableTours(string filename)
-    {
-        StreamReader reader = new(filename);
-        string File2Json = reader.ReadToEnd();
-        List<Rondleidingen> lijstrondleidingen = JsonConvert.DeserializeObject<List<Rondleidingen>>(File2Json)!;
-        reader.Close();
-
-        int Count = 0;
-        foreach (Rondleidingen rondleiding in lijstrondleidingen)
-        {
-            if (Started == false)
-            {
-                Count++;
-                Console.WriteLine($"{Count}. {Name} starttijd: {Time} schikbare plekken: {Spots}");
-            }
-        }
-    }
 }
 
