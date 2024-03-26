@@ -1,6 +1,8 @@
+namespace Program;
+
 using Newtonsoft.Json;
 
-public class Rondleidingen
+public class Tours
 {
     public int ID;
     public string Name;
@@ -8,9 +10,9 @@ public class Rondleidingen
     public bool Started;
 
     public DateTime Time;
-    public List<Customer> Customer_Codes;
+    public List<Customer>? Customer_Codes;
 
-    public Rondleidingen(int id, string name, int spots, bool started, DateTime time)
+    public Tours(int id, string name, int spots, bool started, DateTime time)
     {
         ID = id;
         Name = name;
@@ -29,8 +31,7 @@ public class Rondleidingen
         using (StreamReader r = new StreamReader("Rondleidingen.json"))
         {
             string json = r.ReadToEnd();
-            List<Rondleidingen> items = JsonConvert.DeserializeObject<List<Rondleidingen>>(json);
+            List<Tours>? items = JsonConvert.DeserializeObject<List<Tours>>(json);
         }
     }
 }
-
