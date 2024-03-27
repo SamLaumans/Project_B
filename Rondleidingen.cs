@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 public class Rondleidingen
 {
-    public int ID;
+    public string ID;
     public string Name;
     public int Spots;
     public bool Started;
@@ -10,7 +10,7 @@ public class Rondleidingen
     public DateTime Time;
     public List<Customer> Customer_Codes;
 
-    public Rondleidingen(int id, string name, int spots, bool started, DateTime time)
+    public Rondleidingen(string id, string name, int spots, bool started, DateTime time)
     {
         ID = id;
         Name = name;
