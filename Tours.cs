@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 public class Tours
 {
-    public int ID;
+    public string ID;
     public string Name;
     public int Spots;
     public bool Started;
@@ -12,7 +12,7 @@ public class Tours
     public DateTime Time;
     public List<Customer>? Customer_Codes;
 
-    public Tours(int id, string name, int spots, bool started, DateTime time)
+    public Tours(string id, string name, int spots, bool started, DateTime time)
     {
         ID = id;
         Name = name;
