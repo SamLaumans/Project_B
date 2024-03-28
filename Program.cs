@@ -1,4 +1,6 @@
-﻿using System;
+﻿namespace Program;
+
+using System;
 using System.ComponentModel;
 using System.Formats.Asn1;
 using System.Text.RegularExpressions;
@@ -90,9 +92,9 @@ public class Program
   {
     using StreamReader reader = new("../../../Customers.Json");
     string File2Json = reader.ReadToEnd();
-    List<Customer> lijstklanten = JsonConvert.DeserializeObject<List<Customer>>(File2Json)!;
+    List<Customer> listOfCustomers = JsonConvert.DeserializeObject<List<Customer>>(File2Json)!;
 
-    foreach (Customer customer in lijstklanten)
+    foreach (Customer customer in listOfCustomers)
     {
       if (customer.CustomerCode == idcustomer)
       {
@@ -109,16 +111,16 @@ public class Program
   {
     using StreamReader reader = new(filename);
     string File2Json = reader.ReadToEnd();
-    List<Rondleidingen> lijstrondleidingen = JsonConvert.DeserializeObject<List<Rondleidingen>>(File2Json)!;
+    List<Tours> listOfTours = JsonConvert.DeserializeObject<List<Tours>>(File2Json)!;
 
     int Count = 0;
     Console.WriteLine("Dit zijn de nog beschikbare rondleidingen voor vandaag:");
-    foreach (Rondleidingen rondleiding in lijstrondleidingen)
+    foreach (Tours tour in listOfTours)
     {
-        if (rondleiding.Started == false)
+        if (tour.Started == false)
         {
             Count++;
-            Console.WriteLine($"{Count}. Rondleiding nr.{rondleiding.ID} starttijd: {rondleiding.Time} beschikbare plekken: {rondleiding.Spots}");
+            Console.WriteLine($"{Count}. Rondleiding nr.{tour.ID} starttijd: {tour.Time} beschikbare plekken: {tour.Spots}");
         }
     }
   }
@@ -126,15 +128,15 @@ public class Program
   {
     using StreamReader reader = new("../../../Tourslist.Json");
     string File2Json = reader.ReadToEnd();
-    List<Rondleidingen> lijstrondleidingen = JsonConvert.DeserializeObject<List<Rondleidingen>>(File2Json)!;
+    List<Tours> listOfTours = JsonConvert.DeserializeObject<List<Tours>>(File2Json)!;
 
-    foreach (Rondleidingen rondleiding in lijstrondleidingen)
+    foreach (Tours tour in listOfTours)
     {
-      if (rondleiding.ID == tourid)
+      if (tour.ID == tourid)
       {
         Customer customer = new Customer(customerid);
-        rondleiding.Customer_Codes.Add(customer);
-        Console.WriteLine($"Reservering geplaatst. U word op {rondleiding.Time} verwacht bij het verzamelpunt.");
+        tour.Customer_Codes.Add(customer);
+        Console.WriteLine($"Reservering geplaatst. U word op {tour.Time} verwacht bij het verzamelpunt.");
         return true;
       }
     }
