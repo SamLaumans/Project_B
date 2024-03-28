@@ -70,20 +70,20 @@ public class Program
           while (answerValid == false)
           {
             Console.WriteLine("Voer het rondleidingsnummer waaraan u zou willen deelnemen in of toets 'q' om terug te gaan naar het begin.");
-            var ChosenTour = Console.ReadLine();
+            string ChosenTour = Console.ReadLine();
             if (ChosenTour == "q")
             {
               Program.Main();
             }
             else
             {
-              answerValid = AddToTour(Customer_ID, Convert.ToInt32(ChosenTour));
+              answerValid = AddToTour(Customer_ID, ChosenTour);
             }
           }
         }
         else
         {
-          Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}', Deze code is niet gevonden in onze database.");
+          Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}', Probeer alstublieft opnieuw.");
         }
       }
     }
@@ -100,10 +100,6 @@ public class Program
       {
         return true;
       }
-      else
-      {
-        return false;
-      }
     }
     return false;
   }
@@ -117,14 +113,14 @@ public class Program
     Console.WriteLine("Dit zijn de nog beschikbare rondleidingen voor vandaag:");
     foreach (Tours tour in listOfTours)
     {
-        if (tour.Started == false)
-        {
-            Count++;
-            Console.WriteLine($"{Count}. Rondleiding nr.{tour.ID} starttijd: {tour.Time} beschikbare plekken: {tour.Spots}");
-        }
+      if (tour.Started == false || tour.Spots <= 0)
+      {
+        Count++;
+        Console.WriteLine($"{tour.ID}. starttijd: {tour.Time} beschikbare plekken: {tour.Spots}");
+      }
     }
   }
-  public bool AddToTour(string customerid, int tourid)
+  public bool AddToTour(string customerid, string tourid)
   {
     using StreamReader reader = new("../../../Tourslist.Json");
     string File2Json = reader.ReadToEnd();
