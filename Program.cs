@@ -113,10 +113,11 @@ public class Program
     Console.WriteLine("Dit zijn de nog beschikbare rondleidingen voor vandaag:");
     foreach (Tours tour in listOfTours)
     {
-      if (tour.Started == false || tour.Spots <= 0)
+      if (tour.Time > DateTime.Now && tour.Spots > 0)
       {
         Count++;
-        Console.WriteLine($"{tour.ID}. starttijd: {tour.Time} beschikbare plekken: {tour.Spots}");
+        string timeString = tour.Time.ToString("HH:mm");
+        Console.WriteLine($"{tour.ID}. starttijd: {timeString} beschikbare plekken: {tour.Spots}");
       }
     }
   }
@@ -128,7 +129,7 @@ public class Program
 
     foreach (Tours tour in listOfTours)
     {
-      if (tour.ID == tourid)
+      if (tour.ID == tourid && tour.Time > DateTime.Now)
       {
         Customer customer = new Customer(customerid);
         tour.Customer_Codes.Add(customer);

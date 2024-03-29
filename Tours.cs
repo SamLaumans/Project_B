@@ -17,7 +17,6 @@ public class Tours
         ID = id;
         Name = name;
         Spots = spots;
-        Started = started;
         Time = time;
     }
 
