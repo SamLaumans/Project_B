@@ -125,16 +125,23 @@ public class Program
   }
   public bool AddToTour(string customerid, string tourid)
   {
-    using StreamReader reader = new("../../../Tourslist.Json");
-    string File2Json = reader.ReadToEnd();
+    string filePath = "../../../Tourslist.Json";
+
+    string File2Json = File.ReadAllText(filePath);
     List<Tours> listOfTours = JsonConvert.DeserializeObject<List<Tours>>(File2Json)!;
+
     foreach (Tours tour in listOfTours)
     {
       if (tour.ID == tourid && tour.Time > DateTime.Now)
       {
         Customer customer = new Customer(customerid);
         tour.Customer_Codes.Add(customer);
+        tour.Spots--;
         Console.WriteLine($"Reservering geplaatst. U word op {tour.Time} verwacht bij het verzamelpunt.");
+
+        string updatedJson = JsonConvert.SerializeObject(listOfTours, Formatting.Indented);
+        File.WriteAllText(filePath, updatedJson);
+
         return true;
       }
     }
