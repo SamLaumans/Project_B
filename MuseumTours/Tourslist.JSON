@@ -18,7 +18,7 @@
   {
     "ID": "3",
     "Name": "City Night Tour",
-    "Spots": 5,
+    "Spots": 4,
     "Started": false,
     "Time": "2024-04-03T19:00:00",
     "Customer_Codes": []
