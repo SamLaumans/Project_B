@@ -14,17 +14,17 @@ public class Program
     bool Valid_Answer = false;
     while (Valid_Answer == false)
     {
-      Console.WriteLine("Zou u willen deelnemen aan een rondleiding? Als u details wilt zien over de rondleidingen toets dan '1'");
+      Console.WriteLine("Wilt u deelnemen aan een rondleiding of een reservering annuleren? Als u details wilt zien over de rondleidingen toets dan '1'");
       string answer = Console.ReadLine().ToLower();
       switch (answer)
       {
-        case "ja":
+        case "deelnemen":
           Valid_Answer = true;
           program.CheckCustomerID();
           break;
-        case "nee":
+        case "annuleren":
           Valid_Answer = true;
-          Console.WriteLine("We wensen u een plezierig en inspirerend bezoek!");
+          Program.CancelAppointment();
           break;
         case "1":
           Valid_Answer = true;
@@ -152,7 +152,7 @@ public class Program
   {
     Console.WriteLine("Scan de code op uw ticket om een inschrijving te annuleren: ");
     string customerCodeToCancel = Console.ReadLine();
-
+    
     Cancel cancel = new Cancel();
     cancel.CancelAppointment(customerCodeToCancel);
   }

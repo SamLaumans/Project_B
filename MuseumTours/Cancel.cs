@@ -18,17 +18,14 @@ namespace Program
                 if (customerToRemove != null)
                 {
                     tourToUpdate.Customer_Codes.Remove(customerToRemove);
+                    tourToUpdate.Spots ++;
                     SaveTours(tours);
-                    Console.WriteLine("Appointment cancelled successfully.");
-                }
-                else
-                {
-                    Console.WriteLine("Customer not found on this tour.");
+                    Console.WriteLine("Reservering succesvol gecanceled.");
                 }
             }
             else
             {
-                Console.WriteLine("Customer not found on any tour.");
+                Console.WriteLine("U staat niet aangemeld voor een tour.");
             }
         }
         static List<Tours> LoadTours()
