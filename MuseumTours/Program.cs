@@ -141,5 +141,13 @@ public class Program
     Console.WriteLine($"We hebben geen tour kunnen vinden met het ingevoerde nummer:{tourid}.");
     return false;
   }
+    public static void CancelAppointment()
+  {
+    Console.WriteLine("Scan de code op uw ticket om een inschrijving te annuleren: ");
+    string customerCodeToCancel = Console.ReadLine();
+
+    Cancel cancel = new Cancel();
+    cancel.CancelAppointment(customerCodeToCancel);
+  }
 }
 
