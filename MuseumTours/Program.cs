@@ -10,11 +10,20 @@ public class Program
 {
   public static void Main()
   {
+    bool hallo = true;
+    while (hallo = true)
+    {
+      Thread.Sleep(2500);
+      Program.MainProgram();
+    }
+  }
+  public static void MainProgram()
+  {
     Program program = new();
     bool Valid_Answer = false;
     while (Valid_Answer == false)
     {
-      Console.WriteLine("Wilt u deelnemen aan een rondleiding of een reservering annuleren? Als u details wilt zien over de rondleidingen toets dan '1'");
+      Console.WriteLine("Wilt u deelnemen aan een rondleiding of een reservering annuleren? Als u details wilt zien over de rondleidingen toets dan 'info'");
       string answer = Console.ReadLine().ToLower();
       switch (answer)
       {
@@ -26,12 +35,12 @@ public class Program
           Valid_Answer = true;
           Program.CancelAppointment();
           break;
-        case "1":
+        case "info":
           Valid_Answer = true;
           program.ShowAvailableTours("../../../Tourslist.Json");
           break;
         default:
-          Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met 'Ja' of 'Nee'");
+          Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met 'deelnemen', 'annuleren' of 'info'");
           break;
       }
     }
@@ -97,7 +106,6 @@ public class Program
 
     foreach (Customer customer in listOfCustomers)
     {
-      Console.WriteLine(customer);
       if (customer.CustomerCode == idcustomer)
       {
         return true;
