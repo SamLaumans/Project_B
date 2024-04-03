@@ -60,11 +60,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\OODP\\Project_B\\Project_B.csproj",
+      "projectUniqueName": "c:\\OODP\\Project B\\Project_B\\Project_B.csproj",
       "projectName": "Project_B",
-      "projectPath": "C:\\OODP\\Project_B\\Project_B.csproj",
+      "projectPath": "c:\\OODP\\Project B\\Project_B\\Project_B.csproj",
       "packagesPath": "C:\\Users\\Joris\\.nuget\\packages\\",
-      "outputPath": "C:\\OODP\\Project_B\\obj\\",
+      "outputPath": "c:\\OODP\\Project B\\Project_B\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Joris\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -30,3 +30,20 @@ C:\Users\samla\OneDrive\Bureaublad\HR-1048748\project-b\Project_B\obj\Debug\net7
 C:\Users\samla\OneDrive\Bureaublad\HR-1048748\project-b\Project_B\obj\Debug\net7.0\Project_B.csproj.AssemblyReference.cache
 C:\Users\samla\OneDrive\Bureaublad\HR-1048748\project-b\Project_B\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Users\samla\OneDrive\Bureaublad\HR-1048748\project-b\Project_B\obj\Debug\net7.0\Project_B.csproj.Up2Date
+c:\OODP\Project B\Project_B\bin\Debug\net7.0\Project_B.exe
+c:\OODP\Project B\Project_B\bin\Debug\net7.0\Project_B.deps.json
+c:\OODP\Project B\Project_B\bin\Debug\net7.0\Project_B.runtimeconfig.json
+c:\OODP\Project B\Project_B\bin\Debug\net7.0\Project_B.dll
+c:\OODP\Project B\Project_B\bin\Debug\net7.0\Project_B.pdb
+c:\OODP\Project B\Project_B\bin\Debug\net7.0\Newtonsoft.Json.dll
+c:\OODP\Project B\Project_B\obj\Debug\net7.0\Project_B.csproj.AssemblyReference.cache
+c:\OODP\Project B\Project_B\obj\Debug\net7.0\Project_B.GeneratedMSBuildEditorConfig.editorconfig
+c:\OODP\Project B\Project_B\obj\Debug\net7.0\Project_B.AssemblyInfoInputs.cache
+c:\OODP\Project B\Project_B\obj\Debug\net7.0\Project_B.AssemblyInfo.cs
+c:\OODP\Project B\Project_B\obj\Debug\net7.0\Project_B.csproj.CoreCompileInputs.cache
+c:\OODP\Project B\Project_B\obj\Debug\net7.0\Project_B.csproj.CopyComplete
+c:\OODP\Project B\Project_B\obj\Debug\net7.0\Project_B.dll
+c:\OODP\Project B\Project_B\obj\Debug\net7.0\refint\Project_B.dll
+c:\OODP\Project B\Project_B\obj\Debug\net7.0\Project_B.pdb
+c:\OODP\Project B\Project_B\obj\Debug\net7.0\Project_B.genruntimeconfig.cache
+c:\OODP\Project B\Project_B\obj\Debug\net7.0\ref\Project_B.dll
