@@ -4,7 +4,7 @@
         "Name": "Historical Walking Tour",
         "Started": true,
         "Spots": 10,
-        "Time": "2024-03-18T10:00:00",
+        "Time": "10:00:00",
         "Customer_Codes": []
     },
     {
@@ -12,7 +12,7 @@
         "Name": "Nature Hiking Expedition",
         "Started": false,
         "Spots": 8,
-        "Time": "2024-03-19T09:30:00",
+        "Time": "09:30:00",
         "Customer_Codes": []
     },
     {
@@ -20,7 +20,7 @@
         "Name": "City Night Tour",
         "Started": true,
         "Spots": 5,
-        "Time": "2024-03-20T19:00:00",
+        "Time": "19:00:00",
         "Customer_Codes": []
     },
     {
@@ -28,7 +28,7 @@
         "Name": "Culinary Adventure",
         "Started": false,
         "Spots": 12,
-        "Time": "2024-03-21T17:00:00",
+        "Time": "17:00:00",
         "Customer_Codes": []
     },
     {
@@ -36,7 +36,7 @@
         "Name": "Art Gallery Tour",
         "Started": true,
         "Spots": 3,
-        "Time": "2024-03-22T14:00:00",
+        "Time": "14:00:00",
         "Customer_Codes": []
     },
     {
@@ -44,7 +44,7 @@
         "Name": "River Cruise",
         "Started": false,
         "Spots": 14,
-        "Time": "2024-03-23T11:00:00",
+        "Time": "11:00:00",
         "Customer_Codes": []
     },
     {
@@ -52,7 +52,7 @@
         "Name": "Architectural Landmarks Tour",
         "Started": true,
         "Spots": 6,
-        "Time": "2024-03-24T13:30:00",
+        "Time": "13:30:00",
         "Customer_Codes": []
     },
     {
@@ -60,7 +60,7 @@
         "Name": "Wine Tasting Journey",
         "Started": false,
         "Spots": 10,
-        "Time": "2024-03-25T16:00:00",
+        "Time": "16:00:00",
         "Customer_Codes": []
     },
     {
@@ -68,7 +68,7 @@
         "Name": "Adventure Sports Experience",
         "Started": true,
         "Spots": 2,
-        "Time": "2024-03-26T08:00:00",
+        "Time": "08:00:00",
         "Customer_Codes": []
     },
     {
@@ -76,7 +76,7 @@
         "Name": "Photography Expedition",
         "Started": false,
         "Spots": 7,
-        "Time": "2024-03-27T15:00:00",
+        "Time": "15:00:00",
         "Customer_Codes": []
     }
 ]
