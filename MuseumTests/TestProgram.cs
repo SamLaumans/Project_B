@@ -4,9 +4,18 @@ namespace Program;
 public class TestProgram
 {
     [DataTestMethod]
-    [DataRow("10101001", "1")]
-    public void AddToTourInvalidID(string customerid, string tourid)
+    [DataRow("1234567890", "1", true)]
+    [DataRow("1234567890", "500", false)]
+    public void AddToTourInvalidID(string customerid, string tourid, bool correctOutcome)
     {
-        AddToTour
+        // Arrange
+        Program program = new();
+
+        // Act
+        bool outcome = program.AddToTour(customerid, tourid);
+
+        // Assert
+        Assert.AreEqual(outcome, correctOutcome);
+
     }
 }
