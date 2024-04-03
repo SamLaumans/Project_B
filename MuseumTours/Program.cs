@@ -94,8 +94,10 @@ public class Program
     string File2Json = reader.ReadToEnd();
     List<Customer> listOfCustomers = JsonConvert.DeserializeObject<List<Customer>>(File2Json)!;
 
+
     foreach (Customer customer in listOfCustomers)
     {
+      Console.WriteLine(customer);
       if (customer.CustomerCode == idcustomer)
       {
         return true;
@@ -126,7 +128,6 @@ public class Program
     using StreamReader reader = new("../../../Tourslist.Json");
     string File2Json = reader.ReadToEnd();
     List<Tours> listOfTours = JsonConvert.DeserializeObject<List<Tours>>(File2Json)!;
-
     foreach (Tours tour in listOfTours)
     {
       if (tour.ID == tourid && tour.Time > DateTime.Now)
