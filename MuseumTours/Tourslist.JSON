@@ -4,7 +4,7 @@
     "Name": "Historical Walking Tour",
     "Spots": 10,
     "Started": false,
-    "Time": "2024-04-03T10:00:00",
+    "Time": "2024-04-05T10:00:00",
     "Customer_Codes": []
   },
   {
@@ -12,7 +12,7 @@
     "Name": "Nature Hiking Expedition",
     "Spots": 8,
     "Started": false,
-    "Time": "2024-04-03T09:30:00",
+    "Time": "2024-04-05T09:30:00",
     "Customer_Codes": []
   },
   {
@@ -20,23 +20,30 @@
     "Name": "City Night Tour",
     "Spots": 4,
     "Started": false,
-    "Time": "2024-04-03T19:00:00",
+    "Time": "2024-04-05T19:00:00",
     "Customer_Codes": []
   },
   {
     "ID": "4",
     "Name": "Culinary Adventure",
-    "Spots": 12,
+    "Spots": 10,
     "Started": false,
-    "Time": "2024-04-03T17:00:00",
-    "Customer_Codes": []
+    "Time": "2024-04-05T17:00:00",
+    "Customer_Codes": [
+      {
+        "CustomerCode": "1234567890"
+      },
+      {
+        "CustomerCode": "1234567890"
+      }
+    ]
   },
   {
     "ID": "5",
     "Name": "Art Gallery Tour",
     "Spots": 3,
     "Started": false,
-    "Time": "2024-04-03T14:00:00",
+    "Time": "2024-04-05T14:00:00",
     "Customer_Codes": []
   },
   {
@@ -44,7 +51,7 @@
     "Name": "River Cruise",
     "Spots": 14,
     "Started": false,
-    "Time": "2024-04-03T11:00:00",
+    "Time": "2024-04-05T11:00:00",
     "Customer_Codes": []
   },
   {
@@ -52,23 +59,27 @@
     "Name": "Architectural Landmarks Tour",
     "Spots": 6,
     "Started": false,
-    "Time": "2024-04-03T13:30:00",
+    "Time": "2024-04-05T13:30:00",
     "Customer_Codes": []
   },
   {
     "ID": "8",
     "Name": "Wine Tasting Journey",
-    "Spots": 10,
+    "Spots": 9,
     "Started": false,
-    "Time": "2024-04-03T16:00:00",
-    "Customer_Codes": []
+    "Time": "2024-04-05T16:00:00",
+    "Customer_Codes": [
+      {
+        "CustomerCode": "1234567890"
+      }
+    ]
   },
   {
     "ID": "9",
     "Name": "Adventure Sports Experience",
     "Spots": 2,
     "Started": false,
-    "Time": "2024-04-03T08:00:00",
+    "Time": "2024-04-05T08:00:00",
     "Customer_Codes": []
   },
   {
@@ -76,7 +87,7 @@
     "Name": "Photography Expedition",
     "Spots": 7,
     "Started": false,
-    "Time": "2024-04-03T15:00:00",
+    "Time": "2024-04-05T15:00:00",
     "Customer_Codes": []
   }
 ]
