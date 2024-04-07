@@ -5,8 +5,8 @@ public class TestProgram
 {
     [DataTestMethod]
     [DataRow("1234567890", "1", true)]
-    [DataRow("1234567890", "500", false)]
-    public void AddToTourInvalidID(string customerid, string tourid, bool correctOutcome)
+    [DataRow("1234", "2", false)]
+    public void AddToTourTest(string customerid, string tourid, bool correctOutcome)
     {
         // Arrange
         Program program = new();

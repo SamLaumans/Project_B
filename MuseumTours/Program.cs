@@ -125,7 +125,7 @@ public class Program
   }
   public bool AddToTour(string customerid, string tourid)
   {
-    string filePath = "../../../Tourslist.Json";
+    string filePath = "Tourslist.Json";
 
     string File2Json = File.ReadAllText(filePath);
     List<Tours> listOfTours = JsonConvert.DeserializeObject<List<Tours>>(File2Json)!;
