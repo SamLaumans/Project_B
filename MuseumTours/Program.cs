@@ -10,28 +10,41 @@ public class Program
 {
   public static void Main()
   {
+    TimeSpan startTime = new TimeSpan(10, 30, 0);
+    TimeSpan endTime = new TimeSpan(17, 30, 0);
+    TimeSpan currentTime = DateTime.Now.TimeOfDay;
+    while (currentTime >= startTime && currentTime <= endTime)
+    {
+      Thread.Sleep(2500);
+      Console.WriteLine("\n=========================================================================");
+      Program.MainProgram();
+    }
+    Console.WriteLine("Het museum is gesloten.");
+  }
+  public static void MainProgram()
+  {
     Program program = new();
     bool Valid_Answer = false;
     while (Valid_Answer == false)
     {
-      Console.WriteLine("Zou u willen deelnemen aan een rondleiding? Als u details wilt zien over de rondleidingen toets dan '1'");
+      Console.WriteLine("Wilt u deelnemen aan een rondleiding of een reservering annuleren?\nAls u details wilt zien over de rondleidingen toets dan 'info'.");
       string answer = Console.ReadLine().ToLower();
       switch (answer)
       {
-        case "ja":
+        case "deelnemen":
           Valid_Answer = true;
           program.CheckCustomerID();
           break;
-        case "nee":
+        case "annuleren":
           Valid_Answer = true;
-          Console.WriteLine("We wensen u een plezierig en inspirerend bezoek!");
+          Program.CancelAppointment();
           break;
-        case "1":
+        case "info":
           Valid_Answer = true;
-          program.ShowAvailableTours("../../../Tourslist.Json");
+          Tours.ShowAvailableTours("../../../Tourslist.Json");
           break;
         default:
-          Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met 'Ja' of 'Nee'");
+          Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met 'deelnemen', 'annuleren' of 'info'.");
           break;
       }
     }
@@ -62,10 +75,11 @@ public class Program
       }
       else
       {
-        if (CheckIfCustomerInList(Customer_ID))
+        Customer customer = new Customer(Customer_ID);
+        if (customer.CheckIfCustomerInList(Customer_ID))
         {
           Answer = true;
-          ShowAvailableTours("../../../Tourslist.Json");
+          Tours.ShowAvailableTours("../../../Tourslist.Json");
           bool answerValid = false;
           while (answerValid == false)
           {
@@ -77,7 +91,7 @@ public class Program
             }
             else
             {
-              answerValid = AddToTour(Customer_ID, ChosenTour);
+              answerValid = Tours.AddToTour(Customer_ID, ChosenTour);
             }
           }
         }
@@ -88,65 +102,13 @@ public class Program
       }
     }
   }
-  public bool CheckIfCustomerInList(string idcustomer)
+  public static void CancelAppointment()
   {
-    using StreamReader reader = new("../../../Customers.Json");
-    string File2Json = reader.ReadToEnd();
-    List<Customer> listOfCustomers = JsonConvert.DeserializeObject<List<Customer>>(File2Json)!;
-
-
-    foreach (Customer customer in listOfCustomers)
-    {
-      Console.WriteLine(customer);
-      if (customer.CustomerCode == idcustomer)
-      {
-        return true;
-      }
-    }
-    return false;
-  }
-  public void ShowAvailableTours(string filename)
-  {
-    using StreamReader reader = new(filename);
-    string File2Json = reader.ReadToEnd();
-    List<Tours> listOfTours = JsonConvert.DeserializeObject<List<Tours>>(File2Json)!;
-
-    int Count = 0;
-    Console.WriteLine("Dit zijn de nog beschikbare rondleidingen voor vandaag:");
-    foreach (Tours tour in listOfTours)
-    {
-      if (tour.Time > DateTime.Now && tour.Spots > 0)
-      {
-        Count++;
-        string timeString = tour.Time.ToString("HH:mm");
-        Console.WriteLine($"{tour.ID}. starttijd: {timeString} beschikbare plekken: {tour.Spots}");
-      }
-    }
-  }
-  public bool AddToTour(string customerid, string tourid)
-  {
-    string filePath = "Tourslist.Json";
-
-    string File2Json = File.ReadAllText(filePath);
-    List<Tours> listOfTours = JsonConvert.DeserializeObject<List<Tours>>(File2Json)!;
-
-    foreach (Tours tour in listOfTours)
-    {
-      if (tour.ID == tourid && tour.Time > DateTime.Now)
-      {
-        Customer customer = new Customer(customerid);
-        tour.Customer_Codes.Add(customer);
-        tour.Spots--;
-        Console.WriteLine($"Reservering geplaatst. U word op {tour.Time} verwacht bij het verzamelpunt.");
-
-        string updatedJson = JsonConvert.SerializeObject(listOfTours, Formatting.Indented);
-        File.WriteAllText(filePath, updatedJson);
-
-        return true;
-      }
-    }
-    Console.WriteLine($"We hebben geen tour kunnen vinden met het ingevoerde nummer:{tourid}.");
-    return false;
+    Console.WriteLine("Scan de code op uw ticket om een inschrijving te annuleren: ");
+    string customerCodeToCancel = Console.ReadLine();
+    
+    Cancel cancel = new Cancel();
+    cancel.CancelAppointment(customerCodeToCancel);
   }
 }
 
