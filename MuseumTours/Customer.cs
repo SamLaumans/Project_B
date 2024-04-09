@@ -1,3 +1,5 @@
+namespace Program;
+
 using Newtonsoft.Json;
 public class Customer
 {
@@ -9,7 +11,7 @@ public class Customer
     }
     public bool CheckIfCustomerInList(string idcustomer)
     {
-        using StreamReader reader = new("../../../Customers.Json");
+        using StreamReader reader = new("Customers.Json");
         string File2Json = reader.ReadToEnd();
         List<Customer> listOfCustomers = JsonConvert.DeserializeObject<List<Customer>>(File2Json)!;
 
