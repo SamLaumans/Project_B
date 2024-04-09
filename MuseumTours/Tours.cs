@@ -67,6 +67,7 @@ public class Tours
     if (touratleast == false)
     {
       Console.WriteLine("Er zijn op het moment geen beschikbare rondleidingen.");
+      Program.Main();
     }
   }
 }
