@@ -1,4 +1,4 @@
-namespace Program
+namespace Program;
 
 using Newtonsoft.Json;
 public class Customer

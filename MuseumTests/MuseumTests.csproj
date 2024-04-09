@@ -20,10 +20,4 @@
     <ProjectReference Include="..\MuseumTours\MuseumTours.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="*.JSON">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>  
-  </ItemGroup>
-
 </Project>
