@@ -4,24 +4,21 @@ using Newtonsoft.Json;
 
 public class Tours
 {
-    public string ID;
-    public string Name;
-    public int Spots;
-    public bool Started;
+  public string ID;
+  public int Spots;
+  public bool Started;
+  public DateTime Time;
+  public List<Customer>? Customer_Codes;
 
-    public DateTime Time;
-    public List<Customer>? Customer_Codes;
+  public Tours(string id, int spots, bool started, DateTime time)
+  {
+    ID = id;
+    Spots = spots;
+    Time = time;
+  }
 
-    public Tours(string id, string name, int spots, bool started, DateTime time)
-    {
-        ID = id;
-        Name = name;
-        Spots = spots;
-        Time = time;
-    }
-
-    public static bool AddToTour(string customerid, string tourid)
-    {
+  public static bool AddToTour(string customerid, string tourid)
+  {
     string filePath = "../../../Tourslist.Json";
 
     string File2Json = File.ReadAllText(filePath);
@@ -44,9 +41,9 @@ public class Tours
     }
     Console.WriteLine($"We hebben geen tour kunnen vinden met het ingevoerde nummer:{tourid}.");
     return false;
-    }
-    public static void ShowAvailableTours(string filename)
-    {
+  }
+  public static void ShowAvailableTours(string filename)
+  {
     using StreamReader reader = new(filename);
     string File2Json = reader.ReadToEnd();
     List<Tours> listOfTours = JsonConvert.DeserializeObject<List<Tours>>(File2Json)!;
@@ -60,7 +57,7 @@ public class Tours
       {
         Count++;
         string timeString = tour.Time.ToString("HH:mm");
-        Console.WriteLine($"{tour.ID}. starttijd: {timeString} beschikbare plekken: {tour.Spots}");
+        Console.WriteLine($"{tour.ID}. starttijd: {timeString} | duur: 40 minuten | beschikbare plekken: {tour.Spots}");
         touratleast = true;
       }
     }
