@@ -14,7 +14,7 @@ namespace Program
                 if (customerToRemove != null)
                 {
                     tourToUpdate.Customer_Codes.Remove(customerToRemove);
-                    tourToUpdate.Spots ++;
+                    tourToUpdate.Spots++;
                     SaveTours(tours);
                     Console.WriteLine("Reservering succesvol gecanceled.");
                 }
@@ -26,13 +26,13 @@ namespace Program
         }
         static List<Tours> LoadTours()
         {
-            string json = File.ReadAllText("../../../tourslist.json");
+            string json = File.ReadAllText("tourslist.json"); //Haal hier ../ weg als het programma niet diep genoeg gaat. Voeg ../ toe als tegenovergsteld.
             return JsonConvert.DeserializeObject<List<Tours>>(json);
         }
         static void SaveTours(List<Tours> tours)
         {
             string json = JsonConvert.SerializeObject(tours, Formatting.Indented);
-            File.WriteAllText("../../../tourslist.json", json);
+            File.WriteAllText("tourslist.json", json); //Haal hier ../ weg als het programma niet diep genoeg gaat. Voeg ../ toe als tegenovergsteld.
         }
     }
 }

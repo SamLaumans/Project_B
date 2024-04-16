@@ -24,24 +24,25 @@ public class Program
     bool Valid_Answer = false;
     while (Valid_Answer == false)
     {
-      Console.WriteLine("Wilt u deelnemen aan een rondleiding of een reservering annuleren?\nAls u details wilt zien over de rondleidingen toets dan 'info'.");
+      Tours.ShowAvailableTours("Tourslist.Json", 2);
+      Console.WriteLine("Wilt u deelnemen aan een rondleiding of een reservering annuleren?\nAls u details wilt zien over de rondleidingen toets dan 'info'.\n[1] Deelnemen\n[2] Annuleren\n[3] Info");
       string answer = Console.ReadLine().ToLower();
       switch (answer)
       {
-        case "deelnemen":
+        case "1":
           Valid_Answer = true;
           program.CheckCustomerID();
           break;
-        case "annuleren":
+        case "2":
           Valid_Answer = true;
           Program.CancelAppointment();
           break;
-        case "info":
+        case "3":
           Valid_Answer = true;
-          Tours.ShowAvailableTours("../../../Tourslist.Json");
+          Tours.ShowAvailableTours("Tourslist.Json", 1); //Haal hier ../ weg als het programma niet diep genoeg gaat. Voeg ../ toe als tegenovergsteld.
           break;
         default:
-          Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met 'deelnemen', 'annuleren' of 'info'.");
+          Console.WriteLine("\nWe hebben u niet begrepen, Graag enkel antwoorden met '1', '2' of '3'.");
           break;
       }
     }
@@ -76,7 +77,7 @@ public class Program
         if (customer.CheckIfCustomerInList(Customer_ID))
         {
           Answer = true;
-          Tours.ShowAvailableTours("../../../Tourslist.Json");
+          Tours.ShowAvailableTours("Tourslist.Json", 1); //Haal hier ../ weg als het programma niet diep genoeg gaat. Voeg ../ toe als tegenovergsteld.
           bool answerValid = false;
           while (answerValid == false)
           {
@@ -103,7 +104,7 @@ public class Program
   {
     Console.WriteLine("Scan de code op uw ticket om een inschrijving te annuleren: ");
     string customerCodeToCancel = Console.ReadLine();
-    
+
     Cancel cancel = new Cancel();
     cancel.CancelAppointment(customerCodeToCancel);
   }

@@ -17,10 +17,10 @@ public class Customer
 
         foreach (Customer customer in listOfCustomers)
         {
-        if (customer.CustomerCode == idcustomer)
-        {
-            return true;
-        }
+            if (customer.CustomerCode == idcustomer)
+            {
+                return true;
+            }
         }
         return false;
     }
