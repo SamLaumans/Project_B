@@ -10,7 +10,7 @@ namespace Program
     {
         public void CancelAppointment(string customerCodeToCancel)
         {
-            List<Tours> tours = LoadTours();
+            List<Tours> tours = DataAccess.LoadTours();
             Tours tourToUpdate = tours.FirstOrDefault(t => t.Customer_Codes.Any(c => c.CustomerCode == customerCodeToCancel));
             if (tourToUpdate != null)
             {
@@ -19,7 +19,7 @@ namespace Program
                 {
                     tourToUpdate.Customer_Codes.Remove(customerToRemove);
                     tourToUpdate.Spots ++;
-                    SaveTours(tours);
+                    DataAccess.SaveTours(tours);
                     Console.WriteLine("Reservering succesvol gecanceled.");
                 }
             }
@@ -28,15 +28,15 @@ namespace Program
                 Console.WriteLine("U staat niet aangemeld voor een tour.");
             }
         }
-        static List<Tours> LoadTours()
-        {
-            string json = File.ReadAllText("../../../tourslist.json");
-            return JsonConvert.DeserializeObject<List<Tours>>(json);
-        }
-        static void SaveTours(List<Tours> tours)
-        {
-            string json = JsonConvert.SerializeObject(tours, Formatting.Indented);
-            File.WriteAllText("../../../tourslist.json", json);
-        }
+        // static List<Tours> LoadTours()
+        // {
+        //     string json = File.ReadAllText("../../../tourslist.json");
+        //     return JsonConvert.DeserializeObject<List<Tours>>(json);
+        // }
+        // static void SaveTours(List<Tours> tours)
+        // {
+        //     string json = JsonConvert.SerializeObject(tours, Formatting.Indented);
+        //     File.WriteAllText("../../../tourslist.json", json);
+        // }
     }
 }

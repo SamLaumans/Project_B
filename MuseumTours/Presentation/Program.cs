@@ -6,7 +6,7 @@ using System.Formats.Asn1;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
-public class Program
+public class Program 
 {
   public static void Main()
   {
@@ -41,7 +41,7 @@ public class Program
           break;
         case "i":
           Valid_Answer = true;
-          Tours.ShowAvailableTours("../../../Tourslist.Json");
+          Tours.ShowAvailableTours();
           break;
         default:
           Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met 'd'(deelnemen), 'a'(annuleren) of 'i'(info).");
@@ -79,7 +79,7 @@ public class Program
         if (customer.CheckIfCustomerInList(Customer_ID))
         {
           Answer = true;
-          Tours.ShowAvailableTours("../../../Tourslist.Json");
+          Tours.ShowAvailableTours();
           bool answerValid = false;
           while (answerValid == false)
           {
@@ -97,7 +97,7 @@ public class Program
         }
         else
         {
-          Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}', Probeer alstublieft opnieuw.");
+          Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}', Probeer het ;alstublieft opnieuw.");
         }
       }
     }
