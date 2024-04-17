@@ -19,10 +19,7 @@ public class Tours
 
   public static bool AddToTour(string customerid, string tourid)
   {
-    string filePath = "../../../Tourslist.Json";
-
-    string File2Json = File.ReadAllText(filePath);
-    List<Tours> listOfTours = JsonConvert.DeserializeObject<List<Tours>>(File2Json)!;
+    List<Tours> listOfTours = DataAccess.ReadJsonTours();
 
     foreach (Tours tour in listOfTours)
     {
@@ -33,8 +30,7 @@ public class Tours
         tour.Spots--;
         Console.WriteLine($"Reservering geplaatst. U word op {tour.Time} verwacht bij het verzamelpunt.");
 
-        string updatedJson = JsonConvert.SerializeObject(listOfTours, Formatting.Indented);
-        File.WriteAllText(filePath, updatedJson);
+        DataAccess.WriteJsonToTours(listOfTours);
 
         return true;
       }
@@ -42,12 +38,9 @@ public class Tours
     Console.WriteLine($"We hebben geen tour kunnen vinden met het ingevoerde nummer:{tourid}.");
     return false;
   }
-  public static void ShowAvailableTours(string filename)
+  public static void ShowAvailableTours()
   {
-    using StreamReader reader = new(filename);
-    string File2Json = reader.ReadToEnd();
-    List<Tours> listOfTours = JsonConvert.DeserializeObject<List<Tours>>(File2Json)!;
-
+    List<Tours> listOfTours = DataAccess.ReadJsonTours();
     int Count = 0;
     Console.WriteLine("Dit zijn de nog beschikbare rondleidingen voor vandaag:");
     bool touratleast = false;
@@ -68,4 +61,5 @@ public class Tours
     }
   }
 }
+
 
