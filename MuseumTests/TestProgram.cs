@@ -9,15 +9,14 @@ public class TestProgram
     [DataRow("1234", "5000000", false)]
     public void AddToTourTest(string customerid, string tourid, bool correctOutcome)
     {
-        /* Arrange
-        Program program = new();
+        //Arrange
 
         // Act
-        bool outcome = program.AddToTour(customerid, tourid);
+        bool outcome = Tours.AddToTour(customerid, tourid);
 
         // Assert
         Assert.AreEqual(outcome, correctOutcome);
-        */
+        
 
     }
 }

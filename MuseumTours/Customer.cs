@@ -1,6 +1,7 @@
+using Newtonsoft.Json;
+
 namespace Program;
 
-using Newtonsoft.Json;
 public class Customer
 {
     public string CustomerCode;

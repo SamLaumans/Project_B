@@ -9,7 +9,7 @@ public class TestCustomer
     [DataRow("1337")]
     [DataRow("1234567890")]
     [DataRow("0987654321")]
-    [DataRow("customer code lol")]
+    [DataRow("sample customer code")]
     public void TestCustomerCode(string actualCustomerCode)
     {
         // Arrange
@@ -21,24 +21,22 @@ public class TestCustomer
         Assert.AreEqual(customer.CustomerCode, actualCustomerCode);
 
     }
+
     [DataTestMethod]
     [DataRow("1337", false)]
     [DataRow("874743983983434789347984978349783479834", false)]
     [DataRow("1357924680", true)]
     [DataRow("0987654321", true)]
-    public void TestCheckIfCustomerInList(string CustomerCode, bool expectedOutcome)
+    public void TestCheckIfCustomerInList(string CustomerCode, bool ExpectedOutput)
     {
         // Arrange
         Customer customer = new(CustomerCode);
-        string toWriteToJson = $"Customer :{customer.CustomerCode}";
 
         // Act
-        string filepath = "Customers.Json";
-        string updatedJson = JsonConvert.SerializeObject(toWriteToJson, Formatting.Indented);
-        File.WriteAllText(filepath, updatedJson);
-        
+        bool IsCustomerInList = customer.CheckIfCustomerInList(customer.CustomerCode);
+         
         // Assert
-        Assert.AreEqual(customer.CustomerCode, expectedOutcome);
+        Assert.AreEqual(IsCustomerInList, ExpectedOutput);
 
     }
 }
