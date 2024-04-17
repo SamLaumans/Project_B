@@ -1,7 +1,4 @@
 using Newtonsoft.Json;
-
-namespace Program;
-
 public class Customer
 {
     public string CustomerCode;
@@ -12,16 +9,14 @@ public class Customer
     }
     public bool CheckIfCustomerInList(string idcustomer)
     {
-        using StreamReader reader = new("Customers.Json");
-        string File2Json = reader.ReadToEnd();
-        List<Customer> listOfCustomers = JsonConvert.DeserializeObject<List<Customer>>(File2Json)!;
+        List<Customer> listOfCustomers = DataAccess.ReadJsonCustomers();
 
         foreach (Customer customer in listOfCustomers)
         {
-        if (customer.CustomerCode == idcustomer)
-        {
-            return true;
-        }
+            if (customer.CustomerCode == idcustomer)
+            {
+                return true;
+            }
         }
         return false;
     }

@@ -1,7 +1,10 @@
 ﻿namespace Program;
 
 using System;
+using System.ComponentModel;
+using System.Formats.Asn1;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 public class Program
 {
@@ -24,24 +27,24 @@ public class Program
     bool Valid_Answer = false;
     while (Valid_Answer == false)
     {
-      Console.WriteLine("Wilt u deelnemen aan een rondleiding of een reservering annuleren?\nAls u details wilt zien over de rondleidingen toets dan 'info'.");
+      Console.WriteLine("Wilt u deelnemen aan een rondleiding(d) of een reservering annuleren(a)?\nAls u info wilt zien over de rondleidingen toets(i).");
       string answer = Console.ReadLine().ToLower();
       switch (answer)
       {
-        case "deelnemen":
+        case "d":
           Valid_Answer = true;
           program.CheckCustomerID();
           break;
-        case "annuleren":
+        case "a":
           Valid_Answer = true;
           Program.CancelAppointment();
           break;
-        case "info":
+        case "i":
           Valid_Answer = true;
-          Tours.ShowAvailableTours("../../../Tourslist.Json");
+          Tours.ShowAvailableTours();
           break;
         default:
-          Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met 'deelnemen', 'annuleren' of 'info'.");
+          Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met 'd'(deelnemen), 'a'(annuleren) of 'i'(info).");
           break;
       }
     }
@@ -76,7 +79,7 @@ public class Program
         if (customer.CheckIfCustomerInList(Customer_ID))
         {
           Answer = true;
-          Tours.ShowAvailableTours("Tourslist.Json");
+          Tours.ShowAvailableTours();
           bool answerValid = false;
           while (answerValid == false)
           {
@@ -94,7 +97,7 @@ public class Program
         }
         else
         {
-          Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}', Probeer alstublieft opnieuw.");
+          Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}', Probeer het ;alstublieft opnieuw.");
         }
       }
     }
@@ -103,9 +106,10 @@ public class Program
   {
     Console.WriteLine("Scan de code op uw ticket om een inschrijving te annuleren: ");
     string customerCodeToCancel = Console.ReadLine();
-    
+
     Cancel cancel = new Cancel();
     cancel.CancelAppointment(customerCodeToCancel);
   }
 }
+
 
