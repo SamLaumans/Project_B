@@ -27,21 +27,24 @@ public class Program
     bool Valid_Answer = false;
     while (Valid_Answer == false)
     {
-      Console.WriteLine("Wilt u deelnemen aan een rondleiding(d) of een reservering annuleren(a)?\nAls u info wilt zien over de rondleidingen toets(i).");
+      Console.WriteLine("Dit zijn de eerst komende 5 rondleidingen: ");
+      Tours.ShowAvailableTours(2);
+      Console.WriteLine("Wilt u deelnemen aan een rondleiding of een reservering annuleren?\nAls u info wilt zien over de rondleidingen toets[3].");
+      Console.WriteLine($"[1] Deelnemen \n[2] Annuleren \n[3] Info");
       string answer = Console.ReadLine().ToLower();
       switch (answer)
       {
-        case "d":
+        case "1":
           Valid_Answer = true;
           program.CheckCustomerID();
           break;
-        case "a":
+        case "2":
           Valid_Answer = true;
           Program.CancelAppointment();
           break;
-        case "i":
+        case "3":
           Valid_Answer = true;
-          Tours.ShowAvailableTours();
+          Tours.ShowAvailableTours(1);
           break;
         default:
           Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met 'd'(deelnemen), 'a'(annuleren) of 'i'(info).");
@@ -79,7 +82,7 @@ public class Program
         if (customer.CheckIfCustomerInList(Customer_ID))
         {
           Answer = true;
-          Tours.ShowAvailableTours();
+          Tours.ShowAvailableTours(1);
           bool answerValid = false;
           while (answerValid == false)
           {
