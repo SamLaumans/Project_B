@@ -76,7 +76,7 @@ public class Program
         if (customer.CheckIfCustomerInList(Customer_ID))
         {
           Answer = true;
-          Tours.ShowAvailableTours("../../../Tourslist.Json");
+          Tours.ShowAvailableTours("Tourslist.Json");
           bool answerValid = false;
           while (answerValid == false)
           {

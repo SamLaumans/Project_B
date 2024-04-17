@@ -6,11 +6,11 @@ namespace Program
     {
         public void CancelAppointment(string customerCodeToCancel)
         {
-            List<Tours> tours = LoadTours();
-            Tours tourToUpdate = tours.FirstOrDefault(t => t.Customer_Codes.Any(c => c.CustomerCode == customerCodeToCancel));
+            List<Tours>? tours = LoadTours();
+            Tours? tourToUpdate = tours.FirstOrDefault(t => t.Customer_Codes.Any(c => c.CustomerCode == customerCodeToCancel));
             if (tourToUpdate != null)
             {
-                Customer customerToRemove = tourToUpdate.Customer_Codes.FirstOrDefault(c => c.CustomerCode == customerCodeToCancel);
+                Customer? customerToRemove = tourToUpdate.Customer_Codes.FirstOrDefault(c => c.CustomerCode == customerCodeToCancel);
                 if (customerToRemove != null)
                 {
                     tourToUpdate.Customer_Codes.Remove(customerToRemove);
@@ -24,15 +24,15 @@ namespace Program
                 Console.WriteLine("U staat niet aangemeld voor een tour.");
             }
         }
-        static List<Tours> LoadTours()
+        static List<Tours>? LoadTours()
         {
-            string json = File.ReadAllText("../../../tourslist.json");
+            string json = File.ReadAllText("tourslist.json");
             return JsonConvert.DeserializeObject<List<Tours>>(json);
         }
         static void SaveTours(List<Tours> tours)
         {
             string json = JsonConvert.SerializeObject(tours, Formatting.Indented);
-            File.WriteAllText("../../../tourslist.json", json);
+            File.WriteAllText("tourslist.json", json);
         }
     }
 }

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuseumTours", "MuseumTours.csproj", "{2E2562B4-FF3C-446F-89FF-A5A53BA068A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuseumTests", "MuseumTests.csproj", "{9B7C4EA0-D497-4BFC-963A-E969D3907249}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2E2562B4-FF3C-446F-89FF-A5A53BA068A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E2562B4-FF3C-446F-89FF-A5A53BA068A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E2562B4-FF3C-446F-89FF-A5A53BA068A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E2562B4-FF3C-446F-89FF-A5A53BA068A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B7C4EA0-D497-4BFC-963A-E969D3907249}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B7C4EA0-D497-4BFC-963A-E969D3907249}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B7C4EA0-D497-4BFC-963A-E969D3907249}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B7C4EA0-D497-4BFC-963A-E969D3907249}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C88829AB-9F65-447F-8D91-FA70E476B4CD}
+		SolutionGuid = {736B287E-E07F-489B-9FF8-AB06DF6C6370}
 	EndGlobalSection
 EndGlobal
