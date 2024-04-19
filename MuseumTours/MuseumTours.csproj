@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="*.JSON">
+    <Content Include="DataSources/*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

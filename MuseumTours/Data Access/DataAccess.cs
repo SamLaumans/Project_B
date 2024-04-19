@@ -1,18 +1,20 @@
 using Program;
 using Newtonsoft.Json;
 
-class DataAccess
+public static class DataAccess
 {
+    private static string pathTourslist = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/Tourslist.JSON")); 
+    private static string pathCustomers = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/Customers.JSON"));
     public static List<Customer> ReadJsonCustomers()
     {
-        using StreamReader reader = new("Customers.Json");
+        using StreamReader reader = new(pathCustomers);
         string File2Json = reader.ReadToEnd();
         List<Customer> listOfCustomers = JsonConvert.DeserializeObject<List<Customer>>(File2Json)!;
         return listOfCustomers;
     }
     public static List<Tours> ReadJsonTours()
     {
-        string File2Json = File.ReadAllText("Tourslist.Json");
+        string File2Json = File.ReadAllText(pathTourslist);
         List<Tours> listOfTours = JsonConvert.DeserializeObject<List<Tours>>(File2Json)!;
         return listOfTours;
     }
@@ -21,7 +23,7 @@ class DataAccess
         try
         {
             string updatedJson = JsonConvert.SerializeObject(listoftours, Formatting.Indented);
-            File.WriteAllText("Tourslist.Json", updatedJson);
+            File.WriteAllText(pathTourslist, updatedJson);
             return true;
         }
         catch (FileNotFoundException)
@@ -30,15 +32,15 @@ class DataAccess
         }
 
     }
-    public static List<Tours> LoadTours()
+    public static List<Tours>? LoadTours()
     {
-        string json = File.ReadAllText("tourslist.json");
+        string json = File.ReadAllText(pathTourslist);
         return JsonConvert.DeserializeObject<List<Tours>>(json);
     }
     public static bool SaveTours(List<Tours> tours)
     {
         string json = JsonConvert.SerializeObject(tours, Formatting.Indented);
-        File.WriteAllText("tourslist.json", json);
+        File.WriteAllText(pathTourslist, json);
         return true;
     }
 }
