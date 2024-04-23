@@ -30,7 +30,7 @@ public class Program
       Console.WriteLine("Dit zijn de eerst komende 5 rondleidingen: ");
       Tours.ShowAvailableTours(2);
       Console.WriteLine("Wilt u deelnemen aan een rondleiding of een reservering annuleren?\nAls u info wilt zien over de rondleidingen toets[3].");
-      Console.WriteLine($"[1] Deelnemen \n[2] Annuleren \n[3] Info \n [4] Gids ");
+      Console.WriteLine($"[1] Deelnemen \n[2] Annuleren \n[3] Info \n[4] Gids ");
       string answer = Console.ReadLine().ToLower();
       switch (answer)
       {

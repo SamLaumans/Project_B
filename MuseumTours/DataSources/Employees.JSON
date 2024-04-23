@@ -1,0 +1,42 @@
+[
+    {
+        "Name": "John",
+        "EmployeeCode": "123456"
+    },
+    {
+        "Name": "Alice",
+        "EmployeeCode": "654321"
+    },
+    {
+        "Name": "David",
+        "EmployeeCode": "987654"
+    },
+    {
+        "Name": "Emily",
+        "EmployeeCode": "456789"
+    },
+    {
+        "Name": "Michael",
+        "EmployeeCode": "246810"
+    },
+    {
+        "Name": "Sarah",
+        "EmployeeCode": "135790"
+    },
+    {
+        "Name": "Robert",
+        "EmployeeCode": "112233"
+    },
+    {
+        "Name": "Emma",
+        "EmployeeCode": "445566"
+    },
+    {
+        "Name": "James",
+        "EmployeeCode": "778899"
+    },
+    {
+        "Name": "Sophia",
+        "EmployeeCode": "998877"
+    }
+]
