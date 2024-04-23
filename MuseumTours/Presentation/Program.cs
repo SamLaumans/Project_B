@@ -36,7 +36,7 @@ public class Program
       {
         case "1":
           Valid_Answer = true;
-          program.CheckCustomerID();
+          Customer.InputMoreCustomercodes();
           break;
         case "2":
           Valid_Answer = true;
@@ -52,59 +52,59 @@ public class Program
       }
     }
   }
-  public void CheckCustomerID()
-  {
-    string pattern = @"[^0-9]";
-    bool Answer = false;
-    while (Answer == false)
-    {
-      Console.WriteLine("Scan de barcode op uw ticket, toets het nummer onder de barcode in of toets 'q' om terug te gaan naar het begin.");
-      string Customer_ID = Console.ReadLine();
-      if (Customer_ID == null)
-      {
-        Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}'. De code kan niet leeg zijn.");
-      }
-      else if (Customer_ID == "q")
-      {
-        Program.Main();
-      }
-      else if (Customer_ID.Count() != 10)
-      {
-        Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}'. De code bestaat altijd uit 10 cijfers.");
-      }
-      else if (Regex.IsMatch(Customer_ID, pattern))
-      {
-        Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}'. De code bestaat altijd uit 10 cijfers.");
-      }
-      else
-      {
-        Customer customer = new Customer(Customer_ID);
-        if (customer.CheckIfCustomerInList(Customer_ID))
-        {
-          Answer = true;
-          Tours.ShowAvailableTours(1);
-          bool answerValid = false;
-          while (answerValid == false)
-          {
-            Console.WriteLine("Voer het rondleidingsnummer waaraan u zou willen deelnemen in of toets 'q' om terug te gaan naar het begin.");
-            string ChosenTour = Console.ReadLine();
-            if (ChosenTour == "q")
-            {
-              Program.Main();
-            }
-            else
-            {
-              answerValid = Tours.AddToTour(Customer_ID, ChosenTour);
-            }
-          }
-        }
-        else
-        {
-          Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}', Probeer het ;alstublieft opnieuw.");
-        }
-      }
-    }
-  }
+  // public void CheckCustomerID()
+  // {
+  //   string pattern = @"[^0-9]";
+  //   bool Answer = false;
+  //   while (Answer == false)
+  //   {
+  //     Console.WriteLine("Scan de barcode op uw ticket, toets het nummer onder de barcode in of toets 'q' om terug te gaan naar het begin.");
+  //     string Customer_ID = Console.ReadLine();
+  //     if (Customer_ID == null)
+  //     {
+  //       Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}'. De code kan niet leeg zijn.");
+  //     }
+  //     else if (Customer_ID == "q")
+  //     {
+  //       Program.Main();
+  //     }
+  //     else if (Customer_ID.Count() != 10)
+  //     {
+  //       Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}'. De code bestaat altijd uit 10 cijfers.");
+  //     }
+  //     else if (Regex.IsMatch(Customer_ID, pattern))
+  //     {
+  //       Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}'. De code bestaat altijd uit 10 cijfers.");
+  //     }
+  //     else
+  //     {
+  //       Customer customer = new Customer(Customer_ID);
+  //       if (customer.CheckIfCustomerInList(Customer_ID))
+  //       {
+  //         Answer = true;
+  //         Tours.ShowAvailableTours(1);
+  //         bool answerValid = false;
+  //         while (answerValid == false)
+  //         {
+  //           Console.WriteLine("Voer het rondleidingsnummer waaraan u zou willen deelnemen in of toets 'q' om terug te gaan naar het begin.");
+  //           string ChosenTour = Console.ReadLine();
+  //           if (ChosenTour == "q")
+  //           {
+  //             Program.Main();
+  //           }
+  //           else
+  //           {
+  //             answerValid = Tours.AddToTour(Customer_ID, ChosenTour);
+  //           }
+  //         }
+  //       }
+  //       else
+  //       {
+  //         Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}', Probeer het alstublieft opnieuw.");
+  //       }
+  //     }
+  //   }
+  // }
   public static void CancelAppointment()
   {
     Console.WriteLine("Scan de code op uw ticket om een inschrijving te annuleren: ");

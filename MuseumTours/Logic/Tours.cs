@@ -17,26 +17,38 @@ public class Tours
     Time = time;
   }
 
-  public static bool AddToTour(string customerid, string tourid)
+
+  public static bool AddToTour(List<Customer> customerid, string tourid)
   {
     List<Tours> listOfTours = DataAccess.ReadJsonTours();
+    bool booked = false;
 
     foreach (Tours tour in listOfTours)
     {
-      if (tour.ID == tourid && tour.Time > DateTime.Now)
+      if (tour.ID == tourid && tour.Time > DateTime.Now && tour.Spots > 0)
       {
-        Customer customer = new Customer(customerid);
-        tour.Customer_Codes.Add(customer);
-        tour.Spots--;
-        Console.WriteLine($"Reservering geplaatst. U word op {tour.Time} verwacht bij het verzamelpunt.");
-
-        DataAccess.WriteJsonToTours(listOfTours);
-
-        return true;
+        foreach (Customer customer in customerid)
+        {
+          Customer customer1 = new Customer(customer.CustomerCode);
+          tour.Customer_Codes.Add(customer1);
+        }
+        tour.Spots -= customerid.Count;
+        booked = true;
+        Console.WriteLine(DataAccess.WriteJsonToTours(listOfTours));
+        break;
       }
     }
-    Console.WriteLine($"We hebben geen tour kunnen vinden met het ingevoerde nummer:{tourid}.");
-    return false;
+
+    if (booked)
+    {
+      Console.WriteLine($"Reservering geplaatst.");
+    }
+    else
+    {
+      Console.WriteLine($"We hebben geen rondleiding kunnen vinden met het ingevoerde nummer:{tourid}.");
+    }
+
+    return booked;
   }
   public static void ShowAvailableTours(int FiveOrAll)
   {
@@ -44,7 +56,7 @@ public class Tours
     {
       List<Tours> listOfTours = DataAccess.ReadJsonTours();
       int Count = 0;
-      Console.WriteLine("Dit zijn de nog beschikbare rondleidingen voor vandaag:");
+      Console.WriteLine("Dit zijn de nog beschikbare rondleidingen voor vandaag(iedere rondleiding duurt 40 minuten):");
       bool touratleast = false;
       foreach (Tours tour in listOfTours)
       {
@@ -52,7 +64,7 @@ public class Tours
         {
           Count++;
           string timeString = tour.Time.ToString("HH:mm");
-          Console.WriteLine($"{tour.ID}. starttijd: {timeString} | duur: 40 minuten | beschikbare plekken: {tour.Spots}");
+          Console.WriteLine($"{tour.ID}. starttijd: {timeString} | beschikbare plekken: {tour.Spots}");
           touratleast = true;
         }
       }
@@ -66,7 +78,7 @@ public class Tours
     {
       List<Tours> listOfTours = DataAccess.ReadJsonTours();
       int Count = 0;
-      Console.WriteLine("Dit zijn de nog beschikbare rondleidingen voor vandaag:");
+      Console.WriteLine("Dit zijn de nog beschikbare rondleidingen voor vandaag(elke rondleiding duurt 40 minuten):");
       bool touratleast = false;
       foreach (Tours tour in listOfTours)
       {
@@ -74,7 +86,7 @@ public class Tours
         {
           Count++;
           string timeString = tour.Time.ToString("HH:mm");
-          Console.WriteLine($"{tour.ID}. starttijd: {timeString} | duur: 40 minuten | beschikbare plekken: {tour.Spots}");
+          Console.WriteLine($"{tour.ID}. starttijd: {timeString} | beschikbare plekken: {tour.Spots}");
           touratleast = true;
           if (Count == 5)
           {
