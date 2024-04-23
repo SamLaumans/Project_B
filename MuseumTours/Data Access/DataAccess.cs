@@ -18,6 +18,13 @@ public static class DataAccess
         List<Tours> listOfTours = JsonConvert.DeserializeObject<List<Tours>>(File2Json)!;
         return listOfTours;
     }
+    public static List<Guide> ReadJsonEmployees()
+    {
+        using StreamReader reader = new("Employees.Json");
+        string File2Json = reader.ReadToEnd();
+        List<Guide> listOfGuides = JsonConvert.DeserializeObject<List<Guide>>(File2Json)!;
+        return listOfGuides;
+    }
     public static bool WriteJsonToTours(List<Tours> listoftours)
     {
         try

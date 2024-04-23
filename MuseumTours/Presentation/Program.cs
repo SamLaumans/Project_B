@@ -30,7 +30,7 @@ public class Program
       Console.WriteLine("Dit zijn de eerst komende 5 rondleidingen: ");
       Tours.ShowAvailableTours(2);
       Console.WriteLine("Wilt u deelnemen aan een rondleiding of een reservering annuleren?\nAls u info wilt zien over de rondleidingen toets[3].");
-      Console.WriteLine($"[1] Deelnemen \n[2] Annuleren \n[3] Info");
+      Console.WriteLine($"[1] Deelnemen \n[2] Annuleren \n[3] Info \n [4] Gids ");
       string answer = Console.ReadLine().ToLower();
       switch (answer)
       {
@@ -45,6 +45,10 @@ public class Program
         case "3":
           Valid_Answer = true;
           Tours.ShowAvailableTours(1);
+          break;
+        case "4":
+          Valid_Answer = true;
+          Guide.CheckEmployeeID();
           break;
         default:
           Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met 'd'(deelnemen), 'a'(annuleren) of 'i'(info).");

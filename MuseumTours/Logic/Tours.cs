@@ -89,6 +89,36 @@ public class Tours
       }
     }
   }
+  public static void ShowToursToGuide(string filename)
+  {
+    List<Tours> listOfTours = DataAccess.ReadJsonTours();
+    Console.WriteLine("Kies een rondleiding om zijn deelnemers te zien:");
+    foreach (Tours tour in listOfTours)
+    {
+      string timeString = tour.Time.ToString("HH:mm");
+      Console.WriteLine($"{tour.ID}. starttijd: {timeString} | Aantal deelnemers: {13 - tour.Spots}");
+    }
+  }
+  public static void ShowChosenTour(string tourid)
+  {
+    List<Tours> listOfTours = DataAccess.ReadJsonTours();
+    foreach (Tours tour in listOfTours)
+    {
+      if (tour.ID == tourid)
+      {
+        string timeString = tour.Time.ToString("HH:mm");
+
+        Console.WriteLine($"Tour van : {timeString}");
+        Console.WriteLine($"Hieronder zijn alle codes van de bezoekers in deze rondleiding.");
+        Console.WriteLine($"=======================================================================");
+        foreach (var customerCode in tour.Customer_Codes)
+        {
+          Console.WriteLine($"Customer Code: {customerCode.CustomerCode}");
+        }
+        Console.WriteLine($"=======================================================================");
+      }
+    }
+  }
 }
 
 
