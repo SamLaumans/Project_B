@@ -5,6 +5,7 @@ public static class DataAccess
 {
     private static string pathTourslist = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/Tourslist.JSON")); 
     private static string pathCustomers = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/Customers.JSON"));
+    private static string pathEmployees = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/Employees.JSON"));
     public static List<Customer> ReadJsonCustomers()
     {
         using StreamReader reader = new(pathCustomers);
@@ -17,6 +18,13 @@ public static class DataAccess
         string File2Json = File.ReadAllText(pathTourslist);
         List<Tours> listOfTours = JsonConvert.DeserializeObject<List<Tours>>(File2Json)!;
         return listOfTours;
+    }
+    public static List<Guide> ReadJsonEmployees()
+    {
+        using StreamReader reader = new(pathEmployees);
+        string File2Json = reader.ReadToEnd();
+        List<Guide> listOfGuides = JsonConvert.DeserializeObject<List<Guide>>(File2Json)!;
+        return listOfGuides;
     }
     public static bool WriteJsonToTours(List<Tours> listoftours)
     {
