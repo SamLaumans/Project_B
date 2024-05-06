@@ -30,7 +30,7 @@ public class Program
       Console.WriteLine("Dit zijn de eerst komende 5 rondleidingen: ");
       Tours.ShowAvailableTours(2);
       Console.WriteLine("Wilt u deelnemen aan een rondleiding of een reservering annuleren?\nAls u info wilt zien over de rondleidingen toets[3].");
-      Console.WriteLine($"[1] Deelnemen \n[2] Annuleren \n[3] Info");
+      Console.WriteLine($"[1] Deelnemen \n[2] Annuleren \n[3] Info\nWerknemers inlog[4]");
       string answer = Console.ReadLine().ToLower();
       switch (answer)
       {
@@ -46,8 +46,12 @@ public class Program
           Valid_Answer = true;
           Tours.ShowAvailableTours(1);
           break;
+        case "4":
+          Valid_Answer = true;
+          Guide.CheckEmployeeID();
+          break;
         default:
-          Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met '1'(deelnemen), '2'(annuleren) of '3'(info).");
+          Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met '1'(deelnemen), '2'(annuleren), '3'(info) of '4'(Werknemers inlog).");
           break;
       }
     }
