@@ -16,7 +16,7 @@ public class TestCustomer
         Customer customer = new(actualCustomerCode);
 
         // Act
-        
+
         // Assert
         Assert.AreEqual(customer.CustomerCode, actualCustomerCode);
 
@@ -33,8 +33,8 @@ public class TestCustomer
         Customer customer = new(CustomerCode);
 
         // Act
-        bool IsCustomerInList = customer.CheckIfCustomerInList(customer.CustomerCode);
-         
+        bool IsCustomerInList = Customer.CheckIfCustomerInList(customer.CustomerCode);
+
         // Assert
         Assert.AreEqual(IsCustomerInList, ExpectedOutput);
 

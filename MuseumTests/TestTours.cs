@@ -1,48 +1,41 @@
 namespace Program;
 
 [TestClass]
-public class TestProgram
+public class UnitTestTours
 {
     [DataTestMethod]
     [DataRow("1", true)]
     [DataRow("2", true)]
     [DataRow("5000000", false)]
-    public void AddToTourTest(string tourid, bool correctOutcome)
+    [DataRow("a", false)]
+    [DataRow("", false)]
+    public void AddToTour_Returnsbooltrue(string tourid, bool expected)
     {
-        // Arrange
+        // Arange
         Program program = new();
         List<Customer> Listofcustomercodes = new List<Customer>();
         Customer customer1 = new Customer("1234567890");
         Customer customer2 = new Customer("0987654321");
         Listofcustomercodes.Add(customer1);
         Listofcustomercodes.Add(customer2);
-
         // Act
-        bool outcome = Tours.AddToTour(Listofcustomercodes, tourid);
-
+        bool result = Tours.AddToTour(Listofcustomercodes, tourid);
         // Assert
-        Assert.AreEqual(outcome, correctOutcome);
-
+        Assert.AreEqual(result, expected);
     }
 
-    [DataTestMethod]
-    [DataRow("1", false)]
-    [DataRow("2", false)]
-    [DataRow("5000000", false)]
-    public void AddToTourTest2(string tourid, bool correctOutcome)
+    public void AddToTour_Returnsbool(string tourid, bool expected)
     {
-        // Arrange
+        // Arange
         Program program = new();
         List<Customer> Listofcustomercodes = new List<Customer>();
-        Customer customer1 = new Customer("12345");
+        Customer customer1 = new Customer("1234567890");
         Customer customer2 = new Customer("09876");
         Listofcustomercodes.Add(customer1);
         Listofcustomercodes.Add(customer2);
-
         // Act
-        bool outcome = Tours.AddToTour(Listofcustomercodes, tourid);
-
+        bool result = Tours.AddToTour(Listofcustomercodes, tourid);
         // Assert
-        Assert.AreEqual(outcome, correctOutcome);
+        Assert.AreEqual(result, expected);
     }
 }

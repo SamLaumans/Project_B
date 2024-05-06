@@ -8,7 +8,7 @@ namespace Program
 {
     public class Cancel
     {
-        public void CancelAppointment(string customerCodeToCancel)
+        public static void CancelAppointment(string customerCodeToCancel)
         {
             List<Tours> tours = DataAccess.LoadTours();
             Tours tourToUpdate = tours.FirstOrDefault(t => t.Customer_Codes.Any(c => c.CustomerCode == customerCodeToCancel));
@@ -28,16 +28,6 @@ namespace Program
                 Console.WriteLine("U staat niet aangemeld voor een tour.");
             }
         }
-        // static List<Tours> LoadTours()
-        // {
-        //     string json = File.ReadAllText("../../../tourslist.json");
-        //     return JsonConvert.DeserializeObject<List<Tours>>(json);
-        // }
-        // static void SaveTours(List<Tours> tours)
-        // {
-        //     string json = JsonConvert.SerializeObject(tours, Formatting.Indented);
-        //     File.WriteAllText("../../../tourslist.json", json);
-        // }
     }
 }
 
