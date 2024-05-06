@@ -137,8 +137,8 @@ public class Tours
     bool answer = false;
     while (answer == false)
     {
-      Console.WriteLine("Scan de barcode op uw ticket, toets het nummer onder de barcode in of toets 'q' om terug te gaan naar het begin.");
-      string Customer_ID = Console.ReadLine();
+      Console.WriteLine("Scan de streepjescode op uw ticket, toets het nummer onder de barcode in of toets 'q' om terug te gaan naar het begin.");
+      string Customer_ID = Console.ReadLine().ToLower();
       if (Customer.CheckIfCustomerInList(Customer_ID) == true)
       {
         // Customer customer = new Customer(Customer_ID);
@@ -162,9 +162,10 @@ public class Tours
               while (answerValid == false)
               {
                 Console.WriteLine("Voer het rondleidingsnummer waaraan u zou willen deelnemen in of toets 'q' om terug te gaan naar het begin.");
-                string ChosenTour = Console.ReadLine();
+                string ChosenTour = Console.ReadLine().ToLower();
                 if (ChosenTour == "q")
                 {
+                  Program.MainProgram();
                 }
                 else
                 {
@@ -179,6 +180,11 @@ public class Tours
               break;
           }
         }
+      }
+      else if (Customer_ID == "q")
+      {
+        Program.MainProgram();
+        answer = true;
       }
       else
       {
