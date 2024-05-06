@@ -36,7 +36,7 @@ public class Program
       {
         case "1":
           Valid_Answer = true;
-          Customer.InputMoreCustomercodes();
+          Tours.InputMoreCustomercodes();
           break;
         case "2":
           Valid_Answer = true;

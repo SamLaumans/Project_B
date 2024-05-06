@@ -7,7 +7,7 @@ public class Customer
     {
         CustomerCode = customercode;
     }
-    public bool CheckIfCustomerInList(string idcustomer)
+    public static bool CheckIfCustomerInList(string idcustomer)
     {
         List<Customer> listOfCustomers = DataAccess.ReadJsonCustomers();
 
