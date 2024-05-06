@@ -165,7 +165,7 @@ public class Tours
                 string ChosenTour = Console.ReadLine().ToLower();
                 if (ChosenTour == "q")
                 {
-                  Program.MainProgram();
+                  Menu.MainProgram();
                 }
                 else
                 {
@@ -183,7 +183,7 @@ public class Tours
       }
       else if (Customer_ID == "q")
       {
-        Program.MainProgram();
+        Menu.MainProgram();
         answer = true;
       }
       else
