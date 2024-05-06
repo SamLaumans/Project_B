@@ -47,7 +47,7 @@ public class Program
           Tours.ShowAvailableTours(1);
           break;
         default:
-          Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met 'd'(deelnemen), 'a'(annuleren) of 'i'(info).");
+          Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met '1'(deelnemen), '2'(annuleren) of '3'(info).");
           break;
       }
     }

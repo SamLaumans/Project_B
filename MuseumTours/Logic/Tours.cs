@@ -56,7 +56,7 @@ public class Tours
     {
       List<Tours> listOfTours = DataAccess.ReadJsonTours();
       int Count = 0;
-      Console.WriteLine("Dit zijn de nog beschikbare rondleidingen voor vandaag:");
+      Console.WriteLine("Dit zijn de nog beschikbare rondleidingen voor vandaag(iedere rondleiding duurt 40 minuten):");
       bool touratleast = false;
       foreach (Tours tour in listOfTours)
       {
@@ -64,7 +64,7 @@ public class Tours
         {
           Count++;
           string timeString = tour.Time.ToString("HH:mm");
-          Console.WriteLine($"{tour.ID}. starttijd: {timeString} | duur: 40 minuten | beschikbare plekken: {tour.Spots}");
+          Console.WriteLine($"{tour.ID}. starttijd: {timeString} | beschikbare plekken: {tour.Spots}");
           touratleast = true;
         }
       }
@@ -78,7 +78,7 @@ public class Tours
     {
       List<Tours> listOfTours = DataAccess.ReadJsonTours();
       int Count = 0;
-      Console.WriteLine("Dit zijn de nog beschikbare rondleidingen voor vandaag:");
+      Console.WriteLine("Dit zijn de nog beschikbare rondleidingen voor vandaag(iedere rondleiding duurt 40 minuten):");
       bool touratleast = false;
       foreach (Tours tour in listOfTours)
       {
@@ -86,7 +86,7 @@ public class Tours
         {
           Count++;
           string timeString = tour.Time.ToString("HH:mm");
-          Console.WriteLine($"{tour.ID}. starttijd: {timeString} | duur: 40 minuten | beschikbare plekken: {tour.Spots}");
+          Console.WriteLine($"{tour.ID}. starttijd: {timeString} | beschikbare plekken: {tour.Spots}");
           touratleast = true;
           if (Count == 5)
           {
@@ -146,42 +146,42 @@ public class Tours
         bool answer2 = false;
         while (answer2 == false)
         {
-        Console.WriteLine("Bent u met meerdere mensen en wilt u nog iemand aanmelden? Ja(1) nee(2)");
-        string yesno = Console.ReadLine();
-        switch (yesno)
-        {
-        case "1":
-          answer2 = true;
-          answer = false;
-          break;
-        case "2":
-          answer2 = true;
-          answer = true;
-          Tours.ShowAvailableTours(1);
-          bool answerValid = false;
-          while (answerValid == false)
+          Console.WriteLine("Bent u met meerdere mensen en wilt u nog iemand aanmelden? Ja(1) nee(2)");
+          string yesno = Console.ReadLine();
+          switch (yesno)
           {
-            Console.WriteLine("Voer het rondleidingsnummer waaraan u zou willen deelnemen in of toets 'q' om terug te gaan naar het begin.");
-            string ChosenTour = Console.ReadLine();
-            if (ChosenTour == "q")
-            {
-            }
-            else
-            {
-              answerValid = Tours.AddToTour(listofaddablecustomers, ChosenTour);
-              answerValid = true;
-            }
+            case "1":
+              answer2 = true;
+              answer = false;
+              break;
+            case "2":
+              answer2 = true;
+              answer = true;
+              Tours.ShowAvailableTours(1);
+              bool answerValid = false;
+              while (answerValid == false)
+              {
+                Console.WriteLine("Voer het rondleidingsnummer waaraan u zou willen deelnemen in of toets 'q' om terug te gaan naar het begin.");
+                string ChosenTour = Console.ReadLine();
+                if (ChosenTour == "q")
+                {
+                }
+                else
+                {
+                  answerValid = Tours.AddToTour(listofaddablecustomers, ChosenTour);
+                  answerValid = true;
+                }
+              }
+              break;
+            default:
+              Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met '1' ja of '2' nee.");
+              answer2 = false;
+              break;
           }
-          break;
-        default:
-          Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met '1' ja of '2' nee.");
-          answer2 = false;
-          break;
         }
       }
-    }
-    else
-    {
+      else
+      {
         Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}'. De code bestaat altijd uit 10 cijfers.");
         answer = false;
       }
