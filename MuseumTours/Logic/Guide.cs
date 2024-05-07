@@ -65,26 +65,26 @@ public class Guide
                         }
                         else
                         {
-                        Tours.ShowChosenTour(ChosenTour);
-                        bool ChosenOption = false;
-                        while (ChosenOption == false)
-                        {
-                            Console.WriteLine("Om terug te gaan naar het overzicht van tours toets (b) om terug te gaan naar het beginscherm toets (q)");
-                            string GuideChoice = Console.ReadLine();
-                            if (GuideChoice == null)
+                            Tours.ShowChosenTour(ChosenTour);
+                            bool ChosenOption = false;
+                            while (ChosenOption == false)
                             {
-                                Console.WriteLine("Voer een geldige optie in.");
+                                Console.WriteLine("Om terug te gaan naar het overzicht van tours toets (b) om terug te gaan naar het beginscherm toets (q)");
+                                string GuideChoice = Console.ReadLine();
+                                if (GuideChoice == null)
+                                {
+                                    Console.WriteLine("Voer een geldige optie in.");
+                                }
+                                else if (GuideChoice == "b")
+                                {
+                                    Tours.ShowToursToGuide("../../../Tourslist.Json");
+                                    break;
+                                }
+                                else if (GuideChoice == "q")
+                                {
+                                    Program.Main();
+                                }
                             }
-                            else if (GuideChoice == "b")
-                            {
-                                Tours.ShowToursToGuide("../../../Tourslist.Json");
-                                break;
-                            }
-                            else if (GuideChoice == "q")
-                            {
-                                Program.Main();
-                            }
-                        }
                         }
                     }
                 }

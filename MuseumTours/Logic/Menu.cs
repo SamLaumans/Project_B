@@ -8,7 +8,7 @@ class Menu
         while (Valid_Answer == false)
         {
             Console.WriteLine("Dit zijn de eerst komende 5 rondleidingen: ");
-            Tours.ShowAvailableTours(2);
+            Tours.ShowAvailableTours(2, 0);
             Console.WriteLine("\nWat wilt u doen?");
             Console.WriteLine($"[1] Rondleiding reserveren \n[2] Rondleiding annuleren \n[3] Info rondleidingen\n[4] Inloggen werknemers");
             string answer = Console.ReadLine().ToLower();
@@ -30,7 +30,7 @@ class Menu
                     break;
                 case "3":
                     Valid_Answer = true;
-                    Tours.ShowAvailableTours(1);
+                    Tours.ShowAvailableTours(1, 0);
                     break;
                 case "4":
                     Valid_Answer = true;
