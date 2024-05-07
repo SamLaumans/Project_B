@@ -50,7 +50,7 @@ public class Tours
     return booked;
   }
 
-  public static void ShowAvailableTours(int FiveOrAll)
+  public static void ShowAvailableTours(int FiveOrAll, int People)
   {
     if (FiveOrAll == 1)
     {
@@ -60,7 +60,7 @@ public class Tours
       bool touratleast = false;
       foreach (Tours tour in listOfTours)
       {
-        if (tour.Time > DateTime.Now && tour.Spots > 0)
+        if (tour.Time > DateTime.Now && tour.Spots > People)
         {
           Count++;
           string timeString = tour.Time.ToString("HH:mm");
@@ -135,12 +135,14 @@ public class Tours
   {
     List<Customer> listofaddablecustomers = new List<Customer>();
     bool answer = false;
+    int AmountOfPeople = 0;
     while (answer == false)
     {
       Console.WriteLine("Scan de streepjescode op uw ticket, toets het nummer onder de barcode in of toets 'q' om terug te gaan naar het begin.");
       string Customer_ID = Console.ReadLine().ToLower();
       if (Customer.CheckIfCustomerInList(Customer_ID) == true)
       {
+        AmountOfPeople += 1;
         // Customer customer = new Customer(Customer_ID);
         listofaddablecustomers.Add(new Customer(Customer_ID));
         bool answer2 = false;
@@ -157,7 +159,7 @@ public class Tours
             case "2":
               answer2 = true;
               answer = true;
-              Tours.ShowAvailableTours(1);
+              Tours.ShowAvailableTours(1, AmountOfPeople);
               bool answerValid = false;
               while (answerValid == false)
               {
