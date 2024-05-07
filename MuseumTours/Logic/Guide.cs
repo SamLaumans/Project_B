@@ -51,7 +51,7 @@ public static void CheckEmployeeID()
             if (guide.CheckIfGuideInList(employeeID))
             {
                 Tours.ShowToursToGuide("../../../Tourslist.Json");
-                answerValid = ChooseTour();
+                answerValid = GuideChooseTour();
             }
             else
             {
@@ -61,7 +61,7 @@ public static void CheckEmployeeID()
     }
 }
 
-public static bool ChooseTour()
+public static bool GuideChooseTour()
 {
     bool answerValid = false;
 
@@ -88,7 +88,7 @@ public static bool ChooseTour()
             if (tour.ID == chosenTour)
             {
                 Tours.ShowChosenTour(chosenTour);
-                answerValid = ChooseOption();
+                answerValid = GuideChooseOption();
                 tourFound = true;
                 break;
             }
@@ -105,7 +105,7 @@ public static bool ChooseTour()
     return answerValid;
 }
 
-public static bool ChooseOption()
+public static bool GuideChooseOption()
 {
     bool chosenOption = false;
 
