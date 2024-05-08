@@ -195,6 +195,38 @@ public class Tours
       }
     }
   }
+
+  public static bool CheckIfCanCancel(string CustomerID)
+  {
+    List<Tours> listOfTours = DataAccess.ReadJsonTours();
+    foreach (Tours tour in listOfTours)
+    {
+      foreach (Customer customer in tour.Customer_Codes)
+      {
+        if (customer.CustomerCode == CustomerID)
+        {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  public static string? CheckWhatTour(string CustomerID)
+  {
+    List<Tours> listOfTours = DataAccess.ReadJsonTours();
+    foreach (Tours tour in listOfTours)
+    {
+      foreach (Customer customer in tour.Customer_Codes)
+      {
+        if (customer.CustomerCode == CustomerID)
+        {
+          return $"{tour.Time}";
+        }
+      }
+    }
+    return null;
+  }
 }
 
 

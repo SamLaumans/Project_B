@@ -21,12 +21,24 @@ class Menu
                 case "2":
                     Valid_Answer = true;
                     Console.WriteLine("Scan de code op uw ticket om een inschrijving te annuleren of toets 'q' om terug te gaan naar het begin:");
-                    string customerCodeToCancel = Console.ReadLine();
+                    string? customerCodeToCancel = Console.ReadLine();
                     if (customerCodeToCancel == "q")
                     {
                         MainProgram();
                     }
-                    Cancel.CancelAppointment(customerCodeToCancel);
+                    if (Tours.CheckIfCanCancel(customerCodeToCancel) is true)
+                    {
+                        Console.WriteLine($"Weet u zeker dat u niet meer mee wilt met deze rondleiding: \n{Tours.CheckWhatTour(customerCodeToCancel)} \n[1] Ja ik wil niet meer mee. \n[2] Ik wil toch wel nog mee.");
+                        string? JaOfNee = Console.ReadLine();
+                        if (JaOfNee == "1")
+                        {
+                            Cancel.CancelAppointment(customerCodeToCancel);
+                        }
+                        else
+                        {
+                            MainProgram();
+                        }
+                    }
                     break;
                 case "3":
                     Valid_Answer = true;
