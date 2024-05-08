@@ -20,7 +20,7 @@ namespace Program
                     tourToUpdate.Customer_Codes.Remove(customerToRemove);
                     tourToUpdate.Spots++;
                     DataAccess.SaveTours(tours);
-                    Console.WriteLine("Reservering succesvol gecanceled.");
+                    Console.WriteLine("Reservering succesvol geannuleerd.");
                 }
             }
             else
