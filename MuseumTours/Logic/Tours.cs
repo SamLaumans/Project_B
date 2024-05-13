@@ -20,6 +20,7 @@ public class Tours
   public static bool AddToTour(List<Customer> customerid, string tourid)
   {
     List<Tours> listOfTours = DataAccess.ReadJsonTours();
+    List<Customer> listofcustomers = DataAccess.ReadJsonCustomers();
     bool booked = false;
 
     foreach (Tours tour in listOfTours)
@@ -28,12 +29,21 @@ public class Tours
       {
         foreach (Customer customer in customerid)
         {
-          Customer customer1 = new Customer(customer.CustomerCode);
-          tour.Customer_Codes.Add(customer1);
+          tour.Customer_Codes.Add(customer);
+          foreach (Customer cus in listofcustomers)
+          {
+            if (cus.CustomerCode == customer.CustomerCode)
+            {
+              listofcustomers.Remove(cus);
+              break;
+            }
+          }
+
         }
         tour.Spots -= customerid.Count;
         booked = true;
-        Console.WriteLine(DataAccess.WriteJsonToTours(listOfTours));
+        DataAccess.WriteJsonToTours(listOfTours);
+        DataAccess.WriteJsonToCustomers(listofcustomers);
         break;
       }
     }
