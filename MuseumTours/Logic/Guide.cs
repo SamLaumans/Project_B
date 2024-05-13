@@ -5,6 +5,8 @@ using System.Text.RegularExpressions;
 
 public class Guide
 {
+    private static List<Tours> listOfTours = DataAccess.ReadJsonTours();
+    private static List<string> scannedCodes = new List<string>();
     public string EmployeeCode;
     public Guide(string employeecode)
     {
@@ -51,7 +53,7 @@ public static void CheckEmployeeID()
             if (guide.CheckIfGuideInList(employeeID))
             {
                 Tours.ShowToursToGuide("../../../Tourslist.Json");
-                answerValid = GuideChooseTour();
+                answerValid = GuideChooseTour(listOfTours, scannedCodes);
             }
             else
             {
@@ -61,57 +63,56 @@ public static void CheckEmployeeID()
     }
 }
 
-public static bool GuideChooseTour()
+public static bool GuideChooseTour(List<Tours> listOfTours, List<string> scannedCodes)
 {
-    bool answerValid = false;
-
-    while (!answerValid)
-{
-    Console.WriteLine("Voer het rondleidingsnummer in waarvan u de deelnemers wilt zien of toets 'q' om terug te gaan naar het begin.");
-    string chosenTour = Console.ReadLine();
-
-    if (string.IsNullOrEmpty(chosenTour))
+    while (true)
     {
-        Console.WriteLine($"Uw invoer was '{chosenTour}'. Voer een geldige tournummer in.");
-    }
-    else if (chosenTour == "q")
-    {
-        Program.Main();
-    }
-    else
-    {
-        List<Tours> listOfTours = DataAccess.ReadJsonTours();
-        bool tourFound = false;
+        Console.WriteLine("Voer het rondleidingsnummer in waarvan u de deelnemers wilt zien of toets 'q' om terug te gaan naar het begin.");
+        string chosenTour = Console.ReadLine();
 
-        foreach (Tours tour in listOfTours)
+        if (string.IsNullOrEmpty(chosenTour))
         {
-            if (tour.ID == chosenTour)
+            Console.WriteLine($"Uw invoer was '{chosenTour}'. Voer een geldige tournummer in.");
+        }
+        else if (chosenTour == "q")
+        {
+            Program.Main();
+            return false; // Return false to indicate not finished
+        }
+        else
+        {
+            bool tourFound = false;
+
+            foreach (Tours tour in listOfTours)
             {
-                Tours.ShowChosenTour(chosenTour);
-                answerValid = GuideChooseOption();
-                tourFound = true;
-                break;
+                if (tour.ID == chosenTour)
+                {
+                    Tours.ShowChosenTour(chosenTour);
+                    tourFound = true;
+
+                    // Call GuideChooseOption and pass chosenTour to it
+                    if (!GuideChooseOption(chosenTour, listOfTours, scannedCodes))
+                    {
+                        return false; // Return false to indicate not finished
+                    }
+
+                    break;
+                }
+            }
+
+            if (!tourFound)
+            {
+                Console.WriteLine($"Het opgegeven rondleidingsnummer '{chosenTour}' is niet geldig. Voer een geldig tournummer in.");
             }
         }
-
-        if (!tourFound)
-        {
-            Console.WriteLine($"Het opgegeven rondleidingsnummer '{chosenTour}' is niet geldig. Voer een geldig tournummer in.");
-        }
     }
 }
 
-
-    return answerValid;
-}
-
-public static bool GuideChooseOption()
+public static bool GuideChooseOption(string chosenTour, List<Tours> listOfTours, List<string> scannedCodes)
 {
-    bool chosenOption = false;
-
-    while (!chosenOption)
+    while (true)
     {
-        Console.WriteLine("Om terug te gaan naar het overzicht van tours toets (b) om terug te gaan naar het beginscherm toets (q)");
+        Console.WriteLine("toets (s) om te beginnen met scannen , Om terug te gaan naar het overzicht van tours toets (b) om terug te gaan naar het beginscherm toets (q)");
         string guideChoice = Console.ReadLine();
 
         if (string.IsNullOrEmpty(guideChoice))
@@ -121,15 +122,45 @@ public static bool GuideChooseOption()
         else if (guideChoice == "b")
         {
             Tours.ShowToursToGuide("../../../Tourslist.Json");
-            break;
+            return false; 
         }
         else if (guideChoice == "q")
         {
             Program.Main();
+            return false; 
+        }
+        else if (guideChoice == "s")
+        {
+            Console.WriteLine("Scan de Customer code die u wilt scannen:");
+            string customerCodeToScan = Console.ReadLine();
+
+            GuideScanCustomerCode(chosenTour, customerCodeToScan, listOfTours, scannedCodes);
         }
     }
-
-    return chosenOption;
 }
 
+
+
+public static void GuideScanCustomerCode(string tourID, string customerCode, List<Tours> listOfTours, List<string> scannedCodes)
+{
+    foreach (Tours tour in listOfTours)
+    {
+        if (tour.ID == tourID)
+        {
+            foreach (Customer customer in tour.Customer_Codes)
+            {
+                if (customer.CustomerCode == customerCode)
+                {
+                    scannedCodes.Add(customerCode);
+                    Console.WriteLine($"Customer code {customerCode} is succesvol gescanned.");
+
+                    return; 
+                    }
+            }
+            Console.WriteLine($"Customer code {customerCode} niet gevonden in tour {tourID}.");
+            return; 
+        }
+    }
+    Console.WriteLine($"Tour met nummer {tourID} niet gevonden.");
+}
 }
