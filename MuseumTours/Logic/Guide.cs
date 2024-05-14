@@ -7,7 +7,6 @@ public class Guide
 {
     private static List<Tours> listOfTours = DataAccess.ReadJsonTours();
     private static List<string> scannedCodes = new List<string>();
-    private static List<string> unscannedCodes = new List<string>();
     public string EmployeeCode;
     public Guide(string employeecode)
     {
@@ -171,31 +170,16 @@ public static void GuideScanCustomerCode(string tourID, string customerCode, Lis
     foreach (Tours tour in listOfTours)
     {
         if (tour.ID == tourID)
-        {   
-            Console.WriteLine("====================================================================================");
-            foreach (Customer customer in tour.Customer_Codes)
-            {
-                if (!scannedCodes.Contains(customer.CustomerCode) && unscannedCodes.Contains(customer.CustomerCode))
-                {
-                    Console.WriteLine($"{customerCode}");
-                }
-            }
-            Console.WriteLine("====================================================================================");
-            
-            foreach (Customer customer in tour.Customer_Codes)
-            {
-                unscannedCodes.Add(customerCode);
-            }
+        {
             foreach (Customer customer in tour.Customer_Codes)
             {
                 if (customer.CustomerCode == customerCode)
                 {
                     scannedCodes.Add(customerCode);
-                    unscannedCodes.Remove(customerCode);
                     Console.WriteLine($"Customer code {customerCode} is succesvol gescanned.");
 
                     return; 
-                }
+                    }
             }
             Console.WriteLine($"Customer code {customerCode} niet gevonden in tour {tourID}.");
             return; 
