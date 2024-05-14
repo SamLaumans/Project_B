@@ -25,7 +25,7 @@ namespace Program
             }
             else
             {
-                Console.WriteLine("U staat niet aangemeld voor een tour.");
+                Console.WriteLine("U staat niet aangemeld voor een Rondleiding.");
             }
         }
     }
