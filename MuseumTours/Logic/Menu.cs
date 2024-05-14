@@ -20,15 +20,15 @@ class Menu
                     break;
                 case "2":
                     Valid_Answer = true;
-                    Console.WriteLine("Scan de code op uw ticket om een inschrijving te annuleren of toets 'q' om terug te gaan naar het begin:");
+                    Console.WriteLine("Scan de code op uw entreebewijs om een inschrijving te annuleren of toets [q] om terug te gaan naar het begin:");
                     string? customerCodeToCancel = Console.ReadLine();
                     if (customerCodeToCancel == "q")
                     {
-                        MainProgram();
+                        Program.Main();
                     }
                     if (Tours.CheckIfCanCancel(customerCodeToCancel) is true)
                     {
-                        Console.WriteLine($"Weet u zeker dat u niet meer mee wilt met deze rondleiding: \n{Tours.CheckWhatTour(customerCodeToCancel)} \n[1] Ja ik wil niet meer mee. \n[2] Ik wil toch wel nog mee.");
+                        Console.WriteLine($"Weet u zeker dat u niet meer mee wilt met deze rondleiding: \n{Tours.CheckWhatTour(customerCodeToCancel)} \n[1] Ja. \n[2] Nee.");
                         string? JaOfNee = Console.ReadLine();
                         if (JaOfNee == "1")
                         {
@@ -36,20 +36,32 @@ class Menu
                         }
                         else
                         {
-                            MainProgram();
+                            Program.Main();
                         }
                     }
                     break;
                 case "3":
                     Valid_Answer = true;
-                    Tours.ShowAvailableTours(1, 0);
+                    Console.WriteLine("Scan de streepjescode op uw entreebewijs.");
+                    string Customerid = Console.ReadLine();
+                    string tourtoattend = Tours.CheckWhatTour(Customerid);
+                    if (tourtoattend != null)
+                    {
+                        Console.WriteLine(tourtoattend);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"We hebben geen reservering kunnen vinden voor klantcode '{Customerid}'.");
+                    }
+                    Console.WriteLine("Als u het gelezen heeft toets dan [q] om terug te gaan naar het begin.");
+                    string choice = Console.ReadLine();
                     break;
                 case "4":
                     Valid_Answer = true;
                     Guide.CheckEmployeeID();
                     break;
                 default:
-                    Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met '1'(Rondleiding reserveren), '2'(Rondleiding annuleren), '3'(Info Rondleidingen) of '4'(Inloggen werknemers)).");
+                    Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met [1] Rondleiding reserveren, [2] Rondleiding annuleren, [3] Info Rondleidingen of [4] Inloggen werknemers).");
                     break;
             }
         }
