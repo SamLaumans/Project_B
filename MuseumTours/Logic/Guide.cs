@@ -7,6 +7,7 @@ public class Guide
 {
     private static List<Tours> listOfTours = DataAccess.ReadJsonTours();
     private static List<string> scannedCodes = new List<string>();
+    private static List<string> unscannedCodes = new List<string>();
     public string EmployeeCode;
     public Guide(string employeecode)
     {
@@ -77,7 +78,7 @@ public static bool GuideChooseTour(List<Tours> listOfTours, List<string> scanned
         else if (chosenTour == "q")
         {
             Program.Main();
-            return false; // Return false to indicate not finished
+            return false; 
         }
         else
         {
@@ -90,10 +91,9 @@ public static bool GuideChooseTour(List<Tours> listOfTours, List<string> scanned
                     Tours.ShowChosenTour(chosenTour);
                     tourFound = true;
 
-                    // Call GuideChooseOption and pass chosenTour to it
                     if (!GuideChooseOption(chosenTour, listOfTours, scannedCodes))
                     {
-                        return false; // Return false to indicate not finished
+                        return false; 
                     }
 
                     break;
@@ -131,10 +131,35 @@ public static bool GuideChooseOption(string chosenTour, List<Tours> listOfTours,
         }
         else if (guideChoice == "s")
         {
-            Console.WriteLine("Scan de Customer code die u wilt scannen:");
-            string customerCodeToScan = Console.ReadLine();
+            bool allCodesScanned = false;
+            while (allCodesScanned == false)
+            {
+                allCodesScanned = true;
+                foreach (Tours tour in listOfTours)
+                {
+                    if (tour.ID == chosenTour)
+                    {
+                        foreach (Customer customer in tour.Customer_Codes)
+                        {
+                            if (!scannedCodes.Contains(customer.CustomerCode))
+                            {
+                                allCodesScanned = false;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                if (!allCodesScanned)
+                {
+                    Console.WriteLine("Scan de Customer code die u wilt scannen:");
+                    string customerCodeToScan = Console.ReadLine();
 
-            GuideScanCustomerCode(chosenTour, customerCodeToScan, listOfTours, scannedCodes);
+                    GuideScanCustomerCode(chosenTour, customerCodeToScan, listOfTours, scannedCodes);
+                }
+            }
+            Console.WriteLine("Alle Bezoekers zijn succesvol gescanned");
+            return true;
         }
     }
 }
@@ -146,16 +171,31 @@ public static void GuideScanCustomerCode(string tourID, string customerCode, Lis
     foreach (Tours tour in listOfTours)
     {
         if (tour.ID == tourID)
-        {
+        {   
+            Console.WriteLine("====================================================================================");
+            foreach (Customer customer in tour.Customer_Codes)
+            {
+                if (!scannedCodes.Contains(customer.CustomerCode) && unscannedCodes.Contains(customer.CustomerCode))
+                {
+                    Console.WriteLine($"{customerCode}");
+                }
+            }
+            Console.WriteLine("====================================================================================");
+            
+            foreach (Customer customer in tour.Customer_Codes)
+            {
+                unscannedCodes.Add(customerCode);
+            }
             foreach (Customer customer in tour.Customer_Codes)
             {
                 if (customer.CustomerCode == customerCode)
                 {
                     scannedCodes.Add(customerCode);
+                    unscannedCodes.Remove(customerCode);
                     Console.WriteLine($"Customer code {customerCode} is succesvol gescanned.");
 
                     return; 
-                    }
+                }
             }
             Console.WriteLine($"Customer code {customerCode} niet gevonden in tour {tourID}.");
             return; 
