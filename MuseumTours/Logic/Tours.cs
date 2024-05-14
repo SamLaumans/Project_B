@@ -22,25 +22,75 @@ public class Tours
     List<Tours> listOfTours = DataAccess.ReadJsonTours();
     List<Customer> listofcustomers = DataAccess.ReadJsonCustomers();
     bool booked = false;
-    Tours tour = checkiftourvalid(tourid);
-    foreach (Customer customer in customerid)
-    {
-      tour.Customer_Codes.Add(customer);
-      foreach (Customer cus in listofcustomers)
-      {
-        if (cus.CustomerCode == customer.CustomerCode)
-        {
-          listofcustomers.Remove(cus);
 
-          break;
+    // Get the tour from the list of tours
+    Tours tour = checkiftourvalid(tourid);
+
+    if (tour != null)
+    {
+      foreach (Customer customer in customerid)
+      {
+        tour.Customer_Codes.Add(customer);
+        // Remove customer from listofcustomers
+        for (int j = 0; j < listofcustomers.Count; j++)
+        {
+          if (listofcustomers[j].CustomerCode == customer.CustomerCode)
+          {
+            listofcustomers.RemoveAt(j);
+            break;
+          }
         }
       }
+
+      // Update the number of spots
+      tour.Spots -= customerid.Count;
+      booked = true;
+
+      // Find the index of the tour in listOfTours
+      for (int i = 0; i < listOfTours.Count; i++)
+      {
+          if (listOfTours[i].ID == tourid)
+          {
+            // Update the tour in the list
+            listOfTours[i] = tour;
+            break;
+          }
+      }
+      // Write updated lists back to JSON
+      DataAccess.WriteJsonToTours(listOfTours);
+      DataAccess.WriteJsonToCustomers(listofcustomers);
+
+      Console.WriteLine($"U heeft voor {customerid.Count} gereserveerd voor de rondleiding om {tour.Time}");
     }
-    tour.Spots -= customerid.Count;
-    DataAccess.WriteJsonToTours(listOfTours);
-    DataAccess.WriteJsonToCustomers(listofcustomers);
-    Console.WriteLine($"U heeft voor {customerid.Count} gereserveerd voor de rondleiding om {tour.Time}");
+    else
+    {
+      Console.WriteLine($"We hebben geen rondleiding kunnen vinden met het ingevoerde nummer: {tourid}.");
+    }
   }
+  // public static void AddToTour(List<Customer> customerid, string tourid)
+  // {
+  //   List<Tours> listOfTours = DataAccess.ReadJsonTours();
+  //   List<Customer> listofcustomers = DataAccess.ReadJsonCustomers();
+  //   bool booked = false;
+  //   Tours tour = checkiftourvalid(tourid);
+  //   foreach (Customer customer in customerid)
+  //   {
+  //     tour.Customer_Codes.Add(customer);
+  //     foreach (Customer cus in listofcustomers)
+  //     {
+  //       if (cus.CustomerCode == customer.CustomerCode)
+  //       {
+  //         listofcustomers.Remove(cus);
+
+  //         break;
+  //       }
+  //     }
+  //   }
+  //   tour.Spots -= customerid.Count;
+  //   DataAccess.WriteJsonToTours(listOfTours);
+  //   DataAccess.WriteJsonToCustomers(listofcustomers);
+  //   Console.WriteLine($"U heeft voor {customerid.Count} gereserveerd voor de rondleiding om {tour.Time}");
+  // }
 
   public static void ShowAvailableTours(int FiveOrAll, int People)
   {
