@@ -1,4 +1,4 @@
-﻿namespace Greeter;
+﻿namespace Program;
 
 public class RealWorld : IWorld
 {
