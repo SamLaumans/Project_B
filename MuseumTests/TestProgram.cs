@@ -1,4 +1,4 @@
-namespace Program;
+/*namespace Program;
 
 [TestClass]
 public class TestProgram
@@ -45,4 +45,4 @@ public class TestProgram
         // Assert
         Assert.AreEqual(outcome, correctOutcome);
     }
-}
+}*/

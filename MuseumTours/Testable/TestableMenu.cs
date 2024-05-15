@@ -1,5 +1,5 @@
 namespace Program;
-class TestableMenu
+public class TestableMenu
 {
     public readonly IWorld World;
     public TestableMenu(IWorld world)
@@ -12,7 +12,7 @@ class TestableMenu
         while (Valid_Answer == false)
         {
             World.WriteLine("Dit zijn de eerst komende 5 rondleidingen: ");
-            Tours.ShowAvailableTours(2, 0);
+            //Tours.ShowAvailableTours(2, 0);
             World.WriteLine("\nWat wilt u doen?");
             World.WriteLine($"[1] Rondleiding reserveren \n[2] Rondleiding annuleren \n[3] Info rondleidingen\n[4] Inloggen werknemers");
             string answer = World.ReadLine().ToLower();

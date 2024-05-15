@@ -8,7 +8,7 @@ public class Tours
   public int Spots;
   public bool Started;
   public DateTime Time;
-  public List<Customer>? Customer_Codes;
+  public List<Customer> Customer_Codes;
 
   public Tours(string id, int spots, bool started, DateTime time)
   {

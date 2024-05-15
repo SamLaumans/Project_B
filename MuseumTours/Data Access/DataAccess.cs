@@ -40,7 +40,7 @@ public static class DataAccess
         }
 
     }
-    public static List<Tours>? LoadTours()
+    public static List<Tours> LoadTours()
     {
         string json = File.ReadAllText(pathTourslist);
         return JsonConvert.DeserializeObject<List<Tours>>(json);
