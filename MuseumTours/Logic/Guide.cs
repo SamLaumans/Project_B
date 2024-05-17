@@ -151,10 +151,11 @@ public static bool GuideChooseOption(string chosenTour, List<Tours> listOfTours,
                 }
                 if (!allCodesScanned)
                 {
-                    Console.WriteLine("Scan de Customer code die u wilt scannen:");
-                    string customerCodeToScan = Console.ReadLine();
+                    Console.WriteLine("Scan de Customer code die u wilt scannen of toets (q) om terug te gaan:");
+                    string customerCode = Console.ReadLine();
 
-                    GuideScanCustomerCode(chosenTour, customerCodeToScan, listOfTours, scannedCodes);
+                    GuideScanCustomerCode(chosenTour, customerCode, listOfTours, scannedCodes);
+                    ShowCodesNotScanned(chosenTour, customerCode, listOfTours, scannedCodes);
                 }
             }
             Console.WriteLine("Alle Bezoekers zijn succesvol gescanned");
@@ -171,20 +172,52 @@ public static void GuideScanCustomerCode(string tourID, string customerCode, Lis
     {
         if (tour.ID == tourID)
         {
-            foreach (Customer customer in tour.Customer_Codes)
+            if (customerCode == "q")
             {
-                if (customer.CustomerCode == customerCode)
-                {
-                    scannedCodes.Add(customerCode);
-                    Console.WriteLine($"Customer code {customerCode} is succesvol gescanned.");
-
-                    return; 
-                    }
+                Tours.ShowChosenTour(tourID);
+                GuideChooseOption(tourID, listOfTours, scannedCodes);
             }
-            Console.WriteLine($"Customer code {customerCode} niet gevonden in tour {tourID}.");
-            return; 
+            else if (!tour.Customer_Codes.Any(customer => customer.CustomerCode == customerCode))
+            {
+                Console.WriteLine($"Customer {customerCode} is niet gevonden in tour {tourID}");
+            }
+
+            else if(scannedCodes.Contains(customerCode))
+            {
+                Console.WriteLine($"Deze customer is al gescanned.");
+            }
+            {
+                foreach (Customer customer in tour.Customer_Codes)
+                {
+                    if (!scannedCodes.Contains(customerCode))
+                    {
+                        scannedCodes.Add(customerCode);
+                        Console.WriteLine($"Customer code {customerCode} is succesvol gescanned.");
+                        return; 
+                    }
+                }
+            }
         }
     }
-    Console.WriteLine($"Tour met nummer {tourID} niet gevonden.");
+}
+
+public static void ShowCodesNotScanned(string tourID, string customerCode,List<Tours> listOfTours, List<string> scannedCodes)
+{
+    foreach (Tours tour in listOfTours)
+    {
+        if (tour.ID == tourID)
+        {
+            Console.WriteLine("Codes die nog niet gescanned zijn in deze rondleiding:");
+            Console.WriteLine("================================================================");
+            foreach (Customer customer in tour.Customer_Codes)
+            {
+                if (!scannedCodes.Contains(customer.CustomerCode))
+                {
+                    Console.WriteLine($"{customer.CustomerCode}");
+                }
+            }
+            Console.WriteLine("================================================================");
+        }
+    }
 }
 }
