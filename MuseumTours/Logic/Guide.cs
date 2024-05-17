@@ -232,6 +232,10 @@ namespace Program
                             {
                                 break;
                             }
+                            if (tour.Customer_Codes.Any(customer => customer.CustomerCode == Customer_ID))
+                            {
+                                Console.WriteLine("Deze klant is al ingeschreven voor deze rondleiding.");
+                            }
                             if (listofaddablecustomers.Any(customer => customer.CustomerCode == Customer_ID))
                             {
                                 booleanstuff = false;
