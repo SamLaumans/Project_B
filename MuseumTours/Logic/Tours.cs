@@ -145,7 +145,6 @@ public class Tours
   public static void ShowToursToGuide(string filename)
   {
     List<Tours> listOfTours = DataAccess.ReadJsonTours();
-    Console.WriteLine("Kies een rondleiding om zijn deelnemers te zien:");
     foreach (Tours tour in listOfTours)
     {
       string timeString = tour.Time.ToString("HH:mm");
