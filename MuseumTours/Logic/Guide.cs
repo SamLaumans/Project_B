@@ -5,6 +5,8 @@ using System.Text.RegularExpressions;
 
 public class Guide
 {
+    private static List<Tours> listOfTours = DataAccess.ReadJsonTours();
+    private static List<string> scannedCodes = new List<string>();
     public string EmployeeCode;
     public Guide(string employeecode)
     {
@@ -175,7 +177,7 @@ public class Guide
                 {
                     Console.WriteLine("Om terug te gaan naar het overzicht van tours toets (b) om terug te gaan naar het beginscherm toets (q)");
                     string GuideChoice = Console.ReadLine();
-                    if (GuideChoice == null)
+                    if (string.IsNullOrEmpty(GuideChoice))
                     {
                         Console.WriteLine("Voer een geldige optie in.");
                     }
@@ -193,6 +195,59 @@ public class Guide
                         Console.WriteLine($"De door u ingevulde code was: '{GuideChoice}', Probeer alstublieft opnieuw.");
                     }
                 }
+            }
+        }
+    }
+    public static void GuideScanCustomerCode(string tourID, string customerCode, List<Tours> listOfTours, List<string> scannedCodes)
+    {
+        foreach (Tours tour in listOfTours)
+        {
+            if (tour.ID == tourID)
+            {
+                if (customerCode == "q")
+                {
+                    Tours.ShowChosenTour(tourID);
+                   // GuideChooseOption(tourID, listOfTours, scannedCodes);
+                }
+                else if (!tour.Customer_Codes.Any(customer => customer.CustomerCode == customerCode))
+                {
+                    Console.WriteLine($"Customer {customerCode} is niet gevonden in tour {tourID}");
+                }
+
+                else if(scannedCodes.Contains(customerCode))
+                {
+                    Console.WriteLine($"Deze customer is al gescanned.");
+                }
+                {
+                    foreach (Customer customer in tour.Customer_Codes)
+                    {
+                        if (!scannedCodes.Contains(customerCode))
+                        {
+                            scannedCodes.Add(customerCode);
+                            Console.WriteLine($"Customer code {customerCode} is succesvol gescanned.");
+                            return; 
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public static void ShowCodesNotScanned(string tourID, string customerCode,List<Tours> listOfTours, List<string> scannedCodes)
+    {
+        foreach (Tours tour in listOfTours)
+        {
+            if (tour.ID == tourID)
+            {
+                Console.WriteLine("Codes die nog niet gescanned zijn in deze rondleiding:");
+                Console.WriteLine("================================================================");
+                foreach (Customer customer in tour.Customer_Codes)
+                {
+                    if (!scannedCodes.Contains(customer.CustomerCode))
+                    {
+                        Console.WriteLine($"{customer.CustomerCode}");
+                    }
+                }
+                Console.WriteLine("================================================================");
             }
         }
     }
