@@ -149,14 +149,14 @@ namespace Program
                             Console.WriteLine("Scan de Customer code die u wilt scannen of toets (q) om terug te gaan:");
                             string customerCode = Console.ReadLine();
 
-                            GuideScanCustomerCode(chosenTour, customerCode, listOfTours, scannedCodes);
-                            ShowCodesNotScanned(chosenTour, customerCode, listOfTours, scannedCodes);
+                            GuideScanCustomerCode(chosenTour, customerCode);
+                            ShowCodesNotScanned(chosenTour);
                         }
                     }
                     Console.WriteLine("Alle Bezoekers zijn succesvol gescand");
                     return true;
         }
-        public static void GuideScanCustomerCode(string tourID, string customerCode, List<Tours> listOfTours, List<string> scannedCodes)
+        public static void GuideScanCustomerCode(string tourID, string customerCode)
         {
             foreach (Tours tour in listOfTours)
             {
@@ -185,7 +185,7 @@ namespace Program
             }
         }
 
-        public static void ShowCodesNotScanned(string tourID, string customerCode, List<Tours> listOfTours, List<string> scannedCodes)
+        public static void ShowCodesNotScanned(string tourID)
         {
             foreach (Tours tour in listOfTours)
             {
