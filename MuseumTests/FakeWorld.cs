@@ -1,6 +1,6 @@
 ﻿namespace Program;
 
-public class FakeWorld : IWorld
+public class FakeWorld// : IWorld
 {
     private DateTime? _now = null;
 
