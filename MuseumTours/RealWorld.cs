@@ -12,6 +12,16 @@ public class RealWorld : IWorld
         Console.WriteLine(line);
     }
 
+    public void WriteLine(bool line)
+    {
+        Console.WriteLine(line);
+    }
+
+    public void WriteLine(int line)
+    {
+        Console.WriteLine(line);
+    }
+
     public string ReadLine()
     {
         return Console.ReadLine();

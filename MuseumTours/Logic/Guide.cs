@@ -29,23 +29,23 @@ public class Guide
         bool Answer = false;
         while (Answer == false)
         {
-            Console.WriteLine("Scan de barcode op uw badge, toets het nummer onder de barcode in of toets 'q' om terug te gaan naar het begin.");
-            string Employee_ID = Console.ReadLine();
+            Program.World.WriteLine("Scan de barcode op uw badge, toets het nummer onder de barcode in of toets 'q' om terug te gaan naar het begin.");
+            string Employee_ID = Program.World.ReadLine();
             if (Employee_ID == null)
             {
-                Console.WriteLine($"De door u ingevulde code was: '{Employee_ID}'. De code kan niet leeg zijn.");
+                Program.World.WriteLine($"De door u ingevulde code was: '{Employee_ID}'. De code kan niet leeg zijn.");
             }
             else if (Employee_ID == "q")
             {
-                Program.Main();
+                break;
             }
             else if (Employee_ID.Count() != 6)
             {
-                Console.WriteLine($"De door u ingevulde code was: '{Employee_ID}'. De code bestaat altijd uit 6 cijfers.");
+                Program.World.WriteLine($"De door u ingevulde code was: '{Employee_ID}'. De code bestaat altijd uit 6 cijfers.");
             }
             else if (Regex.IsMatch(Employee_ID, pattern))
             {
-                Console.WriteLine($"De door u ingevulde code was: '{Employee_ID}'. De code bestaat altijd uit 6 cijfers.");
+                Program.World.WriteLine($"De door u ingevulde code was: '{Employee_ID}'. De code bestaat altijd uit 6 cijfers.");
             }
             else
             {
@@ -57,11 +57,11 @@ public class Guide
                     bool answerValid = false;
                     while (answerValid == false)
                     {
-                        Console.WriteLine("Voer het rondleidingsnummer in waarvan u de deelnemers wilt zien of toets 'q' om terug te gaan naar het begin.");
-                        string ChosenTour = Console.ReadLine();
+                        Program.World.WriteLine("Voer het rondleidingsnummer in waarvan u de deelnemers wilt zien of toets 'q' om terug te gaan naar het begin.");
+                        string ChosenTour = Program.World.ReadLine();
                         if (ChosenTour == "q")
                         {
-                            Program.Main();
+                            break;
                         }
                         else
                         {
@@ -69,11 +69,11 @@ public class Guide
                             bool ChosenOption = false;
                             while (ChosenOption == false)
                             {
-                                Console.WriteLine("Om terug te gaan naar het overzicht van tours toets (b) om terug te gaan naar het beginscherm toets (q)");
-                                string GuideChoice = Console.ReadLine();
+                                Program.World.WriteLine("Om terug te gaan naar het overzicht van tours toets (b) om terug te gaan naar het beginscherm toets (q)");
+                                string GuideChoice = Program.World.ReadLine();
                                 if (GuideChoice == null)
                                 {
-                                    Console.WriteLine("Voer een geldige optie in.");
+                                    Program.World.WriteLine("Voer een geldige optie in.");
                                 }
                                 else if (GuideChoice == "b")
                                 {
@@ -82,7 +82,7 @@ public class Guide
                                 }
                                 else if (GuideChoice == "q")
                                 {
-                                    Program.Main();
+                                    break;
                                 }
                             }
                         }
@@ -90,7 +90,7 @@ public class Guide
                 }
                 else
                 {
-                    Console.WriteLine($"De door u ingevulde code was: '{Employee_ID}', Probeer alstublieft opnieuw.");
+                    Program.World.WriteLine($"De door u ingevulde code was: '{Employee_ID}', Probeer alstublieft opnieuw.");
                 }
             }
         }

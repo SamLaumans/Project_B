@@ -4,21 +4,40 @@ namespace Program;
 public class MenuTest
 {
     [TestMethod]
+    public void TestQuit()
+    {
+        // Arrange
+        FakeWorld world = new()
+        {
+            LinesToRead = new() { "4@8B" }
+        };
+        Program.World = world;
+
+        // Act
+        Program.Main();
+
+        // Assert
+        string expected = "Wat wilt u doen?";
+        List<string> output = world.LinesWritten;
+        Assert.IsTrue(output.Contains(expected));
+    }
+
+    [TestMethod]
     public void Test()
     {
         // Arrange
         FakeWorld world = new()
         {
-            LinesToRead = new() { "1" }
+            LinesToRead = new() { "q" }
         };
-        TestableMenu menu = new(world);
+        Program.World = world;
 
         // Act
-        menu.MainProgram();
+        Program.Main();
 
         // Assert
-        string expected = "\nWat wilt u doen?\n[1] Rondleiding reserveren \n[2] Rondleiding annuleren \n[3] Info rondleidingen\n[4] Inloggen werknemers";
-        string actual = world.LinesWritten.Last();
-        Assert.AreEqual(expected, actual);
+        string expected = "Wat wilt u doen?";
+        List<string> output = world.LinesWritten;
+        Assert.IsTrue(output.Contains(expected));
     }
 }

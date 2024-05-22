@@ -1,6 +1,6 @@
 ﻿namespace Program;
 
-public class FakeWorld// : IWorld
+public class FakeWorld : IWorld
 {
     private DateTime? _now = null;
 
@@ -13,6 +13,16 @@ public class FakeWorld// : IWorld
     public List<string> LinesWritten { get; } = new();
 
     public void WriteLine(string line)
+    {
+        LinesWritten.Add(line);
+    }
+
+    public void WriteLine(bool line)
+    {
+        LinesWritten.Add(line);
+    }
+
+    public void WriteLine(int line)
     {
         LinesWritten.Add(line);
     }
