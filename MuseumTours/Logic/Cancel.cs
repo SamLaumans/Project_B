@@ -26,7 +26,6 @@ namespace Program
             else
             {
                 Program.World.WriteLine("U staat niet aangemeld voor een tour.");
-                menuStart();
             }
         }
     }
