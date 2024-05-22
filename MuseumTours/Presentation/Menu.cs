@@ -26,10 +26,13 @@ class Menu
                     string customerCodeToCancel = Program.World.ReadLine();
                     if (customerCodeToCancel == "q")
                     {
-                        menuStart();
+                        break;
                     }
-                    Cancel.CancelAppointment(customerCodeToCancel);
-                    break;
+                    else
+                    {
+                        Cancel.CancelAppointment(customerCodeToCancel);
+                        break;
+                    }
                 case "3":
                     Tours.ShowAvailableTours(1, 0);
                     break;

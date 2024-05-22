@@ -165,7 +165,7 @@ public class Tours
                 string ChosenTour = Program.World.ReadLine().ToLower();
                 if (ChosenTour == "q")
                 {
-                  Menu.menuStart();
+                  break;
                 }
                 else
                 {
