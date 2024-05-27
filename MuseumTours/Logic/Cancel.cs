@@ -20,12 +20,12 @@ namespace Program
                     tourToUpdate.Customer_Codes.Remove(customerToRemove);
                     tourToUpdate.Spots++;
                     DataAccess.SaveTours(tours);
-                    Program.World.WriteLine("Reservering succesvol gecanceled.");
+                    Console.WriteLine("Reservering succesvol geannuleerd.");
                 }
             }
             else
             {
-                Program.World.WriteLine("U staat niet aangemeld voor een tour.");
+                Console.WriteLine("U staat niet aangemeld voor een Rondleiding.");
             }
         }
     }
