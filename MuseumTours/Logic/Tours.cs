@@ -8,7 +8,7 @@ public class Tours
   public int Spots;
   public bool Started;
   public DateTime Time;
-  public List<Customer>? Customer_Codes;
+  public List<Customer> Customer_Codes;
 
   public Tours(string id, int spots, bool started, DateTime time)
   {
@@ -60,37 +60,13 @@ public class Tours
       DataAccess.WriteJsonToTours(listOfTours);
       DataAccess.WriteJsonToCustomers(listofcustomers);
 
-      Console.WriteLine($"U heeft voor {customerid.Count} gereserveerd voor de rondleiding om {tour.Time}");
+      Program.World.WriteLine($"U heeft voor {customerid.Count} gereserveerd voor de rondleiding om {tour.Time}");
     }
     else
     {
-      Console.WriteLine($"We hebben geen rondleiding kunnen vinden met het ingevoerde nummer: {tourid}.");
+      Program.World.WriteLine($"We hebben geen rondleiding kunnen vinden met het ingevoerde nummer:{tourid}.");
     }
   }
-  // public static void AddToTour(List<Customer> customerid, string tourid)
-  // {
-  //   List<Tours> listOfTours = DataAccess.ReadJsonTours();
-  //   List<Customer> listofcustomers = DataAccess.ReadJsonCustomers();
-  //   bool booked = false;
-  //   Tours tour = checkiftourvalid(tourid);
-  //   foreach (Customer customer in customerid)
-  //   {
-  //     tour.Customer_Codes.Add(customer);
-  //     foreach (Customer cus in listofcustomers)
-  //     {
-  //       if (cus.CustomerCode == customer.CustomerCode)
-  //       {
-  //         listofcustomers.Remove(cus);
-
-  //         break;
-  //       }
-  //     }
-  //   }
-  //   tour.Spots -= customerid.Count;
-  //   DataAccess.WriteJsonToTours(listOfTours);
-  //   DataAccess.WriteJsonToCustomers(listofcustomers);
-  //   Console.WriteLine($"U heeft voor {customerid.Count} gereserveerd voor de rondleiding om {tour.Time}");
-  // }
 
   public static void ShowAvailableTours(int FiveOrAll, int People)
   {
@@ -98,7 +74,7 @@ public class Tours
     {
       List<Tours> listOfTours = DataAccess.ReadJsonTours();
       int Count = 0;
-      Console.WriteLine("Dit zijn de rondleidingen voor vandaag(iedere rondleiding duurt 40 minuten):");
+      Program.World.WriteLine("Dit zijn de nog beschikbare rondleidingen voor vandaag(iedere rondleiding duurt 40 minuten):");
       bool touratleast = false;
       foreach (Tours tour in listOfTours)
       {
@@ -106,14 +82,13 @@ public class Tours
         {
           Count++;
           string timeString = tour.Time.ToString("HH:mm");
-          Console.WriteLine($"{tour.ID}. starttijd: {timeString} | beschikbare plekken: {tour.Spots}");
+          Program.World.WriteLine($"{tour.ID}. starttijd: {timeString} | beschikbare plekken: {tour.Spots}");
           touratleast = true;
         }
       }
       if (touratleast == false)
       {
-        Console.WriteLine("Er zijn op het moment geen beschikbare rondleidingen.");
-        Program.Main();
+        Program.World.WriteLine("Er zijn op het moment geen beschikbare rondleidingen.");
       }
     }
     else // Alleen voor de eerste 5 laten zien.
@@ -127,7 +102,7 @@ public class Tours
         {
           Count++;
           string timeString = tour.Time.ToString("HH:mm");
-          Console.WriteLine($"{tour.ID}. starttijd: {timeString} | beschikbare plekken: {tour.Spots}");
+          Program.World.WriteLine($"{tour.ID}. starttijd: {timeString} | beschikbare plekken: {tour.Spots}");
           touratleast = true;
           if (Count == 5)
           {
@@ -137,8 +112,7 @@ public class Tours
       }
       if (touratleast == false)
       {
-        Console.WriteLine("Er zijn op het moment geen beschikbare rondleidingen.");
-        Program.Main();
+        Program.World.WriteLine("Er zijn op het moment geen beschikbare rondleidingen.");
       }
     }
   }
@@ -148,7 +122,7 @@ public class Tours
     foreach (Tours tour in listOfTours)
     {
       string timeString = tour.Time.ToString("HH:mm");
-      Console.WriteLine($"{tour.ID}. starttijd: {timeString} | Aantal deelnemers: {13 - tour.Spots}");
+      Program.World.WriteLine($"{tour.ID}. starttijd: {timeString} | Aantal deelnemers: {13 - tour.Spots}");
     }
   }
   public static void ShowChosenTour(string tourid)
@@ -160,14 +134,14 @@ public class Tours
       {
         string timeString = tour.Time.ToString("HH:mm");
 
-        Console.WriteLine($"Tour van : {timeString}");
-        Console.WriteLine($"Hieronder zijn alle codes van de bezoekers in deze rondleiding.");
-        Console.WriteLine($"=======================================================================");
+        Program.World.WriteLine($"Tour van : {timeString}");
+        Program.World.WriteLine($"Hieronder zijn alle codes van de bezoekers in deze rondleiding.");
+        Program.World.WriteLine($"=======================================================================");
         foreach (var customerCode in tour.Customer_Codes)
         {
-          Console.WriteLine($"Customer Code: {customerCode.CustomerCode}");
+          Program.World.WriteLine($"Customer Code: {customerCode.CustomerCode}");
         }
-        Console.WriteLine($"=======================================================================");
+        Program.World.WriteLine($"=======================================================================");
       }
     }
   }
@@ -179,8 +153,8 @@ public class Tours
     while (answer == false)
     {
       bool booleanstuff = true;
-      Console.WriteLine("Scan de streepjescode op uw entreeebewijs of toets [q] om terug te gaan naar het begin.");
-      string Customer_ID = Console.ReadLine().ToLower();
+      Program.World.WriteLine("Scan de streepjescode op uw entreeebewijs of toets [q] om terug te gaan naar het begin.");
+      string Customer_ID = Program.World.ReadLine().ToLower();
       foreach (Customer customer in listofaddablecustomers)
       {
         if (customer.CustomerCode == Customer_ID)
@@ -190,7 +164,7 @@ public class Tours
       }
       if (booleanstuff == false)
       {
-        Console.WriteLine($"Deze klant {Customer_ID} is al aangemeld.");
+        Program.World.WriteLine($"Deze klant {Customer_ID} is al aangemeld.");
         answer = false;
       }
       else if (Customer.CheckIfCustomerInList(Customer_ID) == true)
@@ -201,13 +175,13 @@ public class Tours
         bool answer2 = false;
         while (answer2 == false)
         {
-          Console.Write("Deze klantcodes zijn op dit moment aangemeld: ");
+          Program.World.WriteLine("Deze klantcodes zijn op dit moment aangemeld: ");
           foreach (Customer customer in listofaddablecustomers)
           {
-            Console.Write(customer.CustomerCode + ", ");
+            Program.World.Write(customer.CustomerCode + ", ");
           }
-          Console.WriteLine("\nWilt u nog iemand aanmelden? Ja[1] nee[2]");
-          string yesno = Console.ReadLine();
+          Program.World.WriteLine("\nWilt u nog iemand aanmelden? Ja[1] nee[2]");
+          string yesno = Program.World.ReadLine();
           switch (yesno)
           {
             case "1":
@@ -218,16 +192,16 @@ public class Tours
               answer2 = true;
               answer = true;
               Thread.Sleep(250);
-              Console.Clear();
+              Program.World.Clear();
               Tours.ShowAvailableTours(1, AmountOfPeople);
               bool answerValid = false;
               while (answerValid == false)
               {
-                Console.WriteLine("Voer het rondleidingsnummer waaraan u zou willen deelnemen in of toets 'q' om terug te gaan naar het begin.");
-                string ChosenTour = Console.ReadLine().ToLower();
+                Program.World.WriteLine("Voer het rondleidingsnummer waaraan u zou willen deelnemen in of toets 'q' om terug te gaan naar het begin.");
+                string ChosenTour = Program.World.ReadLine().ToLower();
                 if (ChosenTour == "q")
                 {
-                  Program.Main();
+                  break;
                 }
                 else if (checkiftourvalid(ChosenTour) is Tours)
                 {
@@ -236,13 +210,13 @@ public class Tours
                 }
                 else
                 {
-                  Console.WriteLine($"We hebben Rondleiding '{ChosenTour}' niet kunnen vinden.");
+                  Program.World.WriteLine($"We hebben Rondleiding '{ChosenTour}' niet kunnen vinden.");
                   answerValid = false;
                 }
               }
               break;
             default:
-              Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met [1] ja of [2] nee.");
+              Program.World.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met '1' ja of '2' nee.");
               answer2 = false;
               break;
           }
@@ -250,12 +224,11 @@ public class Tours
       }
       else if (Customer_ID == "q")
       {
-        Program.Main();
         answer = true;
       }
       else
       {
-        Console.WriteLine($"De door u ingevulde code was: '{Customer_ID}'. De code bestaat altijd uit 10 cijfers.");
+        Program.World.WriteLine($"De door u ingevulde code was: '{Customer_ID}'. De code bestaat altijd uit 10 cijfers.");
         answer = false;
       }
     }

@@ -29,20 +29,20 @@ namespace Program
 
             while (!answerValid)
             {
-                Console.WriteLine("Scan de barcode op uw badge, toets het nummer onder de barcode in of toets 'q' om terug te gaan naar het begin.");
-                string employeeID = Console.ReadLine();
+                Program.World.WriteLine("Scan de barcode op uw badge, toets het nummer onder de barcode in of toets 'q' om terug te gaan naar het begin.");
+                string employeeID = Program.World.ReadLine();
 
                 if (string.IsNullOrEmpty(employeeID))
                 {
-                    Console.WriteLine($"De door u ingevulde code was: '{employeeID}'. De code kan niet leeg zijn.");
+                    Program.World.WriteLine($"De door u ingevulde code was: '{employeeID}'. De code kan niet leeg zijn.");
                 }
                 else if (employeeID == "q")
                 {
-                    Program.Main();
+                    break;
                 }
                 else if (employeeID.Length != 6 || Regex.IsMatch(employeeID, pattern))
                 {
-                    Console.WriteLine($"De door u ingevulde code was: '{employeeID}'. De code bestaat altijd uit 6 cijfers.");
+                    Program.World.WriteLine($"De door u ingevulde code was: '{employeeID}'. De code bestaat altijd uit 6 cijfers.");
                 }
                 else
                 {
@@ -54,7 +54,7 @@ namespace Program
                     }
                     else
                     {
-                        Console.WriteLine($"De door u ingevulde code was: '{employeeID}', Probeer alstublieft opnieuw.");
+                        Program.World.WriteLine($"De door u ingevulde code was: '{employeeID}', Probeer alstublieft opnieuw.");
                     }
                 }
             }
@@ -64,12 +64,12 @@ namespace Program
         {
             while (true)
             {
-                Console.WriteLine("Voer het rondleidingsnummer in van de rondleiding die u wilt starten of toets [q] om terug te gaan.");
-                string chosenTour = Console.ReadLine();
+                Program.World.WriteLine("Voer het rondleidingsnummer in van de rondleiding die u wilt starten of toets [q] om terug te gaan.");
+                string chosenTour = Program.World.ReadLine();
 
                 if (string.IsNullOrEmpty(chosenTour))
                 {
-                    Console.WriteLine($"Uw invoer was '{chosenTour}'. Voer een geldig tournummer in.");
+                    Program.World.WriteLine($"Uw invoer was '{chosenTour}'. Voer een geldig tournummer in.");
                 }
                 else if (chosenTour == "q")
                 {
@@ -92,7 +92,7 @@ namespace Program
 
                     if (!tourFound)
                     {
-                        Console.WriteLine($"Het opgegeven rondleidingsnummer '{chosenTour}' is niet geldig. Voer een geldig tournummer in.");
+                        Program.World.WriteLine($"Het opgegeven rondleidingsnummer '{chosenTour}' is niet geldig. Voer een geldig tournummer in.");
                     }
                 }
             }
@@ -103,8 +103,8 @@ namespace Program
             bool answer = false;
             while (answer == false)
             {
-                Console.WriteLine("Wat wilt u doen?\n[1] Bezoekers scannen \n[2] Bezoekers toevoegen\n[3] Codes van Bezoekers in deze rondleiding bekijken\n[4] Terug gaan");
-                string choice = Console.ReadLine();
+                Program.World.WriteLine("Wat wilt u doen?\n[1] Bezoekers scannen \n[2] Bezoekers toevoegen\n[3] Codes van Bezoekers in deze rondleiding bekijken\n[4] Terug gaan");
+                string choice = Program.World.ReadLine();
                 switch (choice)
                 {
                     case "1":
@@ -146,14 +146,14 @@ namespace Program
                         }
                         if (!allCodesScanned)
                         {
-                            Console.WriteLine("Scan de Customer code die u wilt scannen of toets (q) om terug te gaan:");
-                            string customerCode = Console.ReadLine();
+                            Program.World.WriteLine("Scan de Customer code die u wilt scannen of toets (q) om terug te gaan:");
+                            string customerCode = Program.World.ReadLine();
 
                             GuideScanCustomerCode(chosenTour, customerCode);
                             ShowCodesNotScanned(chosenTour);
                         }
                     }
-                    Console.WriteLine("Alle Bezoekers zijn succesvol gescand");
+                    Program.World.WriteLine("Alle Bezoekers zijn succesvol gescand");
                     return true;
         }
         public static void GuideScanCustomerCode(string tourID, string customerCode)
@@ -169,16 +169,16 @@ namespace Program
                     }
                     else if (!tour.Customer_Codes.Any(customer => customer.CustomerCode == customerCode))
                     {
-                        Console.WriteLine($"Customer {customerCode} is niet gevonden in tour {tourID}");
+                        Program.World.WriteLine($"Customer {customerCode} is niet gevonden in tour {tourID}");
                     }
                     else if (scannedCodes.Contains(customerCode))
                     {
-                        Console.WriteLine($"Deze customer is al gescand.");
+                        Program.World.WriteLine($"Deze customer is al gescand.");
                     }
                     else
                     {
                         scannedCodes.Add(customerCode);
-                        Console.WriteLine($"Customer code {customerCode} is succesvol gescand.");
+                        Program.World.WriteLine($"Customer code {customerCode} is succesvol gescand.");
                         return;
                     }
                 }
@@ -191,16 +191,16 @@ namespace Program
             {
                 if (tour.ID == tourID)
                 {
-                    Console.WriteLine("Codes die nog niet gescand zijn in deze rondleiding:");
-                    Console.WriteLine("================================================================");
+                    Program.World.WriteLine("Codes die nog niet gescand zijn in deze rondleiding:");
+                    Program.World.WriteLine("================================================================");
                     foreach (Customer customer in tour.Customer_Codes)
                     {
                         if (!scannedCodes.Contains(customer.CustomerCode))
                         {
-                            Console.WriteLine($"{customer.CustomerCode}");
+                            Program.World.WriteLine($"{customer.CustomerCode}");
                         }
                     }
-                    Console.WriteLine("================================================================");
+                    Program.World.WriteLine("================================================================");
                 }
             }
         }
@@ -212,7 +212,7 @@ namespace Program
             {
                 if (ChosenTour == "q")
                 {
-                    Program.Main();
+                    break;
                 }
                 else
                 {
@@ -226,15 +226,15 @@ namespace Program
                         while (!answer)
                         {
                             bool booleanstuff = true;
-                            Console.WriteLine("Scan de streepjescode op uw ticket of toets [q] om terug te gaan");
-                            string Customer_ID = Console.ReadLine().ToLower();
+                            Program.World.WriteLine("Scan de streepjescode op uw ticket of toets [q] om terug te gaan");
+                            string Customer_ID = Program.World.ReadLine().ToLower();
                             if (Customer_ID == "q")
                             {
                                 break;
                             }
                             if (tour.Customer_Codes.Any(customer => customer.CustomerCode == Customer_ID))
                             {
-                                Console.WriteLine("Deze klant is al ingeschreven voor deze rondleiding.");
+                                Program.World.WriteLine("Deze klant is al ingeschreven voor deze rondleiding.");
                             }
                             if (listofaddablecustomers.Any(customer => customer.CustomerCode == Customer_ID))
                             {
@@ -242,7 +242,7 @@ namespace Program
                             }
                             if (!booleanstuff)
                             {
-                                Console.WriteLine($"Deze klant {Customer_ID} is al aangemeld.");
+                                Program.World.WriteLine($"Deze klant {Customer_ID} is al aangemeld.");
                             }
                             else if (Customer.CheckIfCustomerInList(Customer_ID))
                             {
@@ -252,13 +252,13 @@ namespace Program
                                 bool answer2 = false;
                                 while (!answer2)
                                 {
-                                    Console.Write("Deze klantcodes zijn op dit moment aangemeld: ");
+                                    Program.World.Write("Deze klantcodes zijn op dit moment aangemeld: ");
                                     foreach (Customer customer in listofaddablecustomers)
                                     {
-                                        Console.Write(customer.CustomerCode + ", ");
+                                        Program.World.Write(customer.CustomerCode + ", ");
                                     }
-                                    Console.WriteLine("\nWilt u nog iemand aanmelden? Ja[1] nee[2]");
-                                    string yesno = Console.ReadLine();
+                                    Program.World.WriteLine("\nWilt u nog iemand aanmelden? Ja[1] nee[2]");
+                                    string yesno = Program.World.ReadLine();
                                     switch (yesno)
                                     {
                                         case "1":
