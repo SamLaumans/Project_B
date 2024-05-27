@@ -17,6 +17,11 @@ public class RealWorld : IWorld
         return Console.ReadLine();
     }
 
+    public void Clear()
+    {
+        Console.Clear();
+    }
+
     public string ReadAllText(string path)
     {
         return File.ReadAllText(path);

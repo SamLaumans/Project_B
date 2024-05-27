@@ -26,6 +26,11 @@ public class FakeWorld : IWorld
         return firstLine;
     }
 
+    public void Clear()
+    {
+        LinesWritten.Add("CLEARED CONSOLE");
+    }
+
     public Dictionary<string, string> Files = new();
 
     public string ReadAllText(string path)
