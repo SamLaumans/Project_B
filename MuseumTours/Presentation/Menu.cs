@@ -1,7 +1,7 @@
 namespace Program;
 class Menu
 {
-    public static void menuStart()
+    public static void MenuStart()
     {
         Program program = new();
         bool QuitProgram = false;

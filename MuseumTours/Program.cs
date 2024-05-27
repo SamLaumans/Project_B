@@ -12,9 +12,12 @@ public class Program
     TimeSpan currentTime = DateTime.Now.TimeOfDay;
     if (currentTime >= startTime && currentTime <= endTime)
     {
-      Menu.menuStart();
+      Menu.MenuStart();
     }
-    Program.World.WriteLine("Het museum is gesloten.");
+    else
+    {
+      Program.World.WriteLine("Het museum is gesloten.");
+    }
   }
 }
 

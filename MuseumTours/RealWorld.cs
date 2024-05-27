@@ -9,12 +9,12 @@ public class RealWorld : IWorld
 
     public void WriteLine(string line)
     {
-        Program.World.WriteLine(line);
+        Console.WriteLine(line);
     }
 
     public string ReadLine()
     {
-        return Program.World.ReadLine();
+        return Console.ReadLine();
     }
 
     public string ReadAllText(string path)
