@@ -10,10 +10,19 @@ class Menu
             Console.WriteLine("Dit zijn de eerst komende 5 rondleidingen: ");
             Tours.ShowAvailableTours(2, 0);
             Console.WriteLine("Scan de streepjescode op uw entreebewijs.");
-            string? FirstCustomerCode = Console.ReadLine();
+            string? FirstCustomerCode = Console.ReadLine().ToLower();
+            if (FirstCustomerCode == "abcd")
+            {
+                Guide.CheckEmployeeID();
+            }
             Console.WriteLine("\nWat wilt u doen?");
-            Console.WriteLine($"[1] Rondleiding reserveren \n[2] Rondleiding annuleren \n[3] Info rondleidingen\n[4] Inloggen werknemers");
+            Console.WriteLine($"[1] Rondleiding reserveren \n[2] Rondleiding annuleren \n[3] Info rondleidingen\n");
             string answer = Console.ReadLine().ToLower();
+            if (FirstCustomerCode == "abcd")
+            {
+                Guide.CheckEmployeeID();
+                break;
+            }
             switch (answer)
             {
                 case "1":
@@ -61,10 +70,6 @@ class Menu
                     }
                     Console.WriteLine("Als u het gelezen heeft toets dan [q] om terug te gaan naar het begin.");
                     string choice = Console.ReadLine();
-                    break;
-                case "4":
-                    Valid_Answer = true;
-                    Guide.CheckEmployeeID();
                     break;
                 default:
                     Console.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met [1] Rondleiding reserveren, [2] Rondleiding annuleren, [3] Info Rondleidingen of [4] Inloggen werknemers).");
