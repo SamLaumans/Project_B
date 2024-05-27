@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 public static class DataAccess
 {
-    private static string pathTourslist = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/Tourslist.JSON")); 
+    private static string pathTourslist = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/Tourslist.JSON"));
     private static string pathCustomers = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/Customers.JSON"));
     private static string pathEmployees = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/Employees.JSON"));
     public static List<Customer> ReadJsonCustomers()
@@ -40,7 +40,21 @@ public static class DataAccess
         }
 
     }
-    public static List<Tours> LoadTours()
+    public static bool WriteJsonToCustomers(List<Customer> listofcustomers)
+    {
+        try
+        {
+            string updatedJson = JsonConvert.SerializeObject(listofcustomers, Formatting.Indented);
+            File.WriteAllText(pathCustomers, updatedJson);
+            return true;
+        }
+        catch (FileNotFoundException)
+        {
+            return false;
+        }
+
+    }
+    public static List<Tours>? LoadTours()
     {
         string json = File.ReadAllText(pathTourslist);
         return JsonConvert.DeserializeObject<List<Tours>>(json);
