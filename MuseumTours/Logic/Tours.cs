@@ -49,12 +49,12 @@ public class Tours
       // Find the index of the tour in listOfTours
       for (int i = 0; i < listOfTours.Count; i++)
       {
-          if (listOfTours[i].ID == tourid)
-          {
-            // Update the tour in the list
-            listOfTours[i] = tour;
-            break;
-          }
+        if (listOfTours[i].ID == tourid)
+        {
+          // Update the tour in the list
+          listOfTours[i] = tour;
+          break;
+        }
       }
       // Write updated lists back to JSON
       DataAccess.WriteJsonToTours(listOfTours);
@@ -171,16 +171,24 @@ public class Tours
       }
     }
   }
-  public static void InputMoreCustomercodes()
+  public static void InputMoreCustomercodes(string FirstCustomer)
   {
     List<Customer> listofaddablecustomers = new List<Customer>();
     bool answer = false;
     int AmountOfPeople = 0;
+    string Customer_ID;
     while (answer == false)
     {
       bool booleanstuff = true;
-      Console.WriteLine("Scan de streepjescode op uw entreeebewijs of toets [q] om terug te gaan naar het begin.");
-      string Customer_ID = Console.ReadLine().ToLower();
+      if (AmountOfPeople != 0)
+      {
+        Console.WriteLine("Scan de streepjescode op uw entreeebewijs of toets [q] om terug te gaan naar het begin.");
+        Customer_ID = Console.ReadLine().ToLower();
+      }
+      else
+      {
+        Customer_ID = FirstCustomer;
+      }
       foreach (Customer customer in listofaddablecustomers)
       {
         if (customer.CustomerCode == Customer_ID)

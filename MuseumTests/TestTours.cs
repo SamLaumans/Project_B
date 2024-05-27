@@ -38,4 +38,20 @@ public class UnitTestTours
         // Assert
         Assert.AreEqual(result, expected);
     }
+
+    [DataTestMethod]
+    [DataRow("1234567890", true)]
+    [DataRow("123456789000", false)]
+    public void test_CheckIfCanCancel(string CustomerID, bool Expected)
+    {
+        // Arange
+        Program program1 = new();
+
+
+        // Act
+        bool result = Tours.CheckIfCanCancel(CustomerID);
+
+        // Assert
+        Assert.AreEqual(result, Expected);
+    }
 }

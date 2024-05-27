@@ -9,6 +9,8 @@ class Menu
         {
             Console.WriteLine("Dit zijn de eerst komende 5 rondleidingen: ");
             Tours.ShowAvailableTours(2, 0);
+            Console.WriteLine("Scan de streepjescode op uw entreebewijs.");
+            string? FirstCustomerCode = Console.ReadLine();
             Console.WriteLine("\nWat wilt u doen?");
             Console.WriteLine($"[1] Rondleiding reserveren \n[2] Rondleiding annuleren \n[3] Info rondleidingen\n[4] Inloggen werknemers");
             string answer = Console.ReadLine().ToLower();
@@ -16,28 +18,32 @@ class Menu
             {
                 case "1":
                     Valid_Answer = true;
-                    Tours.InputMoreCustomercodes();
+                    Tours.InputMoreCustomercodes(FirstCustomerCode);
                     break;
                 case "2":
                     Valid_Answer = true;
-                    Console.WriteLine("Scan de code op uw entreebewijs om een inschrijving te annuleren of toets [q] om terug te gaan naar het begin:");
-                    string? customerCodeToCancel = Console.ReadLine();
-                    if (customerCodeToCancel == "q")
+                    // Console.WriteLine("Scan de code op uw entreebewijs om een inschrijving te annuleren of toets [q] om terug te gaan naar het begin:");
+                    // string? customerCodeToCancel = Console.ReadLine();
+                    if (FirstCustomerCode == "q")
                     {
                         Program.Main();
                     }
-                    if (Tours.CheckIfCanCancel(customerCodeToCancel) is true)
+                    if (Tours.CheckIfCanCancel(FirstCustomerCode) is true)
                     {
-                        Console.WriteLine($"Weet u zeker dat u niet meer mee wilt met deze rondleiding: \n{Tours.CheckWhatTour(customerCodeToCancel)} \n[1] Ja. \n[2] Nee.");
+                        Console.WriteLine($"\nDit is de rondleiding die u tot nu toe heeft gereserveerd: \n{Tours.CheckWhatTour(FirstCustomerCode)} \nWeet u zeker dat u deze wilt annuleren? \n[1] Ik wil deze rondleiding annuleren. \n[2] Ik wil toch nog wel mee.");
                         string? JaOfNee = Console.ReadLine();
                         if (JaOfNee == "1")
                         {
-                            Cancel.CancelAppointment(customerCodeToCancel);
+                            Cancel.CancelAppointment(FirstCustomerCode);
                         }
                         else
                         {
                             Program.Main();
                         }
+                    }
+                    else
+                    {
+                        Console.WriteLine("U heeft nog geen rondleiding om te annuleren.");
                     }
                     break;
                 case "3":
