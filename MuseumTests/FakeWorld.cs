@@ -16,16 +16,6 @@ public class FakeWorld : IWorld
     {
         LinesWritten.Add(line);
     }
-
-    public void WriteLine(bool line)
-    {
-        LinesWritten.Add(line);
-    }
-
-    public void WriteLine(int line)
-    {
-        LinesWritten.Add(line);
-    }
     
     public List<string> LinesToRead { private get; set; } = new();
 
