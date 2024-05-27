@@ -252,10 +252,10 @@ namespace Program
                                 bool answer2 = false;
                                 while (!answer2)
                                 {
-                                    Console.Write("Deze klantcodes zijn op dit moment aangemeld: ");
+                                    Program.World.Write("Deze klantcodes zijn op dit moment aangemeld: ");
                                     foreach (Customer customer in listofaddablecustomers)
                                     {
-                                        Console.Write(customer.CustomerCode + ", ");
+                                        Program.World.Write(customer.CustomerCode + ", ");
                                     }
                                     Program.World.WriteLine("\nWilt u nog iemand aanmelden? Ja[1] nee[2]");
                                     string yesno = Program.World.ReadLine();

@@ -178,7 +178,7 @@ public class Tours
           Program.World.WriteLine("Deze klantcodes zijn op dit moment aangemeld: ");
           foreach (Customer customer in listofaddablecustomers)
           {
-            Console.Write(customer.CustomerCode + ", ");
+            Program.World.Write(customer.CustomerCode + ", ");
           }
           Program.World.WriteLine("\nWilt u nog iemand aanmelden? Ja[1] nee[2]");
           string yesno = Program.World.ReadLine();
@@ -192,7 +192,7 @@ public class Tours
               answer2 = true;
               answer = true;
               Thread.Sleep(250);
-              Console.Clear();
+              Program.World.Clear();
               Tours.ShowAvailableTours(1, AmountOfPeople);
               bool answerValid = false;
               while (answerValid == false)

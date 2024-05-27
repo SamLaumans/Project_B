@@ -4,7 +4,11 @@ public interface IWorld
 
     void WriteLine(string line);
 
+    void Write(string line);
+
     string ReadLine();
+
+    void Clear();
 
     string ReadAllText(string path);
 
