@@ -15,6 +15,16 @@ class Menu
             {
                 Guide.CheckEmployeeID();
             }
+            string tourtoattend = Tours.CheckWhatTour(FirstCustomerCode);
+            else if
+                if (tourtoattend != null)
+                {
+                    Console.WriteLine(tourtoattend);
+                }
+                else
+                {
+                    Console.WriteLine($"We hebben geen reservering kunnen vinden voor klantcode '{Customerid}'.");
+                }
             Console.WriteLine("\nWat wilt u doen?");
             Console.WriteLine($"[1] Rondleiding reserveren \n[2] Rondleiding annuleren \n[3] Info rondleidingen\n");
             string answer = Console.ReadLine().ToLower();
