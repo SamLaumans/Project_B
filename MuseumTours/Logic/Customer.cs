@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+namespace Program;
 public class Customer
 {
     public string CustomerCode;

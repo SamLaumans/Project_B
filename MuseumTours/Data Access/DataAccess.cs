@@ -1,5 +1,6 @@
-using Program;
+using System;
 using Newtonsoft.Json;
+namespace Program;
 
 public static class DataAccess
 {
@@ -15,7 +16,7 @@ public static class DataAccess
     }
     public static List<Tours> ReadJsonTours()
     {
-        string File2Json = File.ReadAllText(pathTourslist);
+        string File2Json = Program.World.ReadAllText(pathTourslist);
         List<Tours> listOfTours = JsonConvert.DeserializeObject<List<Tours>>(File2Json)!;
         return listOfTours;
     }
@@ -31,7 +32,7 @@ public static class DataAccess
         try
         {
             string updatedJson = JsonConvert.SerializeObject(listoftours, Formatting.Indented);
-            File.WriteAllText(pathTourslist, updatedJson);
+            Program.World.WriteAllText(pathTourslist, updatedJson);
             return true;
         }
         catch (FileNotFoundException)
@@ -45,7 +46,7 @@ public static class DataAccess
         try
         {
             string updatedJson = JsonConvert.SerializeObject(listofcustomers, Formatting.Indented);
-            File.WriteAllText(pathCustomers, updatedJson);
+            Program.World.WriteAllText(pathCustomers, updatedJson);
             return true;
         }
         catch (FileNotFoundException)
@@ -56,13 +57,13 @@ public static class DataAccess
     }
     public static List<Tours>? LoadTours()
     {
-        string json = File.ReadAllText(pathTourslist);
+        string json = Program.World.ReadAllText(pathTourslist);
         return JsonConvert.DeserializeObject<List<Tours>>(json);
     }
     public static bool SaveTours(List<Tours> tours)
     {
         string json = JsonConvert.SerializeObject(tours, Formatting.Indented);
-        File.WriteAllText(pathTourslist, json);
+        Program.World.WriteAllText(pathTourslist, json);
         return true;
     }
 }
