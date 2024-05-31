@@ -29,7 +29,7 @@ namespace Program
 
             while (!answerValid)
             {
-                Program.World.WriteLine("Scan de barcode op uw badge, toets het nummer onder de barcode in of toets 'q' om terug te gaan naar het begin.");
+                Program.World.WriteLine("Scan de streepjescode op uw badge, toets het nummer onder de streepjescode in of toets 'q' om terug te gaan naar het begin.");
                 string employeeID = Program.World.ReadLine();
 
                 if (string.IsNullOrEmpty(employeeID))
@@ -108,53 +108,53 @@ namespace Program
                 switch (choice)
                 {
                     case "1":
-                    GuideScanLogic(chosenTour);
-                    break;
+                        GuideScanLogic(chosenTour);
+                        break;
                     case "2":
-                    Addingcustomerstotour(chosenTour);
-                    break;
+                        Addingcustomerstotour(chosenTour);
+                        break;
                     case "3":
-                    Tours.ShowChosenTour(chosenTour);
-                    break;
+                        Tours.ShowChosenTour(chosenTour);
+                        break;
                     case "4":
-                    Tours.ShowToursToGuide("../../../Tourslist.Json");
-                    answer = true;
-                    break;
+                        Tours.ShowToursToGuide("../../../Tourslist.Json");
+                        answer = true;
+                        break;
                 }
             }
         }
         public static bool GuideScanLogic(string chosenTour)
         {
             bool allCodesScanned = false;
-                    while (!allCodesScanned)
+            while (!allCodesScanned)
+            {
+                allCodesScanned = true;
+                foreach (Tours tour in listOfTours)
+                {
+                    if (tour.ID == chosenTour)
                     {
-                        allCodesScanned = true;
-                        foreach (Tours tour in listOfTours)
+                        foreach (Customer customer in tour.Customer_Codes)
                         {
-                            if (tour.ID == chosenTour)
+                            if (!scannedCodes.Contains(customer.CustomerCode))
                             {
-                                foreach (Customer customer in tour.Customer_Codes)
-                                {
-                                    if (!scannedCodes.Contains(customer.CustomerCode))
-                                    {
-                                        allCodesScanned = false;
-                                        break;
-                                    }
-                                }
+                                allCodesScanned = false;
                                 break;
                             }
                         }
-                        if (!allCodesScanned)
-                        {
-                            Program.World.WriteLine("Scan de Customer code die u wilt scannen of toets (q) om terug te gaan:");
-                            string customerCode = Program.World.ReadLine();
-
-                            GuideScanCustomerCode(chosenTour, customerCode);
-                            ShowCodesNotScanned(chosenTour);
-                        }
+                        break;
                     }
-                    Program.World.WriteLine("Alle Bezoekers zijn succesvol gescand");
-                    return true;
+                }
+                if (!allCodesScanned)
+                {
+                    Program.World.WriteLine("Scan de streepjescode op het entreebewijs die u wilt scannen of toets (q) om terug te gaan:");
+                    string customerCode = Program.World.ReadLine();
+
+                    GuideScanCustomerCode(chosenTour, customerCode);
+                    ShowCodesNotScanned(chosenTour);
+                }
+            }
+            Program.World.WriteLine("Alle Klanten zijn succesvol gescand");
+            return true;
         }
         public static void GuideScanCustomerCode(string tourID, string customerCode)
         {
@@ -169,16 +169,16 @@ namespace Program
                     }
                     else if (!tour.Customer_Codes.Any(customer => customer.CustomerCode == customerCode))
                     {
-                        Program.World.WriteLine($"Customer {customerCode} is niet gevonden in tour {tourID}");
+                        Program.World.WriteLine($"Klant {customerCode} is niet gevonden in tour {tourID}");
                     }
                     else if (scannedCodes.Contains(customerCode))
                     {
-                        Program.World.WriteLine($"Deze customer is al gescand.");
+                        Program.World.WriteLine($"Deze Klant is al gescand.");
                     }
                     else
                     {
                         scannedCodes.Add(customerCode);
-                        Program.World.WriteLine($"Customer code {customerCode} is succesvol gescand.");
+                        Program.World.WriteLine($"Klantnummers {customerCode} is succesvol gescand.");
                         return;
                     }
                 }
@@ -191,7 +191,7 @@ namespace Program
             {
                 if (tour.ID == tourID)
                 {
-                    Program.World.WriteLine("Codes die nog niet gescand zijn in deze rondleiding:");
+                    Program.World.WriteLine("Klantnummers die nog niet gescand zijn in deze rondleiding:");
                     Program.World.WriteLine("================================================================");
                     foreach (Customer customer in tour.Customer_Codes)
                     {
@@ -226,7 +226,7 @@ namespace Program
                         while (!answer)
                         {
                             bool booleanstuff = true;
-                            Program.World.WriteLine("Scan de streepjescode op uw ticket of toets [q] om terug te gaan");
+                            Program.World.WriteLine("Scan de streepjescode op uw entreebewijs of toets [q] om terug te gaan");
                             string Customer_ID = Program.World.ReadLine().ToLower();
                             if (Customer_ID == "q")
                             {
@@ -252,7 +252,7 @@ namespace Program
                                 bool answer2 = false;
                                 while (!answer2)
                                 {
-                                    Program.World.Write("Deze klantcodes zijn op dit moment aangemeld: ");
+                                    Program.World.Write("Deze klantnummers zijn op dit moment aangemeld: ");
                                     foreach (Customer customer in listofaddablecustomers)
                                     {
                                         Program.World.Write(customer.CustomerCode + ", ");

@@ -20,7 +20,7 @@ public class FakeWorld : IWorld
     {
         LinesWritten.Add(line);
     }
-    
+
     public List<string> LinesToRead { private get; set; } = new();
 
     public string ReadLine()

@@ -1,5 +1,6 @@
-using Program;
+using System;
 using Newtonsoft.Json;
+namespace Program;
 
 public static class DataAccess
 {

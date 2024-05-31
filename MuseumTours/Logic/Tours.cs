@@ -49,18 +49,23 @@ public class Tours
       // Find the index of the tour in listOfTours
       for (int i = 0; i < listOfTours.Count; i++)
       {
-          if (listOfTours[i].ID == tourid)
-          {
-            // Update the tour in the list
-            listOfTours[i] = tour;
-            break;
-          }
+        if (listOfTours[i].ID == tourid)
+        {
+          // Update the tour in the list
+          listOfTours[i] = tour;
+          break;
+        }
       }
       // Write updated lists back to JSON
       DataAccess.WriteJsonToTours(listOfTours);
       DataAccess.WriteJsonToCustomers(listofcustomers);
+      string persons = "persoon";
+      if (customerid.Count > 1)
+      {
+        persons = "personen";
+      }
 
-      Program.World.WriteLine($"U heeft voor {customerid.Count} gereserveerd voor de rondleiding om {tour.Time}");
+      Program.World.WriteLine($"U heeft voor {customerid.Count} {persons} gereserveerd voor de rondleiding om {tour.Time}");
     }
     else
     {
@@ -135,11 +140,11 @@ public class Tours
         string timeString = tour.Time.ToString("HH:mm");
 
         Program.World.WriteLine($"Tour van : {timeString}");
-        Program.World.WriteLine($"Hieronder zijn alle codes van de bezoekers in deze rondleiding.");
+        Program.World.WriteLine($"Hieronder zijn alle klantnummers van de bezoekers in deze rondleiding.");
         Program.World.WriteLine($"=======================================================================");
         foreach (var customerCode in tour.Customer_Codes)
         {
-          Program.World.WriteLine($"Customer Code: {customerCode.CustomerCode}");
+          Program.World.WriteLine($"Klantnummer: {customerCode.CustomerCode}");
         }
         Program.World.WriteLine($"=======================================================================");
       }
@@ -153,7 +158,7 @@ public class Tours
     while (answer == false)
     {
       bool booleanstuff = true;
-      Program.World.WriteLine("Scan de streepjescode op uw entreeebewijs of toets [q] om terug te gaan naar het begin.");
+      Program.World.WriteLine("Scan de streepjescode op uw entreebewijs of toets [q] om terug te gaan naar het begin.");
       string Customer_ID = Program.World.ReadLine().ToLower();
       foreach (Customer customer in listofaddablecustomers)
       {
@@ -175,7 +180,7 @@ public class Tours
         bool answer2 = false;
         while (answer2 == false)
         {
-          Program.World.WriteLine("Deze klantcodes zijn op dit moment aangemeld: ");
+          Program.World.WriteLine("Deze klantnummers zijn op dit moment aangemeld: ");
           foreach (Customer customer in listofaddablecustomers)
           {
             Program.World.Write(customer.CustomerCode + ", ");
@@ -228,7 +233,7 @@ public class Tours
       }
       else
       {
-        Program.World.WriteLine($"De door u ingevulde code was: '{Customer_ID}'. De code bestaat altijd uit 10 cijfers.");
+        Program.World.WriteLine($"Het door u ingevulde klantnummers was: '{Customer_ID}'. De code bestaat altijd uit 10 cijfers.");
         answer = false;
       }
     }
