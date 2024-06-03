@@ -59,6 +59,12 @@ class Menu
                     break;
                 case "3":
                     Tours.ShowAvailableTours(1, 0);
+                    if (Tours.CheckIfCanCancel(FirstCustomerCode) == true)
+                    {
+                        Program.World.WriteLine($"U heeft voor deze rondleiding gereserveerd: \n{Tours.CheckWhatTour(FirstCustomerCode)}");
+                    }
+                    Program.World.WriteLine("Druk op [Enter] om door te gaan.");
+                    Program.World.ReadLine();
                     break;
                 case "abcd":
                     Guide.CheckEmployeeID();
