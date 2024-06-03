@@ -16,15 +16,17 @@ class Menu
                 Guide.CheckEmployeeID();
             }
             string tourtoattend = Tours.CheckWhatTour(FirstCustomerCode);
-            else if
+            if (FirstCustomerCode != "abcd")
+            {
                 if (tourtoattend != null)
                 {
                     Console.WriteLine(tourtoattend);
                 }
                 else
                 {
-                    Console.WriteLine($"We hebben geen reservering kunnen vinden voor klantcode '{Customerid}'.");
+                    Console.WriteLine($"We hebben geen reservering kunnen vinden voor klantcode '{FirstCustomerCode}'.");
                 }
+            }
             Console.WriteLine("\nWat wilt u doen?");
             Console.WriteLine($"[1] Rondleiding reserveren \n[2] Rondleiding annuleren \n[3] Info rondleidingen\n");
             string answer = Console.ReadLine().ToLower();
@@ -67,17 +69,17 @@ class Menu
                     break;
                 case "3":
                     Valid_Answer = true;
-                    Console.WriteLine("Scan de streepjescode op uw entreebewijs.");
-                    string Customerid = Console.ReadLine();
-                    string tourtoattend = Tours.CheckWhatTour(Customerid);
-                    if (tourtoattend != null)
-                    {
-                        Console.WriteLine(tourtoattend);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"We hebben geen reservering kunnen vinden voor klantcode '{Customerid}'.");
-                    }
+                    // Console.WriteLine("Scan de streepjescode op uw entreebewijs.");
+                    // string Customerid = Console.ReadLine();
+                    // string tourtoattend = Tours.CheckWhatTour(FirstCustomerCode);
+                    // if (tourtoattend != null)
+                    // {
+                    //     Console.WriteLine(tourtoattend);
+                    // }
+                    // else
+                    // {
+                    //     Console.WriteLine($"We hebben geen reservering kunnen vinden voor klantcode '{Customerid}'.");
+                    // }
                     Console.WriteLine("Als u het gelezen heeft toets dan [q] om terug te gaan naar het begin.");
                     string choice = Console.ReadLine();
                     break;
