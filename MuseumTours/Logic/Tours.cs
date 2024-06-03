@@ -150,7 +150,7 @@ public class Tours
       }
     }
   }
-  public static void InputMoreCustomercodes()
+  public static void InputMoreCustomercodes(string FirstCode)
   {
     List<Customer> listofaddablecustomers = new List<Customer>();
     bool answer = false;
