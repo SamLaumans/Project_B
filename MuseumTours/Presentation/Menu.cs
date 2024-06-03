@@ -33,17 +33,31 @@ class Menu
                     Tours.InputMoreCustomercodes(FirstCustomerCode);
                     break;
                 case "2":
-                    Program.World.WriteLine("Scan de streepjescode op uw entreebewijs om een inschrijving te annuleren of toets 'q' om terug te gaan naar het begin:");
-                    string customerCodeToCancel = Program.World.ReadLine();
-                    if (customerCodeToCancel == "q")
+                    Valid_Answer = true;
+                    // Program.World.WriteLine("Scan de code op uw entreebewijs om een inschrijving te annuleren of toets [q] om terug te gaan naar het begin:");
+                    // string? customerCodeToCancel = Program.World.ReadLine();
+                    if (FirstCustomerCode == "q")
                     {
-                        break;
+                        Program.Main();
+                    }
+                    if (Tours.CheckIfCanCancel(FirstCustomerCode) is true)
+                    {
+                        Program.World.WriteLine($"\nDit is de rondleiding die u tot nu toe heeft gereserveerd: \n{Tours.CheckWhatTour(FirstCustomerCode)} \nWeet u zeker dat u deze wilt annuleren? \n[1] Ik wil deze rondleiding annuleren. \n[2] Ik wil toch nog wel mee.");
+                        string? JaOfNee = Program.World.ReadLine();
+                        if (JaOfNee == "1")
+                        {
+                            Cancel.CancelAppointment(FirstCustomerCode);
+                        }
+                        else
+                        {
+                            Program.Main();
+                        }
                     }
                     else
                     {
-                        Cancel.CancelAppointment(customerCodeToCancel);
-                        break;
+                        Program.World.WriteLine("U heeft nog geen rondleiding om te annuleren.");
                     }
+                    break;
                 case "3":
                     Tours.ShowAvailableTours(1, 0);
                     break;
