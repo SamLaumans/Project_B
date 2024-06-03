@@ -150,16 +150,24 @@ public class Tours
       }
     }
   }
-  public static void InputMoreCustomercodes(string FirstCode)
+  public static void InputMoreCustomercodes(string FirstCustomer)
   {
     List<Customer> listofaddablecustomers = new List<Customer>();
     bool answer = false;
     int AmountOfPeople = 0;
+    string Customer_ID;
     while (answer == false)
     {
       bool booleanstuff = true;
-      Program.World.WriteLine("Scan de streepjescode op uw entreebewijs of toets [q] om terug te gaan naar het begin.");
-      string Customer_ID = Program.World.ReadLine().ToLower();
+      if (AmountOfPeople != 0)
+      {
+        Program.World.WriteLine("Scan de streepjescode op uw entreeebewijs of toets [q] om terug te gaan naar het begin.");
+        Customer_ID = Program.World.ReadLine().ToLower();
+      }
+      else
+      {
+        Customer_ID = FirstCustomer;
+      }
       foreach (Customer customer in listofaddablecustomers)
       {
         if (customer.CustomerCode == Customer_ID)
@@ -180,7 +188,7 @@ public class Tours
         bool answer2 = false;
         while (answer2 == false)
         {
-          Program.World.WriteLine("Deze klantnummers zijn op dit moment aangemeld: ");
+          Program.World.Write("Deze klantcodes zijn op dit moment aangemeld: ");
           foreach (Customer customer in listofaddablecustomers)
           {
             Program.World.Write(customer.CustomerCode + ", ");
@@ -206,7 +214,7 @@ public class Tours
                 string ChosenTour = Program.World.ReadLine().ToLower();
                 if (ChosenTour == "q")
                 {
-                  break;
+                  Program.Main();
                 }
                 else if (checkiftourvalid(ChosenTour) is Tours)
                 {
@@ -221,7 +229,7 @@ public class Tours
               }
               break;
             default:
-              Program.World.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met '1' ja of '2' nee.");
+              Program.World.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met [1] ja of [2] nee.");
               answer2 = false;
               break;
           }
@@ -229,11 +237,12 @@ public class Tours
       }
       else if (Customer_ID == "q")
       {
+        Program.Main();
         answer = true;
       }
       else
       {
-        Program.World.WriteLine($"Het door u ingevulde klantnummers was: '{Customer_ID}'. De code bestaat altijd uit 10 cijfers.");
+        Program.World.WriteLine($"De door u ingevulde code was: '{Customer_ID}'. De code bestaat altijd uit 10 cijfers.");
         answer = false;
       }
     }

@@ -1,32 +1,32 @@
 [
-    {
-        "CustomerCode": "1234567890"
-    },
-    {
-        "CustomerCode": "0987654321"
-    },
-    {
-        "CustomerCode": "1357924680"
-    },
-    {
-        "CustomerCode": "2468013579"
-    },
-    {
-        "CustomerCode": "9876543210"
-    },
-    {
-        "CustomerCode": "0123456789"
-    },
-    {
-        "CustomerCode": "5432167890"
-    },
-    {
-        "CustomerCode": "6789012345"
-    },
-    {
-        "CustomerCode": "9870123456"
-    },
-    {
-        "CustomerCode": "5437890126"
-    }
+  {
+    "CustomerCode": "1234567890"
+  },
+  {
+    "CustomerCode": "0987654321"
+  },
+  {
+    "CustomerCode": "1357924680"
+  },
+  {
+    "CustomerCode": "2468013579"
+  },
+  {
+    "CustomerCode": "9876543210"
+  },
+  {
+    "CustomerCode": "0123456789"
+  },
+  {
+    "CustomerCode": "5432167890"
+  },
+  {
+    "CustomerCode": "6789012345"
+  },
+  {
+    "CustomerCode": "9870123456"
+  },
+  {
+    "CustomerCode": "5437890126"
+  }
 ]
