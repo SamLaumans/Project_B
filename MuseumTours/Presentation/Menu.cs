@@ -33,7 +33,6 @@ class Menu
                     Tours.InputMoreCustomercodes(FirstCustomerCode);
                     break;
                 case "2":
-                    Valid_Answer = true;
                     // Program.World.WriteLine("Scan de code op uw entreebewijs om een inschrijving te annuleren of toets [q] om terug te gaan naar het begin:");
                     // string? customerCodeToCancel = Program.World.ReadLine();
                     if (FirstCustomerCode == "q")
