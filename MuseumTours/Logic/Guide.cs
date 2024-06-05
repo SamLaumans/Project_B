@@ -85,7 +85,7 @@ namespace Program
                     {
                         if (tour.ID == chosenTour)
                         {
-                            GuideChooseOption(chosenTour);
+                            GuideStartTour(chosenTour);
                             tourFound = true;
                             break;
                         }
@@ -99,30 +99,9 @@ namespace Program
             }
         }
 
-        public static void GuideChooseOption(string chosenTour)
+        public static void GuideStartTour(string chosenTour)
         {
-            bool answer = false;
-            while (answer == false)
-            {
-                Program.World.WriteLine("Wat wilt u doen?\n[1] Bezoekers scannen \n[2] Bezoekers toevoegen\n[3] Codes van Bezoekers in deze rondleiding bekijken\n[4] Terug gaan");
-                string choice = Program.World.ReadLine();
-                switch (choice)
-                {
-                    case "1":
-                        GuideScanLogic(chosenTour);
-                        break;
-                    case "2":
-                        Addingcustomerstotour(chosenTour);
-                        break;
-                    case "3":
-                        Tours.ShowChosenTour(chosenTour);
-                        break;
-                    case "4":
-                        Tours.ShowToursToGuide("../../../Tourslist.Json");
-                        answer = true;
-                        break;
-                }
-            }
+            GuideScanLogic(chosenTour);
         }
         public static bool GuideScanLogic(string chosenTour)
         {
@@ -147,14 +126,15 @@ namespace Program
                 }
                 if (!allCodesScanned)
                 {
-                    Program.World.WriteLine("Scan de streepjescode op het entreebewijs die u wilt scannen of toets (q) om terug te gaan:");
+                    Program.World.WriteLine("Scan de streepjescode op het entreebewijs die u wilt scannen of toets (q) om te stoppen met scannen:");
                     string customerCode = Program.World.ReadLine();
 
                     GuideScanCustomerCode(chosenTour, customerCode);
                     ShowCodesNotScanned(chosenTour);
                 }
             }
-            Program.World.WriteLine("Alle Klanten zijn succesvol gescand");
+            Program.World.WriteLine("Alle Klanten zijn succesvol gescand.");
+            Addingcustomerstotour(chosenTour);
             return true;
         }
         public static void GuideScanCustomerCode(string tourID, string customerCode)
@@ -166,7 +146,7 @@ namespace Program
                     if (customerCode == "q")
                     {
                         Tours.ShowChosenTour(tourID);
-                        GuideChooseOption(tourID);
+                        GuideStartTour(tourID);
                     }
                     else if (!tour.Customer_Codes.Any(customer => customer.CustomerCode == customerCode))
                     {
@@ -227,6 +207,7 @@ namespace Program
                         while (!answer)
                         {
                             bool booleanstuff = true;
+                            Program.World.WriteLine($"Er zijn nog {tour.Spots} plekken.");
                             Program.World.WriteLine("Scan de streepjescode op uw entreebewijs of toets [q] om terug te gaan");
                             string Customer_ID = Program.World.ReadLine().ToLower();
                             if (Customer_ID == "q")
