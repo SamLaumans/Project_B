@@ -63,7 +63,7 @@ class Menu
                     {
                         Program.World.WriteLine($"U heeft voor deze rondleiding gereserveerd: \n{Tours.CheckWhatTour(FirstCustomerCode)}");
                     }
-                    Program.World.WriteLine("Druk op [Enter] om door te gaan.");
+                    Program.World.WriteLine("Druk op [Enter] om terug te gaan.");
                     Program.World.ReadLine();
                     break;
                 case "498901":
