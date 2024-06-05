@@ -73,7 +73,7 @@ class Menu
                     QuitProgram = true;
                     break;
                 default:
-                    Program.World.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met [1](Rondleiding reserveren), [2](Rondleiding annuleren), [3](Info Rondleidingen) of [4](Inloggen werknemers)).");
+                    Program.World.WriteLine("We hebben u niet begrepen, Graag enkel antwoorden met [1](Rondleiding reserveren), [2](Rondleiding annuleren), [3](Info Rondleidingen).");
                     break;
             }
         }
