@@ -66,9 +66,6 @@ class Menu
                     Program.World.WriteLine("Druk op [Enter] om door te gaan.");
                     Program.World.ReadLine();
                     break;
-                case "abcd":
-                    Guide.CheckEmployeeID();
-                    break;
                 case "498901":
                     QuitProgram = true;
                     break;
