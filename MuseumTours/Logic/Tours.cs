@@ -240,10 +240,17 @@ public class Tours
         Program.Main();
         answer = true;
       }
-      else
+      else if (Customer.CheckIfCustomerInList(Customer_ID) == false && Tours.CheckIfCanCancel(Customer_ID) == false)
       {
         Program.World.WriteLine($"De door u ingevulde code was: '{Customer_ID}'. De code bestaat altijd uit 10 cijfers.");
         answer = false;
+      }
+      else
+      {
+        Program.World.WriteLine($"U heeft al een rondleiding gerserveerd. \nAls u een andere rondleiding wilt reserveren, annuleer deze rondleiding dan eerst.\n[Enter] om terug te gaan.");
+        Program.World.ReadLine();
+        Program.Main();
+        break;
       }
     }
   }
