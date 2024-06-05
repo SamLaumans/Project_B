@@ -38,6 +38,7 @@ namespace Program
                 }
                 else if (employeeID == "q")
                 {
+                    Program.Main();
                     break;
                 }
                 else if (employeeID.Length != 6 || Regex.IsMatch(employeeID, pattern))
