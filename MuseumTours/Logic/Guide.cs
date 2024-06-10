@@ -151,7 +151,6 @@ namespace Program
                     string customerCode = Program.World.ReadLine();
 
                     GuideScanCustomerCode(chosenTour, customerCode);
-                    GuideScanSound();
                     ShowCodesNotScanned(chosenTour);
                 }
             }
@@ -196,6 +195,7 @@ namespace Program
                     {
                         scannedCodes.Add(customerCode);
                         Program.World.WriteLine($"Klantnummers {customerCode} is succesvol gescand.");
+                        GuideScanSound();
                         return;
                     }
                 }
