@@ -83,7 +83,7 @@ public class Tours
       bool touratleast = false;
       foreach (Tours tour in listOfTours)
       {
-        if (tour.Time > DateTime.Now && tour.Spots > People)
+        if (tour.Time > Program.World.Now && tour.Spots > People)
         {
           Count++;
           string timeString = tour.Time.ToString("HH:mm");
@@ -103,7 +103,7 @@ public class Tours
       bool touratleast = false;
       foreach (Tours tour in listOfTours)
       {
-        if (tour.Time > DateTime.Now && tour.Spots > 0)
+        if (tour.Time > Program.World.Now && tour.Spots > 0)
         {
           Count++;
           string timeString = tour.Time.ToString("HH:mm");
@@ -292,7 +292,7 @@ public class Tours
     List<Tours> listOfTours = DataAccess.ReadJsonTours();
     foreach (Tours tour in listOfTours)
     {
-      if (tour.ID == tourid && tour.Time > DateTime.Now && tour.Spots > 0)
+      if (tour.ID == tourid && tour.Time > Program.World.Now && tour.Spots > 0)
       {
         return tour;
       }

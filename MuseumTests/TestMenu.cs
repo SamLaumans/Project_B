@@ -12,6 +12,7 @@ public class MenuTest
         {
             LinesToRead = new() { "498901" },
             IncludeLinesReadInLinesWritten = true,
+            Now = new DateTime(2024, 11, 10, 10, 30, 0),
             Files = new Dictionary<string, string>
             {
                 ["DataSources/Tourslist.JSON"] = @"[
@@ -48,6 +49,7 @@ public class MenuTest
         {
             LinesToRead = new() { "1", "1234567890", "2", "q", "498901" },
             IncludeLinesReadInLinesWritten = true,
+            Now = new DateTime(2024, 11, 10, 10, 30, 0),
             Files = new Dictionary<string, string>
             {
                 ["DataSources/Tourslist.JSON"] = @"[
