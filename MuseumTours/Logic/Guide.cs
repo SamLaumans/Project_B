@@ -5,11 +5,13 @@ namespace Program
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Media;
+    using System.Runtime.Serialization;
 
     public class Guide
     {
         private static List<Tours> listOfTours = DataAccess.ReadJsonTours();
         private static List<string> scannedCodes = new List<string>();
+        private static List<Customer> listOfCustomers = DataAccess.ReadJsonCustomers();
         public string EmployeeCode;
 
         public Guide(string employeecode)
@@ -167,15 +169,16 @@ namespace Program
                     if (customerCode == "q")
                     {
                         ShowCodesNotScanned(tourID);
-                        Program.World.WriteLine($"De volgende Klantcodes zijn nog niet gescand. Weet u zeker dat u door wilt gaan?");
+                        Program.World.WriteLine($"De volgende Klantnummers zijn nog niet gescand en zullen verwijderd worden als u door gaat. Weet u zeker dat u door wilt gaan?");
                         Program.World.WriteLine($"[1] Ja");
                         Program.World.WriteLine($"[2] Nee");
                         string gidsAnswer = Program.World.ReadLine();
                         if (gidsAnswer == "1")
                         {
+                            RemoveCustomersIfNotScanned(tourID);
                             Addingcustomerstotour(tourID);
                         }
-                        else if (gidsAnswer == "2");
+                        else if (gidsAnswer == "2")
                         {
                             break;
                         }
@@ -215,6 +218,33 @@ namespace Program
                         }
                     }
                     Program.World.WriteLine("================================================================");
+                }
+            }
+        }
+
+        public static void RemoveCustomersIfNotScanned(string tourID)
+        {
+            foreach (Tours tour in listOfTours)
+            {
+                if (tour.ID == tourID)
+                {
+                    List<Customer> customersToRemove = new List<Customer>();
+                    foreach (Customer customer in tour.Customer_Codes)
+                    {
+                        if (!scannedCodes.Contains(customer.CustomerCode))
+                        {
+                            customersToRemove.Add(customer);
+                        }
+                    }
+                    foreach (Customer customer in customersToRemove)
+                    {
+                        tour.Customer_Codes.Remove(customer);
+                        tour.Spots ++;
+                        listOfCustomers.Add(customer);
+                        DataAccess.WriteJsonToTours(listOfTours);
+                        DataAccess.WriteJsonToCustomers(listOfCustomers);
+                    }
+
                 }
             }
         }

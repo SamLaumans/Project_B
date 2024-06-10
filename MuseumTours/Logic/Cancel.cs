@@ -8,6 +8,7 @@ namespace Program
 {
     public class Cancel
     {
+        private static List<Customer> listOfCustomers = DataAccess.ReadJsonCustomers();
         public static void CancelAppointment(string customerCodeToCancel)
         {
             List<Tours> tours = DataAccess.LoadTours();
@@ -19,7 +20,9 @@ namespace Program
                 {
                     tourToUpdate.Customer_Codes.Remove(customerToRemove);
                     tourToUpdate.Spots++;
-                    DataAccess.SaveTours(tours);
+                    listOfCustomers.Add(customerToRemove);
+                    DataAccess.WriteJsonToCustomers(listOfCustomers);
+                    DataAccess.WriteJsonToTours(tours);
                     Program.World.WriteLine("Reservering succesvol gecanceled.");
                 }
             }
