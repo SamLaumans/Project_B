@@ -7,13 +7,18 @@ namespace Program
 
     public class Guide
     {
-        private static List<Tours> listOfTours = DataAccess.ReadJsonTours();
+        private static List<Tours> listOfTours;
         private static List<string> scannedCodes = new List<string>();
         public string EmployeeCode;
 
         public Guide(string employeecode)
         {
             EmployeeCode = employeecode;
+        }
+
+        public static void Init()
+        {
+            listOfTours = DataAccess.ReadJsonTours();
         }
 
         public bool CheckIfGuideInList(string idguide)
