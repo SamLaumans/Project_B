@@ -269,7 +269,8 @@ namespace Program
                             string Customer_ID = Program.World.ReadLine().ToLower();
                             if (Customer_ID == "1")
                             {
-                                Program.World.WriteLine($"U heeft rondleiding {ChosenTour} voor {tour.Time} gestart.");
+                                string timeString = tour.Time.ToString("HH:mm");
+                                Program.World.WriteLine($"U heeft rondleiding {ChosenTour} voor {timeString} gestart.");
                                 Thread.Sleep(2000);
                                 Program.Main();
                             }
