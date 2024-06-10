@@ -64,8 +64,8 @@ public class Tours
       {
         persons = "personen";
       }
-
-      Program.World.WriteLine($"U heeft voor {customerid.Count} {persons} gereserveerd voor de rondleiding om {tour.Time}");
+      string timeString = tour.Time.ToString("HH:mm");
+      Program.World.WriteLine($"U heeft voor {customerid.Count} {persons} gereserveerd voor de rondleiding om {timeString}");
     }
     else
     {
