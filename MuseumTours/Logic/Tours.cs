@@ -64,8 +64,8 @@ public class Tours
       {
         persons = "personen";
       }
-
-      Program.World.WriteLine($"U heeft voor {customerid.Count} {persons} gereserveerd voor de rondleiding om {tour.Time}");
+      string timeString = tour.Time.ToString("HH:mm");
+      Program.World.WriteLine($"U heeft voor {customerid.Count} {persons} gereserveerd voor de rondleiding om {timeString}");
     }
     else
     {
@@ -83,7 +83,7 @@ public class Tours
       bool touratleast = false;
       foreach (Tours tour in listOfTours)
       {
-        if (tour.Time > DateTime.Now && tour.Spots > People)
+        if (tour.Time > Program.World.Now && tour.Spots > People)
         {
           Count++;
           string timeString = tour.Time.ToString("HH:mm");
@@ -103,7 +103,7 @@ public class Tours
       bool touratleast = false;
       foreach (Tours tour in listOfTours)
       {
-        if (tour.Time > DateTime.Now && tour.Spots > 0)
+        if (tour.Time > Program.World.Now && tour.Spots > 0)
         {
           Count++;
           string timeString = tour.Time.ToString("HH:mm");
@@ -240,10 +240,17 @@ public class Tours
         Program.Main();
         answer = true;
       }
-      else
+      else if (Customer.CheckIfCustomerInList(Customer_ID) == false && Tours.CheckIfCanCancel(Customer_ID) == false)
       {
         Program.World.WriteLine($"De door u ingevulde code was: '{Customer_ID}'. De code bestaat altijd uit 10 cijfers.");
         answer = false;
+      }
+      else
+      {
+        Program.World.WriteLine($"U heeft al een rondleiding gerserveerd. \nAls u een andere rondleiding wilt reserveren, annuleer deze rondleiding dan eerst.\n[Enter] om terug te gaan.");
+        Program.World.ReadLine();
+        Program.Main();
+        break;
       }
     }
   }
@@ -285,7 +292,7 @@ public class Tours
     List<Tours> listOfTours = DataAccess.ReadJsonTours();
     foreach (Tours tour in listOfTours)
     {
-      if (tour.ID == tourid && tour.Time > DateTime.Now && tour.Spots > 0)
+      if (tour.ID == tourid && tour.Time > Program.World.Now && tour.Spots > 0)
       {
         return tour;
       }

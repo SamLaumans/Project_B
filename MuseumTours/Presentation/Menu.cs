@@ -5,10 +5,8 @@ class Menu
     {
         Program program = new();
         bool QuitProgram = false;
-        TimeSpan startTime = new TimeSpan(8, 30, 0);
-        TimeSpan endTime = new TimeSpan(17, 30, 0);
-        TimeSpan currentTime = DateTime.Now.TimeOfDay;
-        while (QuitProgram == false && currentTime >= startTime && currentTime <= endTime)
+        TimeSpan currentTime = Program.World.Now.TimeOfDay;
+        while (QuitProgram == false)
         {
             Program.World.WriteLine("Dit zijn de eerst komende 5 rondleidingen: ");
             Tours.ShowAvailableTours(2, 0);

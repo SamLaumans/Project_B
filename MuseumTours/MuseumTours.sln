@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuseumTours", "MuseumTours.csproj", "{8EBD0BF1-6551-434F-98CE-058411238BE8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jagged array 2 dimensional array", "..\..\..\jagged array 2 dimensional array\jagged array 2 dimensional array.csproj", "{84A67525-1549-4D1E-8B97-4AE051AAC709}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuseumTours", "MuseumTours.csproj", "{6A750F8F-4251-4305-9FF6-151E4B00EDD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,19 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8EBD0BF1-6551-434F-98CE-058411238BE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8EBD0BF1-6551-434F-98CE-058411238BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8EBD0BF1-6551-434F-98CE-058411238BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8EBD0BF1-6551-434F-98CE-058411238BE8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84A67525-1549-4D1E-8B97-4AE051AAC709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84A67525-1549-4D1E-8B97-4AE051AAC709}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84A67525-1549-4D1E-8B97-4AE051AAC709}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84A67525-1549-4D1E-8B97-4AE051AAC709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A750F8F-4251-4305-9FF6-151E4B00EDD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A750F8F-4251-4305-9FF6-151E4B00EDD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A750F8F-4251-4305-9FF6-151E4B00EDD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A750F8F-4251-4305-9FF6-151E4B00EDD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E0C4137B-C570-4740-B2BB-A4F46B3A6184}
+		SolutionGuid = {F509C35B-2712-4847-9413-63545A07E82E}
 	EndGlobalSection
 EndGlobal

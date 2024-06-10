@@ -9,14 +9,20 @@ namespace Program
 
     public class Guide
     {
-        private static List<Tours> listOfTours = DataAccess.ReadJsonTours();
+        private static List<Tours> listOfTours;
         private static List<string> scannedCodes = new List<string>();
-        private static List<Customer> listOfCustomers = DataAccess.ReadJsonCustomers();
+        private static List<Customer> listOfCustomers;
         public string EmployeeCode;
 
         public Guide(string employeecode)
         {
             EmployeeCode = employeecode;
+        }
+
+        public static void Init()
+        {
+            listOfTours = DataAccess.ReadJsonTours();
+            listOfCustomers = DataAccess.ReadJsonCustomers();
         }
 
         static void GuideScanSound()
@@ -301,17 +307,21 @@ namespace Program
                                     }
                                     Program.World.WriteLine("\nWilt u nog iemand aanmelden? Ja[1] nee[2]");
                                     string yesno = Program.World.ReadLine();
-                                    switch (yesno)
+                                    if (yesno == "1")
                                     {
-                                        case "1":
-                                            answer2 = true;
-                                            answer = false;
-                                            break;
-                                        case "2":
-                                            answer2 = true;
-                                            answer = true;
-                                            Tours.AddToTour(listofaddablecustomers, tour.ID);
-                                            break;
+                                        answer2 = true;
+                                        answer = false;
+                                    }
+                                    else if (yesno == "2")
+                                    {
+                                        answer2 = true;
+                                        answer = true;
+                                        Tours.AddToTour(listofaddablecustomers, tour.ID);
+                                        Addingcustomerstotour(ChosenTour);
+                                    }
+                                    else
+                                    {
+                                        Program.World.WriteLine("Voer een geldige optie in.");
                                     }
                                 }
                             }
