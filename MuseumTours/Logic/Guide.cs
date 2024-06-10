@@ -4,6 +4,7 @@ namespace Program
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Media;
 
     public class Guide
     {
@@ -14,6 +15,24 @@ namespace Program
         public Guide(string employeecode)
         {
             EmployeeCode = employeecode;
+        }
+
+        static void GuideScanSound()
+        {
+            SoundPlayer sound = new SoundPlayer("Ding.wav");
+            sound.PlaySync();
+        }
+
+        static void GuideAllScannedSound()
+        {
+            SoundPlayer sound = new SoundPlayer("Pokemon.wav");
+            sound.PlaySync();
+        }
+
+        static void NotScannedFor60s()
+        {
+            SoundPlayer sound = new SoundPlayer("Announcement.wav");
+            sound.PlaySync();
         }
 
         public bool CheckIfGuideInList(string idguide)
@@ -130,10 +149,12 @@ namespace Program
                     string customerCode = Program.World.ReadLine();
 
                     GuideScanCustomerCode(chosenTour, customerCode);
+                    GuideScanSound();
                     ShowCodesNotScanned(chosenTour);
                 }
             }
             Program.World.WriteLine("Alle Klanten zijn succesvol gescand.");
+            GuideAllScannedSound();
             Addingcustomerstotour(chosenTour);
             return true;
         }
@@ -145,8 +166,20 @@ namespace Program
                 {
                     if (customerCode == "q")
                     {
-                        Tours.ShowChosenTour(tourID);
-                        GuideStartTour(tourID);
+                        ShowCodesNotScanned(tourID);
+                        Program.World.WriteLine($"De volgende Klantcodes zijn nog niet gescand. Weet u zeker dat u door wilt gaan?");
+                        Program.World.WriteLine($"[1] Ja");
+                        Program.World.WriteLine($"[2] Nee");
+                        string gidsAnswer = Program.World.ReadLine();
+                        if (gidsAnswer == "1")
+                        {
+                            Addingcustomerstotour(tourID);
+                        }
+                        else if (gidsAnswer == "2");
+                        {
+                            break;
+                        }
+
                     }
                     else if (!tour.Customer_Codes.Any(customer => customer.CustomerCode == customerCode))
                     {
@@ -208,9 +241,9 @@ namespace Program
                         {
                             bool booleanstuff = true;
                             Program.World.WriteLine($"Er zijn nog {tour.Spots} plekken.");
-                            Program.World.WriteLine("Scan de streepjescode op uw entreebewijs of toets [q] om terug te gaan");
+                            Program.World.WriteLine("Scan de streepjescode op uw entreebewijs of toets [1] om de rondleiding te starten");
                             string Customer_ID = Program.World.ReadLine().ToLower();
-                            if (Customer_ID == "q")
+                            if (Customer_ID == "1")
                             {
                                 break;
                             }
