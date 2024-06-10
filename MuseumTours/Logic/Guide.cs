@@ -147,7 +147,7 @@ namespace Program
                 }
                 if (!allCodesScanned)
                 {
-                    Program.World.WriteLine("Scan de streepjescode op het entreebewijs die u wilt scannen of toets (q) om te stoppen met scannen:");
+                    Program.World.WriteLine("Scan de streepjescode op het entreebewijs die u wilt scannen of toets [1] om te stoppen met scannen:");
                     string customerCode = Program.World.ReadLine();
 
                     GuideScanCustomerCode(chosenTour, customerCode);
@@ -166,7 +166,7 @@ namespace Program
             {
                 if (tour.ID == tourID)
                 {
-                    if (customerCode == "q")
+                    if (customerCode == "1")
                     {
                         ShowCodesNotScanned(tourID);
                         Program.World.WriteLine($"De volgende Klantnummers zijn nog niet gescand en zullen verwijderd worden als u door gaat. Weet u zeker dat u door wilt gaan?");
@@ -275,7 +275,9 @@ namespace Program
                             string Customer_ID = Program.World.ReadLine().ToLower();
                             if (Customer_ID == "1")
                             {
-                                break;
+                                Program.World.WriteLine($"U heeft rondleiding {ChosenTour} voor {tour.Time} gestart.");
+                                Thread.Sleep(2000);
+                                Program.Main();
                             }
                             if (tour.Customer_Codes.Any(customer => customer.CustomerCode == Customer_ID))
                             {
