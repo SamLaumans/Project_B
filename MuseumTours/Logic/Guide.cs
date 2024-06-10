@@ -31,12 +31,6 @@ namespace Program
             sound.PlaySync();
         }
 
-        static void NotScannedFor60s()
-        {
-            SoundPlayer sound = new SoundPlayer("Announcement.wav");
-            sound.PlaySync();
-        }
-
         public bool CheckIfGuideInList(string idguide)
         {
             List<Guide> listOfGuides = DataAccess.ReadJsonEmployees();
