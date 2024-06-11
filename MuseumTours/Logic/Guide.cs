@@ -4,11 +4,14 @@ namespace Program
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Media;
+    using System.Runtime.Serialization;
 
     public class Guide
     {
         private static List<Tours> listOfTours;
         private static List<string> scannedCodes = new List<string>();
+        private static List<Customer> listOfCustomers;
         public string EmployeeCode;
 
         public Guide(string employeecode)
@@ -19,6 +22,19 @@ namespace Program
         public static void Init()
         {
             listOfTours = DataAccess.ReadJsonTours();
+            listOfCustomers = DataAccess.ReadJsonCustomers();
+        }
+
+        static void GuideScanSound()
+        {
+            SoundPlayer sound = new SoundPlayer("Ding.wav");
+            sound.PlaySync();
+        }
+
+        static void GuideAllScannedSound()
+        {
+            SoundPlayer sound = new SoundPlayer("Pokemon.wav");
+            sound.PlaySync();
         }
 
         public bool CheckIfGuideInList(string idguide)
@@ -46,9 +62,9 @@ namespace Program
                     Program.Main();
                     break;
                 }
-                else if (employeeID.Length != 6 || Regex.IsMatch(employeeID, pattern))
+                else if (employeeID.Length != 9 && employeeID[4] != '-')
                 {
-                    Program.World.WriteLine($"De door u ingevulde code was: '{employeeID}'. De code bestaat altijd uit 6 cijfers.");
+                    Program.World.WriteLine($"De door u ingevulde code was: '{employeeID}'. De code bestaat altijd uit 8 cijfers gesplitst door een '-'.");
                 }
                 else
                 {
@@ -90,7 +106,7 @@ namespace Program
                     {
                         if (tour.ID == chosenTour)
                         {
-                            GuideChooseOption(chosenTour);
+                            GuideStartTour(chosenTour);
                             tourFound = true;
                             break;
                         }
@@ -104,30 +120,9 @@ namespace Program
             }
         }
 
-        public static void GuideChooseOption(string chosenTour)
+        public static void GuideStartTour(string chosenTour)
         {
-            bool answer = false;
-            while (answer == false)
-            {
-                Program.World.WriteLine("Wat wilt u doen?\n[1] Bezoekers scannen \n[2] Bezoekers toevoegen\n[3] Codes van Bezoekers in deze rondleiding bekijken\n[4] Terug gaan");
-                string choice = Program.World.ReadLine();
-                switch (choice)
-                {
-                    case "1":
-                        GuideScanLogic(chosenTour);
-                        break;
-                    case "2":
-                        Addingcustomerstotour(chosenTour);
-                        break;
-                    case "3":
-                        Tours.ShowChosenTour(chosenTour);
-                        break;
-                    case "4":
-                        Tours.ShowToursToGuide("../../../Tourslist.Json");
-                        answer = true;
-                        break;
-                }
-            }
+            GuideScanLogic(chosenTour);
         }
         public static bool GuideScanLogic(string chosenTour)
         {
@@ -152,14 +147,16 @@ namespace Program
                 }
                 if (!allCodesScanned)
                 {
-                    Program.World.WriteLine("Scan de streepjescode op het entreebewijs die u wilt scannen of toets (q) om terug te gaan:");
+                    Program.World.WriteLine("Scan de streepjescode op het entreebewijs die u wilt scannen of toets [1] om te stoppen met scannen:");
                     string customerCode = Program.World.ReadLine();
 
                     GuideScanCustomerCode(chosenTour, customerCode);
                     ShowCodesNotScanned(chosenTour);
                 }
             }
-            Program.World.WriteLine("Alle Klanten zijn succesvol gescand");
+            Program.World.WriteLine("Alle Klanten zijn succesvol gescand.");
+            GuideAllScannedSound();
+            Addingcustomerstotour(chosenTour);
             return true;
         }
         public static void GuideScanCustomerCode(string tourID, string customerCode)
@@ -168,10 +165,23 @@ namespace Program
             {
                 if (tour.ID == tourID)
                 {
-                    if (customerCode == "q")
+                    if (customerCode == "1")
                     {
-                        Tours.ShowChosenTour(tourID);
-                        GuideChooseOption(tourID);
+                        ShowCodesNotScanned(tourID);
+                        Program.World.WriteLine($"De volgende Klantnummers zijn nog niet gescand en zullen verwijderd worden als u door gaat. Weet u zeker dat u door wilt gaan?");
+                        Program.World.WriteLine($"[1] Ja");
+                        Program.World.WriteLine($"[2] Nee");
+                        string gidsAnswer = Program.World.ReadLine();
+                        if (gidsAnswer == "1")
+                        {
+                            RemoveCustomersIfNotScanned(tourID);
+                            Addingcustomerstotour(tourID);
+                        }
+                        else if (gidsAnswer == "2")
+                        {
+                            break;
+                        }
+
                     }
                     else if (!tour.Customer_Codes.Any(customer => customer.CustomerCode == customerCode))
                     {
@@ -185,6 +195,7 @@ namespace Program
                     {
                         scannedCodes.Add(customerCode);
                         Program.World.WriteLine($"Klantnummers {customerCode} is succesvol gescand.");
+                        GuideScanSound();
                         return;
                     }
                 }
@@ -211,6 +222,33 @@ namespace Program
             }
         }
 
+        public static void RemoveCustomersIfNotScanned(string tourID)
+        {
+            foreach (Tours tour in listOfTours)
+            {
+                if (tour.ID == tourID)
+                {
+                    List<Customer> customersToRemove = new List<Customer>();
+                    foreach (Customer customer in tour.Customer_Codes)
+                    {
+                        if (!scannedCodes.Contains(customer.CustomerCode))
+                        {
+                            customersToRemove.Add(customer);
+                        }
+                    }
+                    foreach (Customer customer in customersToRemove)
+                    {
+                        tour.Customer_Codes.Remove(customer);
+                        tour.Spots++;
+                        listOfCustomers.Add(customer);
+                        DataAccess.WriteJsonToTours(listOfTours);
+                        DataAccess.WriteJsonToCustomers(listOfCustomers);
+                    }
+
+                }
+            }
+        }
+
         public static void Addingcustomerstotour(string ChosenTour)
         {
             bool answerValid = false;
@@ -232,11 +270,15 @@ namespace Program
                         while (!answer)
                         {
                             bool booleanstuff = true;
-                            Program.World.WriteLine("Scan de streepjescode op uw entreebewijs of toets [q] om terug te gaan");
+                            Program.World.WriteLine($"Er zijn nog {tour.Spots} plekken.");
+                            Program.World.WriteLine("Scan de streepjescode op uw entreebewijs of toets [1] om de rondleiding te starten");
                             string Customer_ID = Program.World.ReadLine().ToLower();
-                            if (Customer_ID == "q")
+                            if (Customer_ID == "1")
                             {
-                                break;
+                                string timeString = tour.Time.ToString("HH:mm");
+                                Program.World.WriteLine($"U heeft rondleiding {ChosenTour} voor {timeString} gestart.");
+                                Thread.Sleep(2000);
+                                Program.Main();
                             }
                             if (tour.Customer_Codes.Any(customer => customer.CustomerCode == Customer_ID))
                             {
@@ -265,17 +307,21 @@ namespace Program
                                     }
                                     Program.World.WriteLine("\nWilt u nog iemand aanmelden? Ja[1] nee[2]");
                                     string yesno = Program.World.ReadLine();
-                                    switch (yesno)
+                                    if (yesno == "1")
                                     {
-                                        case "1":
-                                            answer2 = true;
-                                            answer = false;
-                                            break;
-                                        case "2":
-                                            answer2 = true;
-                                            answer = true;
-                                            Tours.AddToTour(listofaddablecustomers, tour.ID);
-                                            break;
+                                        answer2 = true;
+                                        answer = false;
+                                    }
+                                    else if (yesno == "2")
+                                    {
+                                        answer2 = true;
+                                        answer = true;
+                                        Tours.AddToTour(listofaddablecustomers, tour.ID);
+                                        Addingcustomerstotour(ChosenTour);
+                                    }
+                                    else
+                                    {
+                                        Program.World.WriteLine("Voer een geldige optie in.");
                                     }
                                 }
                             }
