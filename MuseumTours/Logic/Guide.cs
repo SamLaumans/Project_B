@@ -62,9 +62,9 @@ namespace Program
                     Program.Main();
                     break;
                 }
-                else if (employeeID.Length != 6 || Regex.IsMatch(employeeID, pattern))
+                else if (employeeID.Length != 9 && employeeID[4] != '-')
                 {
-                    Program.World.WriteLine($"De door u ingevulde code was: '{employeeID}'. De code bestaat altijd uit 6 cijfers.");
+                    Program.World.WriteLine($"De door u ingevulde code was: '{employeeID}'. De code bestaat altijd uit 8 cijfers gesplitst door een '-'.");
                 }
                 else
                 {
@@ -239,7 +239,7 @@ namespace Program
                     foreach (Customer customer in customersToRemove)
                     {
                         tour.Customer_Codes.Remove(customer);
-                        tour.Spots ++;
+                        tour.Spots++;
                         listOfCustomers.Add(customer);
                         DataAccess.WriteJsonToTours(listOfTours);
                         DataAccess.WriteJsonToCustomers(listOfCustomers);
