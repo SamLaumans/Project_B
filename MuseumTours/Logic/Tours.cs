@@ -140,11 +140,11 @@ public class Tours
         string timeString = tour.Time.ToString("HH:mm");
 
         Program.World.WriteLine($"Tour van : {timeString}");
-        Program.World.WriteLine($"Hieronder zijn alle klantnummers van de bezoekers in deze rondleiding.");
+        Program.World.WriteLine($"Hieronder zijn alle streepjescodes van de bezoekers in deze rondleiding.");
         Program.World.WriteLine($"=======================================================================");
         foreach (var customerCode in tour.Customer_Codes)
         {
-          Program.World.WriteLine($"Klantnummer: {customerCode.CustomerCode}");
+          Program.World.WriteLine($"Streepjescode: {customerCode.CustomerCode}");
         }
         Program.World.WriteLine($"=======================================================================");
       }
@@ -188,7 +188,7 @@ public class Tours
         bool answer2 = false;
         while (answer2 == false)
         {
-          Program.World.Write("Deze klantcodes zijn op dit moment aangemeld: ");
+          Program.World.Write("Deze streepjescodes zijn op dit moment aangemeld: \n");
           foreach (Customer customer in listofaddablecustomers)
           {
             Program.World.Write(customer.CustomerCode + ", ");
