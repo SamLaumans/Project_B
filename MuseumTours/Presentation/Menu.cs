@@ -12,7 +12,7 @@ class Menu
             Tours.ShowAvailableTours(2, 0);
             Program.World.WriteLine("Scan de streepjescode op uw entreebewijs.");
             string? FirstCustomerCode = Program.World.ReadLine().ToLower();
-            if (FirstCustomerCode == "abcd")
+            if (FirstCustomerCode == "gids")
             {
                 Guide.CheckEmployeeID();
             }

@@ -87,7 +87,7 @@ public class Tours
         {
           Count++;
           string timeString = tour.Time.ToString("HH:mm");
-          Program.World.WriteLine($"{tour.ID}. starttijd: {timeString} | beschikbare plekken: {tour.Spots}");
+          Program.World.WriteLine($"{Count} ID: {tour.ID}. starttijd: {timeString} | beschikbare plekken: {tour.Spots}");
           touratleast = true;
         }
       }
@@ -107,7 +107,7 @@ public class Tours
         {
           Count++;
           string timeString = tour.Time.ToString("HH:mm");
-          Program.World.WriteLine($"{tour.ID}. starttijd: {timeString} | beschikbare plekken: {tour.Spots}");
+          Program.World.WriteLine($"{Count}. starttijd: {timeString} | beschikbare plekken: {tour.Spots}");
           touratleast = true;
           if (Count == 5)
           {
@@ -210,7 +210,7 @@ public class Tours
               bool answerValid = false;
               while (answerValid == false)
               {
-                Program.World.WriteLine("Voer het rondleidingsnummer waaraan u zou willen deelnemen in of toets 'q' om terug te gaan naar het begin.");
+                Program.World.WriteLine("Voer het ID in van de rondleiding waaraan u zou willen deelnemen of toets 'q' om terug te gaan naar het begin.");
                 string ChosenTour = Program.World.ReadLine().ToLower();
                 if (ChosenTour == "q")
                 {

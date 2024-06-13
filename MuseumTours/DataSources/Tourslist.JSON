@@ -1,139 +1,135 @@
 [
   {
     "ID": "1",
-    "Spots": 12,
+    "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T10:40:00",
-    "Customer_Codes": [
-      {
-        "CustomerCode": "0987654321"
-      }
-    ]
+    "Time": "2024-06-12T10:40:00",
+    "Customer_Codes": []
   },
   {
     "ID": "2",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T11:00:00",
+    "Time": "2024-06-12T11:00:00",
     "Customer_Codes": []
   },
   {
     "ID": "3",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T11:20:00",
+    "Time": "2024-06-12T11:20:00",
     "Customer_Codes": []
   },
   {
     "ID": "4",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T11:40:00",
+    "Time": "2024-06-12T11:40:00",
     "Customer_Codes": []
   },
   {
     "ID": "5",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T12:00:00",
+    "Time": "2024-06-12T12:00:00",
     "Customer_Codes": []
   },
   {
     "ID": "6",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T12:20:00",
+    "Time": "2024-06-12T12:20:00",
     "Customer_Codes": []
   },
   {
     "ID": "7",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T12:40:00",
+    "Time": "2024-06-12T12:40:00",
     "Customer_Codes": []
   },
   {
     "ID": "8",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T13:00:00",
+    "Time": "2024-06-12T13:00:00",
     "Customer_Codes": []
   },
   {
     "ID": "9",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T13:20:00",
+    "Time": "2024-06-12T13:20:00",
     "Customer_Codes": []
   },
   {
     "ID": "10",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T13:40:00",
+    "Time": "2024-06-12T13:40:00",
     "Customer_Codes": []
   },
   {
     "ID": "11",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T14:00:00",
+    "Time": "2024-06-12T14:00:00",
     "Customer_Codes": []
   },
   {
     "ID": "12",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T14:20:00",
+    "Time": "2024-06-12T14:20:00",
     "Customer_Codes": []
   },
   {
     "ID": "13",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T14:40:00",
+    "Time": "2024-06-12T14:40:00",
     "Customer_Codes": []
   },
   {
     "ID": "14",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T15:00:00",
+    "Time": "2024-06-12T15:00:00",
     "Customer_Codes": []
   },
   {
     "ID": "15",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T15:20:00",
+    "Time": "2024-06-12T15:20:00",
     "Customer_Codes": []
   },
   {
     "ID": "16",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T15:40:00",
+    "Time": "2024-06-12T15:40:00",
     "Customer_Codes": []
   },
   {
     "ID": "17",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T16:00:00",
+    "Time": "2024-06-12T16:00:00",
     "Customer_Codes": []
   },
   {
     "ID": "18",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T16:20:00",
+    "Time": "2024-06-12T16:20:00",
     "Customer_Codes": []
   },
   {
     "ID": "19",
     "Spots": 13,
     "Started": false,
-    "Time": "2024-11-10T16:40:00",
+    "Time": "2024-06-12T16:40:00",
     "Customer_Codes": []
   }
 ]
