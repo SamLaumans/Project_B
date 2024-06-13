@@ -9,7 +9,7 @@ public class MenuTest
         // Arrange
         FakeWorld world = new()
         {
-            LinesToRead = new() { "498901" }
+            LinesToRead = new() { "1", "498901" }
         };
         Program.World = world;
 
