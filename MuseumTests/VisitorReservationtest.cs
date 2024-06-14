@@ -5,12 +5,12 @@ using System.Diagnostics;
 public class MenuTest
 {
     [TestMethod]
-    public void TestQuit()
+    public void TestVisitorReservation()
     {
         // Arrange
         FakeWorld world = new()
         {
-            LinesToRead = new() { "498901" },
+            LinesToRead = new() { "1234567890", "1", "2", "5", "1234567890", "498901" },
             IncludeLinesReadInLinesWritten = true,
             Now = new DateTime(2024, 11, 10, 10, 30, 0),
             Files = new Dictionary<string, string>
@@ -36,18 +36,18 @@ public class MenuTest
         Debug.WriteLine(world);
 
         // Assert
-        string expected = "Toets het nummer in van de actie die u wilt uitvoeren:";
+        string expected = "U heeft voor 1 persoon gereserveerd voor de rondleiding om 10:40";
         List<string> output = world.LinesWritten;
         Assert.IsTrue(output.Contains(expected));
     }
 
     [TestMethod]
-    public void TestSignInThenExit()
+    public void ScanBarcodetest()
     {
         // Arrange
         FakeWorld world = new()
         {
-            LinesToRead = new() { "1", "1234567890", "2", "q", "498901" },
+            LinesToRead = new() { "1234567890", "498901" },
             IncludeLinesReadInLinesWritten = true,
             Now = new DateTime(2024, 11, 10, 10, 30, 0),
             Files = new Dictionary<string, string>
@@ -73,7 +73,7 @@ public class MenuTest
         Debug.WriteLine(world);
 
         // Assert
-        string expected = "Dit zijn de nog beschikbare rondleidingen voor vandaag(iedere rondleiding duurt 40 minuten):";
+        string expected = "Dit zijn de eerst komende 5 rondleidingen: ";
         List<string> output = world.LinesWritten;
         Assert.IsTrue(output.Contains(expected));
     }

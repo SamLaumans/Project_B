@@ -1,42 +1,42 @@
 [
     {
         "Name": "John",
-        "EmployeeCode": "123456"
+        "EmployeeCode": "1234-5678"
     },
     {
         "Name": "Alice",
-        "EmployeeCode": "654321"
+        "EmployeeCode": "9538-6988"
     },
     {
         "Name": "David",
-        "EmployeeCode": "987654"
+        "EmployeeCode": "7672-6851"
     },
     {
         "Name": "Emily",
-        "EmployeeCode": "456789"
+        "EmployeeCode": "1298-0124"
     },
     {
         "Name": "Michael",
-        "EmployeeCode": "246810"
+        "EmployeeCode": "8049-9135"
     },
     {
         "Name": "Sarah",
-        "EmployeeCode": "135790"
+        "EmployeeCode": "1860-8213"
     },
     {
         "Name": "Robert",
-        "EmployeeCode": "112233"
+        "EmployeeCode": "3451-2341"
     },
     {
         "Name": "Emma",
-        "EmployeeCode": "445566"
+        "EmployeeCode": "2177-9390"
     },
     {
         "Name": "James",
-        "EmployeeCode": "778899"
+        "EmployeeCode": "7320-4260"
     },
     {
         "Name": "Sophia",
-        "EmployeeCode": "998877"
+        "EmployeeCode": "5750-6353"
     }
 ]
