@@ -11,7 +11,7 @@ namespace Program
             // Arrange
             FakeWorld world = new()
             {
-                LinesToRead = new() { "1234567890", "1", "2", "5", "1234567890", "1", "498901" },
+                LinesToRead = new() { "1234567890", "1", "2", "5", "1234567890", "1", "", "1234567890", "498901", "1234567890", "498901" },
                 IncludeLinesReadInLinesWritten = true,
                 Now = new DateTime(2024, 11, 10, 10, 30, 0),
                 Files = new Dictionary<string, string>
@@ -125,7 +125,7 @@ namespace Program
             // Arrange
             FakeWorld world = new()
             {
-                LinesToRead = new() { "1234567890", "1", "1", "0123456789", "2", "5", "498901" },
+                LinesToRead = new() { "1234567890", "1", "1", "0123456789", "2", "5", "1234567890", "498901" },
                 IncludeLinesReadInLinesWritten = true,
                 Now = new DateTime(2024, 11, 10, 10, 30, 0),
                 Files = new Dictionary<string, string>
@@ -146,7 +146,6 @@ namespace Program
                         ""CustomerCode"": ""1234567890""
                     }]"
                 }
-
             };
             Program.World = world;
 
@@ -155,7 +154,7 @@ namespace Program
             Debug.WriteLine(world);
 
             // Assert
-            string expected = "U heeft voor 2 personen gereserveerd voor de rondleiding om 10-11-2024 10:40:00";
+            string expected = "U heeft voor 2 personen gereserveerd voor de rondleiding om 10:40";
             List<string> output = world.LinesWritten;
             Assert.IsTrue(output.Contains(expected));
         }
@@ -166,7 +165,7 @@ namespace Program
             // Arrange
             FakeWorld world = new()
             {
-                LinesToRead = new() { "1234567890", "1", "1", "0123456789", "2", "5", "498901" },
+                LinesToRead = new() { "1234567890", "1", "1", "0123456789", "2", "5", "1234567890", "498901" },
                 IncludeLinesReadInLinesWritten = true,
                 Now = new DateTime(2024, 11, 10, 10, 30, 0),
                 Files = new Dictionary<string, string>
@@ -236,4 +235,3 @@ namespace Program
         // }
     }
 }
-
