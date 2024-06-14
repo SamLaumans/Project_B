@@ -47,6 +47,8 @@ namespace Program
         {
             string pattern = @"[^0-9]";
             bool answerValid = false;
+            Init();
+
 
             while (!answerValid)
             {
