@@ -120,17 +120,10 @@
   },
   {
     "ID": "18",
-    "Spots": 11,
+    "Spots": 13,
     "Started": false,
     "Time": "2024-06-15T16:20:00",
-    "Customer_Codes": [
-      {
-        "CustomerCode": "1234567890"
-      },
-      {
-        "CustomerCode": "0987654321"
-      }
-    ]
+    "Customer_Codes": []
   },
   {
     "ID": "19",
